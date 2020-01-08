@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>杂言闲语</title>
+  
+  <subtitle>za yan xian yu</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2020-01-08T18:05:12.006Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>wjy</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>nvidia-docker支持docker使用gpu</title>
+    <link href="http://yoursite.com/Tech/undefined-undefined.html"/>
+    <id>http://yoursite.com/Tech/undefined-undefined.html</id>
+    <published>2020-01-08T02:21:59.000Z</published>
+    <updated>2020-01-08T18:05:12.006Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;docker支持使用nvidia驱动&quot;&gt;&lt;a href=&quot;#docker支持使用nvidia驱动&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="docker" scheme="http://yoursite.com/tags/docker/"/>
+    
+      <category term="gpu" scheme="http://yoursite.com/tags/gpu/"/>
+    
+      <category term="nvidia" scheme="http://yoursite.com/tags/nvidia/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>docker系列（一）docker安装</title>
+    <link href="http://yoursite.com/Tech/undefined-undefined.html"/>
+    <id>http://yoursite.com/Tech/undefined-undefined.html</id>
+    <published>2020-01-07T06:19:39.000Z</published>
+    <updated>2020-01-08T18:05:06.828Z</updated>
+    
+    <summary type="html">
+    
+      简单介绍docker的概念以及docker在ubuntu下的安装
+    
+    </summary>
+    
+    
+    
+      <category term="docker" scheme="http://yoursite.com/tags/docker/"/>
+    
+  </entry>
+  
+</feed>
