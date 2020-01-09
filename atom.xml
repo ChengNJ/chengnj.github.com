@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://chengnj.github.io/"/>
-  <updated>2020-01-09T03:27:08.158Z</updated>
+  <updated>2020-01-09T03:36:29.954Z</updated>
   <id>https://chengnj.github.io/</id>
   
   <author>
@@ -18,10 +18,10 @@
   
   <entry>
     <title>About Me</title>
-    <link href="https://chengnj.github.io/2020/wjy/"/>
-    <id>https://chengnj.github.io/2020/wjy/</id>
+    <link href="https://chengnj.github.io/2020/about/"/>
+    <id>https://chengnj.github.io/2020/about/</id>
     <published>2020-01-08T03:37:04.000Z</published>
-    <updated>2020-01-09T03:27:08.158Z</updated>
+    <updated>2020-01-09T03:36:29.954Z</updated>
     
     <summary type="html">
     
@@ -40,10 +40,10 @@
   
   <entry>
     <title>nvidia-docker支持docker使用gpu</title>
-    <link href="https://chengnj.github.io/2020/wjy/"/>
-    <id>https://chengnj.github.io/2020/wjy/</id>
+    <link href="https://chengnj.github.io/2020/docker-gpu/"/>
+    <id>https://chengnj.github.io/2020/docker-gpu/</id>
     <published>2020-01-08T02:21:59.000Z</published>
-    <updated>2020-01-08T18:12:23.840Z</updated>
+    <updated>2020-01-09T03:37:01.548Z</updated>
     
     <summary type="html">
     
@@ -69,14 +69,20 @@
   
   <entry>
     <title>docker系列（一）docker安装</title>
-    <link href="https://chengnj.github.io/2020/wjy/"/>
-    <id>https://chengnj.github.io/2020/wjy/</id>
+    <link href="https://chengnj.github.io/2020/docker1/"/>
+    <id>https://chengnj.github.io/2020/docker1/</id>
     <published>2020-01-07T06:19:39.000Z</published>
-    <updated>2020-01-08T18:12:25.980Z</updated>
+    <updated>2020-01-09T03:36:51.115Z</updated>
     
     <summary type="html">
     
-      简单介绍docker的概念以及docker在ubuntu下的安装
+      
+      
+        
+        
+          &lt;h1 id=&quot;docker安装&quot;&gt;&lt;a href=&quot;#docker安装&quot; class=&quot;headerlink&quot; title=&quot;docker安装&quot;&gt;&lt;/a&gt;docker安装&lt;/h1&gt;&lt;h2 id=&quot;docker简介&quot;&gt;&lt;a href=&quot;#docker简介&quot;
+        
+      
     
     </summary>
     
