@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-01-08T18:12:23.840Z</updated>
+  <updated>2020-01-09T03:27:08.158Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>About Me</title>
+    <link href="http://yoursite.com/uncategorized/undefined-undefined.html"/>
+    <id>http://yoursite.com/uncategorized/undefined-undefined.html</id>
+    <published>2020-01-08T03:37:04.000Z</published>
+    <updated>2020-01-09T03:27:08.158Z</updated>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;A Coder, live in Xiamen, China.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;GitHub: &lt;a href=&quot;https://github.com/ChengNJ&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;ChengNJ&lt;/a&gt;&lt;br&gt;QQ: &lt;a href=&quot;http://wpa.qq.com/msgrd?v=3&amp;uin=448766534&amp;site=qq&amp;menu=yes&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;337455685&lt;/a&gt;&lt;br&gt;微信: w-jy-1993&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="随笔" scheme="http://yoursite.com/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title>nvidia-docker支持docker使用gpu</title>
