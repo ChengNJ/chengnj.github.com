@@ -6,7 +6,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    docker系列二docker配置优化 |  杂言闲语
+    docker系列三docker基本操作 |  杂言闲语
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
@@ -32,7 +32,7 @@
   <div id="app">
     <main class="content">
       <section class="outer">
-  <article id="post-docker系列二docker配置优化" class="article article-type-post" itemscope
+  <article id="post-docker系列三docker基本操作" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -40,7 +40,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  docker系列二docker配置优化
+  docker系列三docker基本操作
 </h1>
   
 
@@ -49,8 +49,8 @@
 
     
     <div class="article-meta">
-      <a href="/2020/docker2/" class="article-date">
-  <time datetime="2020-01-10T08:29:12.000Z" itemprop="datePublished">2020-01-10</time>
+      <a href="/2020/docker3/" class="article-date">
+  <time datetime="2020-01-10T09:48:37.000Z" itemprop="datePublished">2020-01-10</time>
 </a>
       
       
@@ -60,7 +60,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">682字</span>
+            <span class="post-count">811字</span>
         </span>
     </span>
 
@@ -69,7 +69,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">2分钟</span>
+            <span class="post-count">3分钟</span>
         </span>
     </span>
 </div>
@@ -95,30 +95,30 @@
       
 
       
-      <p><a href="/2020/docker1/">docker系列一docker安装</a></p>
-<p>工欲善其事必先利其器，所以在安装完docker后，我们需要对docker修改配置。<br>docker的配置文件<strong>是/etc/docker/daemon.json</strong>如果没有这个文件，就新建一个。<br><strong>该配置文件修改完后，需要重启docker使配置生效。</strong><br>重启方式</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl daemon-reload</span><br><span class="line">sudo systemctl restart docker</span><br></pre></td></tr></table></figure>
-<h2 id="查看docker信息"><a href="#查看docker信息" class="headerlink" title="查看docker信息"></a>查看docker信息</h2><p>使用docker info 可以进行查看docker的信息</p>
-<h2 id="镜像加速"><a href="#镜像加速" class="headerlink" title="镜像加速"></a>镜像加速</h2><p>由于默认的docker镜像是从国外拉取的，所以速度会比较慢，所以我们这边采用阿里的镜像仓库，后续我们也可以把自己的镜像推送到阿里云，这样我们在其他服务器拉取镜像就会比较快。</p>
-<ol>
-<li>阿里云仓库 <a href="https://dev.aliyun.com/search.html" target="_blank" rel="noopener">https://dev.aliyun.com/search.html</a></li>
-<li>进去后有账号的话直接登录，没有的就注册下，登录后在搜索框搜索”容器镜像服务“，选择进入该服务面板。</li>
-<li>在镜像中心-镜像加速器，有你的加速地址。下面还有操作文档告诉你怎么操作。/etc/docker/daemon.json中的配置如下<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">   &quot;registry-mirrors&quot;:[&quot;你的阿里云加速地址&quot;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      <p><a href="/2020/docker1/">docker系列一docker安装</a><br><a href="/2020/docker2/">docker系列二docker配置优化</a></p>
+<p>经过前两篇的前期准备，这篇开始就可以真正地进入docker的实地操作啦！那么先来了解下docker的几个指令操作。</p>
+<h2 id="pull-拉取镜像"><a href="#pull-拉取镜像" class="headerlink" title="pull 拉取镜像"></a>pull 拉取镜像</h2><p>从镜像仓库中拉取或者更新指定镜像，可拉取一个或者多个<br>docker pull [options] [registry-url/]namespace/image[:tag]</p>
+<blockquote>
+<p>options<br>-a :拉取所有tagged镜像<br>–disable-content-trust :忽略镜像的校验,默认开启<br>registry-url 镜像仓库的地址，可不写，默认是从docker hub拉取，如果是其他镜像仓库，需要指定。<br>namespace 命名空间，镜像的所属命名空间<br>image 镜像名称<br>tag 镜像版本，如果没有的话 默认最新：latest</p>
+</blockquote>
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><p>拉取官方镜像hello-world</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">docker pull hello-world</span><br></pre></td></tr></table></figure>
 
-</li>
-</ol>
-<h2 id="登录docker"><a href="#登录docker" class="headerlink" title="登录docker"></a>登录docker</h2><p>由于我们将镜像仓库改为阿里云，所以我们需要登录到该仓库。登录账号密码就是网站的登录账号密码。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo docker login --username&#x3D;你的账号 \</span><br><span class="line">registry.cn-hangzhou.aliyuncs.com</span><br></pre></td></tr></table></figure>
-<h2 id="修改docker的存储位置"><a href="#修改docker的存储位置" class="headerlink" title="修改docker的存储位置"></a>修改docker的存储位置</h2><p>我们系统的主要数据是放在另一个额外挂载的大容量硬盘里。最开始的时候，由于docker采用的是默认的存储位置，导致后面镜像太多了，占用了很多存储空间，直接把系统的根目录存储占用满了。所以如果有这个需求的话需要修改下docker的存储位置。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;graph&quot;:&quot;&#x2F;data&#x2F;docker&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>还有另一种修改存储位置的方法，但是我们还是推荐上面那种。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd &#x2F;etc&#x2F;systemd&#x2F;system&#x2F;multi-user.target.wants</span><br><span class="line">vim docker.service</span><br><span class="line">#在执行命令中添加--graph&#x3D;你的存储位置</span><br><span class="line">ExecStart&#x3D;&#x2F;usr&#x2F;bin&#x2F;dockerd --graph&#x3D;&#x2F;data&#x2F;docker .....</span><br></pre></td></tr></table></figure>
-<h2 id="日志大小限制"><a href="#日志大小限制" class="headerlink" title="日志大小限制"></a>日志大小限制</h2><p>docker会产生自己的启动日志，所以我们这边为了节省空间，对docker的日志做一些限制</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;log-driver&quot;:&quot;json-file&quot;,</span><br><span class="line">  &quot;log-opts&quot;: &#123;&quot;max-size&quot;:&quot;10m&quot;, &quot;max-file&quot;:&quot;2&quot;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>附上我的daemon.json所有配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;graph&quot;:&quot;存储位置&quot;,</span><br><span class="line">  &quot;registry-mirrors&quot;:[&quot;你的加速地址&quot;],</span><br><span class="line">  &quot;log-driver&quot;:&quot;json-file&quot;,</span><br><span class="line">  &quot;log-opts&quot;: &#123;&quot;max-size&quot;:&quot;10m&quot;, &quot;max-file&quot;:&quot;2&quot;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
+<h2 id="run-启动容器"><a href="#run-启动容器" class="headerlink" title="run 启动容器"></a>run 启动容器</h2><p>通过docker run可创建一个新容器并运行某个命令<br>docker run [options]] image [command] [arg…]</p>
+<blockquote>
+<p>options<br>-a stdin: 指定标准输入输出内容类型，可选 STDIN/STDOUT/STDERR 三项；<br>-d: 后台运行容器，并返回容器ID；<br>-i: 以交互模式运行容器，通常与 -t 同时使用；<br>-P: 随机端口映射，容器内部端口随机映射到主机的高端口<br>-p: 指定端口映射，格式为：主机(宿主)端口:容器端口<br>-t: 为容器重新分配一个伪输入终端，通常与 -i 同时使用；<br>–name=”容器名”: 为容器指定一个名称；<br>–dns 8.8.8.8: 指定容器使用的DNS服务器，默认和宿主一致；<br>–dns-search example.com: 指定容器DNS搜索域名，默认和宿主一致；<br>-h “mars”: 指定容器的hostname；<br>-e username=”ritchie”: 设置环境变量；<br>–env-file=[]: 从指定文件读入环境变量；<br>–cpuset=”0-2” or –cpuset=”0,1,2”: 绑定容器到指定CPU运行；<br>-m :设置容器使用内存最大值；<br>–net=”bridge”: 指定容器的网络连接类型，支持 bridge/host/none/container: 四种类型；<br>–link=[]: 添加链接到另一个容器；<br>–expose=[]: 开放一个端口或一组端口；<br>–volume , -v: 绑定一个卷<br>command arg 容器启动运行的命令</p>
+</blockquote>
+<h3 id="实例-1"><a href="#实例-1" class="headerlink" title="实例"></a>实例</h3><p>使用docker镜像nginx:latest以后台模式启动一个容器,并将容器命名为mynginx。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name mynginx -d nginx:latest</span><br></pre></td></tr></table></figure>
+<p>使用镜像nginx:latest以后台模式启动一个容器,并将容器的80端口映射到主机随机端口。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -P -d nginx:latest</span><br></pre></td></tr></table></figure>
+<p>使用镜像 nginx:latest，以后台模式启动一个容器,将容器的 80 端口映射到主机的 80 端口,主机的目录 /data 映射到容器的 /data。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -p 80:80 -v &#x2F;data:&#x2F;data -d nginx:latest</span><br></pre></td></tr></table></figure>
+<p>绑定容器的 8080 端口，并将其映射到本地主机 127.0.0.1 的 80 端口上。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -p 127.0.0.1:80:8080&#x2F;tcp ubuntu bash</span><br></pre></td></tr></table></figure>
+<p>使用镜像nginx:latest以交互模式启动一个容器,在容器内执行/bin/bash命令。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it nginx:latest &#x2F;bin&#x2F;bash</span><br></pre></td></tr></table></figure>
+<h2 id="ps-查询容器"><a href="#ps-查询容器" class="headerlink" title="ps 查询容器"></a>ps 查询容器</h2><h2 id="exec-进入容器"><a href="#exec-进入容器" class="headerlink" title="exec 进入容器"></a>exec 进入容器</h2><h2 id="commit-将修改的容器提交为镜像"><a href="#commit-将修改的容器提交为镜像" class="headerlink" title="commit 将修改的容器提交为镜像"></a>commit 将修改的容器提交为镜像</h2><h2 id="images-查看本地镜像列表"><a href="#images-查看本地镜像列表" class="headerlink" title="images 查看本地镜像列表"></a>images 查看本地镜像列表</h2><h2 id="tag-标记本地镜像，将其归入某一仓库"><a href="#tag-标记本地镜像，将其归入某一仓库" class="headerlink" title="tag 标记本地镜像，将其归入某一仓库"></a>tag 标记本地镜像，将其归入某一仓库</h2><h2 id="push-推送镜像到仓库"><a href="#push-推送镜像到仓库" class="headerlink" title="push 推送镜像到仓库"></a>push 推送镜像到仓库</h2><p>将本地的镜像推送到仓库中<br>docker push [registry-url/]namespace/img[:tag]</p>
 
       
       <!-- 打赏 -->
@@ -129,7 +129,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chengnj.github.io/2020/docker2/" data-id="ck582w2gr000595owaizwgs4z"
+      <a data-url="https://chengnj.github.io/2020/docker3/" data-id="ck582w2gl000295owduqg2dfb"
         class="article-share-link">分享</a>
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/" rel="tag">docker</a></li></ul>
@@ -142,19 +142,10 @@
   
   <nav class="article-nav">
     
-      <a href="/2020/docker3/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            docker系列三docker基本操作
-          
-        </div>
-      </a>
     
-    
-      <a href="/2020/docker1/" class="article-nav-link">
+      <a href="/2020/docker2/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">docker系列一docker安装</div>
+        <div class="article-nav-title">docker系列二docker配置优化</div>
       </a>
     
   </nav>

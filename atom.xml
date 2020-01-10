@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://chengnj.github.io/"/>
-  <updated>2020-01-10T09:31:47.529Z</updated>
+  <updated>2020-01-10T11:29:11.440Z</updated>
   <id>https://chengnj.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>docker系列三docker基本操作</title>
+    <link href="https://chengnj.github.io/2020/docker3/"/>
+    <id>https://chengnj.github.io/2020/docker3/</id>
+    <published>2020-01-10T09:48:37.000Z</published>
+    <updated>2020-01-10T11:29:11.440Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;a href=&quot;/2020/docker1/&quot;&gt;docker系列一docker安装&lt;/a&gt;&lt;br&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="docker" scheme="https://chengnj.github.io/tags/docker/"/>
+    
+  </entry>
   
   <entry>
     <title>docker系列二docker配置优化</title>
