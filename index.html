@@ -59,7 +59,92 @@
 
     
     
-    <article id="post-docker系列（一）docker安装" class="article article-type-post" itemscope
+    <article id="post-docker系列二docker配置优化" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/docker2/"
+    >docker系列二docker配置优化</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/docker2/" class="article-date">
+  <time datetime="2020-01-10T08:29:12.000Z" itemprop="datePublished">2020-01-10</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <p>工欲善其事必先利其器，所以在安装完docker后，我们需要对docker修改配置。<br>docker的配置文件<strong>是/etc/docker/daemon.json</strong>如果没有这个文件，就新建一个。<br><strong>该配置文件修改完后，需要重启docker使配置生效。</strong><br>重启方式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl daemon-reload</span><br><span class="line">sudo systemctl restart docker</span><br></pre></td></tr></table></figure>
+<h2 id="查看docker信息"><a href="#查看docker信息" class="headerlink" title="查看docker信息"></a>查看docker信息</h2><p>使用docker info 可以进行查看docker的信息</p>
+<h2 id="镜像加速"><a href="#镜像加速" class="headerlink" title="镜像加速"></a>镜像加速</h2><p>由于默认的docker镜像是从国外拉取的，所以速度会比较慢，所以我们这边采用阿里的镜像仓库，后续我们也可以把自己的镜像推送到阿里云，这样我们在其他服务器拉取就会比较快。</p>
+<ol>
+<li>阿里云仓库 <a href="https://dev.aliyun.com/search.html" target="_blank" rel="noopener">https://dev.aliyun.com/search.html</a></li>
+<li>进去后有账号的话直接登录，没有的就注册下，登录后再搜索框搜索”容器镜像服务“，选择进入该服务面板。</li>
+<li>在镜像中心-镜像加速器，有你的加速地址。下面还有操作文档告诉你怎么操作。/etc/docker/daemon.json中的配置如下<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">   &quot;registry-mirrors&quot;:[&quot;你的阿里云加速地址&quot;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="登录docker"><a href="#登录docker" class="headerlink" title="登录docker"></a>登录docker</h2><p>由于我们将镜像仓库改为阿里云，所以我们需要登录到该仓库。登录账号密码就是网站的登录账号密码。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo docker login --username&#x3D;你的账号 \</span><br><span class="line">registry.cn-hangzhou.aliyuncs.com</span><br></pre></td></tr></table></figure>
+<h2 id="修改docker的存储位置"><a href="#修改docker的存储位置" class="headerlink" title="修改docker的存储位置"></a>修改docker的存储位置</h2><p>我们系统的主要数据是挂载一个新硬盘，那边才是大容量硬盘。最开始的时候，由于采用的是默认的存储位置，导致后面镜像太多了，占用了很多存储空间，直接把系统的根目录存储占用满了。所以如果有这个需求的话需要修改下docker的存储位置。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;graph&quot;:&quot;&#x2F;data&#x2F;docker&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>还有另一种修改存储位置的方法，但是我们还是推荐上面那种。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd &#x2F;etc&#x2F;systemd&#x2F;system&#x2F;multi-user.target.wants</span><br><span class="line">vim docker.service</span><br><span class="line">#在执行命令中添加--graph&#x3D;你的存储位置</span><br><span class="line">ExecStart&#x3D;&#x2F;usr&#x2F;bin&#x2F;dockerd --graph&#x3D;&#x2F;data&#x2F;docker .....</span><br></pre></td></tr></table></figure>
+<h2 id="日志大小限制"><a href="#日志大小限制" class="headerlink" title="日志大小限制"></a>日志大小限制</h2><p>docker会产生自己的启动日志，所以我们这边为了节省空间，对docker的日志做一些限制</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;log-driver&quot;:&quot;json-file&quot;,</span><br><span class="line">  &quot;log-opts&quot;: &#123;&quot;max-size&quot;:&quot;10m&quot;, &quot;max-file&quot;:&quot;2&quot;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>附上我的daemon.json所有配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;graph&quot;:&quot;存储位置&quot;,</span><br><span class="line">  &quot;registry-mirrors&quot;:[&quot;你的加速地址&quot;],</span><br><span class="line">  &quot;log-driver&quot;:&quot;json-file&quot;,</span><br><span class="line">  &quot;log-opts&quot;: &#123;&quot;max-size&quot;:&quot;10m&quot;, &quot;max-file&quot;:&quot;2&quot;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="/2020/docker2/">docker系列一docker安装</a></p>
+
+      
+      <!-- 打赏 -->
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chengnj.github.io/2020/docker2/" data-id="ck57ybfn1000594owfh1m4pd8"
+        class="article-share-link">分享</a>
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/" rel="tag">docker</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-docker系列一docker安装" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -79,7 +164,7 @@
     
     <div class="article-meta">
       <a href="/2020/docker1/" class="article-date">
-  <time datetime="2020-01-10T09:19:39.000Z" itemprop="datePublished">2020-01-10</time>
+  <time datetime="2020-01-10T04:19:39.000Z" itemprop="datePublished">2020-01-10</time>
 </a>
       
       
@@ -142,7 +227,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chengnj.github.io/2020/docker1/" data-id="ck57wbu0700023lowf3zg0kkc"
+      <a data-url="https://chengnj.github.io/2020/docker1/" data-id="ck57ybfmm000094owh3cugciz"
         class="article-share-link">分享</a>
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/" rel="tag">docker</a></li></ul>
@@ -211,7 +296,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chengnj.github.io/2020/about/" data-id="ck57wbu0000003lowc90v6pow"
+      <a data-url="https://chengnj.github.io/2020/about/" data-id="ck57ybfmy000494ow1su83jg9"
         class="article-share-link">分享</a>
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
@@ -283,7 +368,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chengnj.github.io/2020/docker-gpu/" data-id="ck57wbu0b00043lowafad6jl4"
+      <a data-url="https://chengnj.github.io/2020/docker-gpu/" data-id="ck57ybfmv000294owd2n3br3n"
         class="article-share-link">分享</a>
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gpu/" rel="tag">gpu</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nvidia/" rel="tag">nvidia</a></li></ul>
