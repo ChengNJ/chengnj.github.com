@@ -60,7 +60,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">679字</span>
+            <span class="post-count">681字</span>
         </span>
     </span>
 
@@ -99,10 +99,10 @@
 <p>工欲善其事必先利其器，所以在安装完docker后，我们需要对docker修改配置。<br>docker的配置文件<strong>是/etc/docker/daemon.json</strong>如果没有这个文件，就新建一个。<br><strong>该配置文件修改完后，需要重启docker使配置生效。</strong><br>重启方式</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl daemon-reload</span><br><span class="line">sudo systemctl restart docker</span><br></pre></td></tr></table></figure>
 <h2 id="查看docker信息"><a href="#查看docker信息" class="headerlink" title="查看docker信息"></a>查看docker信息</h2><p>使用docker info 可以进行查看docker的信息</p>
-<h2 id="镜像加速"><a href="#镜像加速" class="headerlink" title="镜像加速"></a>镜像加速</h2><p>由于默认的docker镜像是从国外拉取的，所以速度会比较慢，所以我们这边采用阿里的镜像仓库，后续我们也可以把自己的镜像推送到阿里云，这样我们在其他服务器拉取就会比较快。</p>
+<h2 id="镜像加速"><a href="#镜像加速" class="headerlink" title="镜像加速"></a>镜像加速</h2><p>由于默认的docker镜像是从国外拉取的，所以速度会比较慢，所以我们这边采用阿里的镜像仓库，后续我们也可以把自己的镜像推送到阿里云，这样我们在其他服务器拉取镜像就会比较快。</p>
 <ol>
 <li>阿里云仓库 <a href="https://dev.aliyun.com/search.html" target="_blank" rel="noopener">https://dev.aliyun.com/search.html</a></li>
-<li>进去后有账号的话直接登录，没有的就注册下，登录后再搜索框搜索”容器镜像服务“，选择进入该服务面板。</li>
+<li>进去后有账号的话直接登录，没有的就注册下，登录后在搜索框搜索”容器镜像服务“，选择进入该服务面板。</li>
 <li>在镜像中心-镜像加速器，有你的加速地址。下面还有操作文档告诉你怎么操作。/etc/docker/daemon.json中的配置如下<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">   &quot;registry-mirrors&quot;:[&quot;你的阿里云加速地址&quot;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 </li>
@@ -129,7 +129,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chengnj.github.io/2020/docker2/" data-id="ck57yhcag0003k9owhjcq6vmp"
+      <a data-url="https://chengnj.github.io/2020/docker2/" data-id="ck57yl0vq0003o8ow4k5h1b6u"
         class="article-share-link">分享</a>
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/" rel="tag">docker</a></li></ul>
