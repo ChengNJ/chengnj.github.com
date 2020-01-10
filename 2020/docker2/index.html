@@ -60,7 +60,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">681字</span>
+            <span class="post-count">682字</span>
         </span>
     </span>
 
@@ -109,7 +109,7 @@
 </ol>
 <h2 id="登录docker"><a href="#登录docker" class="headerlink" title="登录docker"></a>登录docker</h2><p>由于我们将镜像仓库改为阿里云，所以我们需要登录到该仓库。登录账号密码就是网站的登录账号密码。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo docker login --username&#x3D;你的账号 \</span><br><span class="line">registry.cn-hangzhou.aliyuncs.com</span><br></pre></td></tr></table></figure>
-<h2 id="修改docker的存储位置"><a href="#修改docker的存储位置" class="headerlink" title="修改docker的存储位置"></a>修改docker的存储位置</h2><p>我们系统的主要数据是挂载一个新硬盘，那边才是大容量硬盘。最开始的时候，由于采用的是默认的存储位置，导致后面镜像太多了，占用了很多存储空间，直接把系统的根目录存储占用满了。所以如果有这个需求的话需要修改下docker的存储位置。</p>
+<h2 id="修改docker的存储位置"><a href="#修改docker的存储位置" class="headerlink" title="修改docker的存储位置"></a>修改docker的存储位置</h2><p>我们系统的主要数据是放在另一个额外挂载的大容量硬盘里。最开始的时候，由于docker采用的是默认的存储位置，导致后面镜像太多了，占用了很多存储空间，直接把系统的根目录存储占用满了。所以如果有这个需求的话需要修改下docker的存储位置。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;graph&quot;:&quot;&#x2F;data&#x2F;docker&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>还有另一种修改存储位置的方法，但是我们还是推荐上面那种。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd &#x2F;etc&#x2F;systemd&#x2F;system&#x2F;multi-user.target.wants</span><br><span class="line">vim docker.service</span><br><span class="line">#在执行命令中添加--graph&#x3D;你的存储位置</span><br><span class="line">ExecStart&#x3D;&#x2F;usr&#x2F;bin&#x2F;dockerd --graph&#x3D;&#x2F;data&#x2F;docker .....</span><br></pre></td></tr></table></figure>
@@ -129,7 +129,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chengnj.github.io/2020/docker2/" data-id="ck57yl0vq0003o8ow4k5h1b6u"
+      <a data-url="https://chengnj.github.io/2020/docker2/" data-id="ck57yn2c00004rlow96ia4iga"
         class="article-share-link">分享</a>
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/" rel="tag">docker</a></li></ul>
