@@ -1,49 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>About Me</title>
-    <url>/2020/about/</url>
-    <content><![CDATA[<blockquote>
-<p>A Coder, live in Xiamen, China.</p>
-</blockquote>
-<p>GitHub: <a href="https://github.com/ChengNJ" target="_blank" rel="noopener">ChengNJ</a><br>QQ: <a href="http://wpa.qq.com/msgrd?v=3&uin=337455685&site=qq&menu=yes" target="_blank" rel="noopener">337455685</a><br>微信: w-jy-1993</p>
-<a id="more"></a>
-
-<!-- ![avatar.jpg](https://i.loli.net/2019/12/02/Hw5WJIMKzi1YrU8.jpg) -->
-
-<!-- <img src="https://i.loli.net/2019/12/28/ewSHTg3uWyJkaEv.jpg" alt="avatar" width="300" style="border-radius:50%"/> -->]]></content>
-      <tags>
-        <tag>随笔</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>nvidia-docker支持docker使用gpu</title>
-    <url>/2020/docker-gpu/</url>
-    <content><![CDATA[<h1 id="docker支持使用nvidia驱动"><a href="#docker支持使用nvidia驱动" class="headerlink" title="docker支持使用nvidia驱动"></a>docker支持使用nvidia驱动</h1><p>nvidia-docker是一个可以使用GPU的docker，nvidia-docker是在docker上做了一层封装，通过nvidia-docker-plugin，然后调用到docker上，其最终实现的还是在docker的启动命令上携带一些必要的参数。因此在安装nvidia-docker之前，还是需要安装docker的。<br>docker一般都是使用基于CPU的应用，而如果是GPU的话，就需要安装特有的硬件环境，比如需要安装nvidia driver。所以docker容器并不直接支持Nvidia GPU。为了解决这个问题，最早的处理办法是在容器内部，全部重新安装nvidia driver，然后通过设置相应的设备参数来启动container，然而这种办法是很脆弱的。因为宿主机的driver的版本必须完全匹配容器内的driver版本，这样导致docker image无法共享，很可能本地机器的不一致导致每台机器都需要去重复操作，这很大的违背了docker的设计之初。<br>为了使docker image能很便利的使用Nvidia GPU，从而产生了nvidia-docker，由它来制作nvidia driver的image，这就要求在目标机器上启动container时，确保字符设备以及驱动文件已经被挂载。<br>nvidia-docker-plugin是一个docker plugin，被用来帮助我们轻松部署container到GPU混合的环境下。类似一个守护进程，发现宿主机驱动文件以及GPU 设备，并且将这些挂载到来自docker守护进程的请求中。以此来支持docker GPU的使用</p>
-<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><p>需要提前安装好docker，这个可以看之前的文章 docker安装<br>还有一个就是在宿机上安装nvidia显卡驱动，这个自行百度~</p>
-<h1 id="nvidia-docker安装"><a href="#nvidia-docker安装" class="headerlink" title="nvidia-docker安装"></a>nvidia-docker安装</h1><p>此处是操作官方文档进行操作 <a href="https://github.com/NVIDIA/nvidia-docker/" target="_blank" rel="noopener">nvidia-docker</a>  </p>
-<h2 id="Ubuntu-16-04-18-04-Debian-Jessie-Stretch-Buster"><a href="#Ubuntu-16-04-18-04-Debian-Jessie-Stretch-Buster" class="headerlink" title="Ubuntu 16.04/18.04, Debian Jessie/Stretch/Buster"></a>Ubuntu 16.04/18.04, Debian Jessie/Stretch/Buster</h2>  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">distribution&#x3D;$(. &#x2F;etc&#x2F;os-release;echo $ID$VERSION_ID)</span><br><span class="line"></span><br><span class="line">curl -s -L https:&#x2F;&#x2F;nvidia.github.io&#x2F;nvidia-docker&#x2F;gpgkey | sudo apt-key add -</span><br><span class="line"></span><br><span class="line">curl -s -L https:&#x2F;&#x2F;nvidia.github.io&#x2F;nvidia-docker&#x2F;$distribution&#x2F;nvidia-docker.list | sudo tee &#x2F;etc&#x2F;apt&#x2F;sources.list.d&#x2F;nvidia-docker.list</span><br><span class="line"></span><br><span class="line">sudo apt-get update &amp;&amp; sudo apt-get install -y nvidia-container-toolkit</span><br><span class="line">    </span><br><span class="line">sudo systemctl restart docker</span><br></pre></td></tr></table></figure>
-<h2 id="CentOS-7-docker-ce-RHEL-7-4-7-5-docker-ce-Amazon-Linux-1-2"><a href="#CentOS-7-docker-ce-RHEL-7-4-7-5-docker-ce-Amazon-Linux-1-2" class="headerlink" title="CentOS 7 (docker-ce), RHEL 7.4/7.5 (docker-ce), Amazon Linux 1/2"></a>CentOS 7 (docker-ce), RHEL 7.4/7.5 (docker-ce), Amazon Linux 1/2</h2>  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">distribution&#x3D;$(. &#x2F;etc&#x2F;os-release;echo $ID$VERSION_ID)</span><br><span class="line"></span><br><span class="line">curl -s -L https:&#x2F;&#x2F;nvidia.github.io&#x2F;nvidia-docker&#x2F;$distribution&#x2F;nvidia-docker.repo | sudo tee &#x2F;etc&#x2F;yum.repos.d&#x2F;nvidia-docker.repo</span><br><span class="line"></span><br><span class="line">sudo yum install -y nvidia-container-toolkit</span><br><span class="line"></span><br><span class="line">sudo systemctl restart docker</span><br></pre></td></tr></table></figure>
-
-<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1>  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#### Test nvidia-smi with the latest official CUDA image</span><br><span class="line">docker run --gpus all nvidia&#x2F;cuda:9.0-base nvidia-smi</span><br><span class="line"></span><br><span class="line"># Start a GPU enabled container on two GPUs</span><br><span class="line">docker run --gpus 2 nvidia&#x2F;cuda:9.0-base nvidia-smi</span><br><span class="line"></span><br><span class="line"># Starting a GPU enabled container on specific GPUs</span><br><span class="line">docker run --gpus &#39;&quot;device&#x3D;1,2&quot;&#39; nvidia&#x2F;cuda:9.0-base nvidia-smi</span><br><span class="line">docker run --gpus &#39;&quot;device&#x3D;UUID-ABCDEF,1&quot;&#39; nvidia&#x2F;cuda:9.0-base nvidia-smi</span><br><span class="line"></span><br><span class="line"># Specifying a capability (graphics, compute, ...) for my container</span><br><span class="line"># Note this is rarely if ever used this way</span><br><span class="line">docker run --gpus all,capabilities&#x3D;utility nvidia&#x2F;cuda:9.0-base nvidia-smi</span><br></pre></td></tr></table></figure>
-
-<h1 id="自定义镜像"><a href="#自定义镜像" class="headerlink" title="自定义镜像"></a>自定义镜像</h1><p>如果是想自己定义镜像的话 可以直接基于nvidia/cuda的镜像进行操作。</p>
-]]></content>
-      <tags>
-        <tag>docker</tag>
-        <tag>gpu</tag>
-        <tag>nvidia</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>docker系列（一）docker安装</title>
     <url>/2020/docker1/</url>
-    <content><![CDATA[<h1 id="docker简介"><a href="#docker简介" class="headerlink" title="docker简介"></a>docker简介</h1><h2 id="容器与虚拟机"><a href="#容器与虚拟机" class="headerlink" title="容器与虚拟机"></a>容器与虚拟机</h2><blockquote>
+    <content><![CDATA[<p>最近打开印象笔记，发现自己在18年就有做docker的一些相关记录。后面就没了。。没了。。了。。。<br>现在在这家公司，最开始是由于正式使用是内网环境，用docker有点麻烦，就因此把服务docker化部署这个任务闲置了，最近开始<br>公司开始采用联通云，使用云上部署，加上最近自己手头的任务也比较没那么紧张，所以就又开始了docker的研究使用。<br>这里，我将mysql、redis、kafka、nginx进行了根据我们的实际使用进行了定制化。并且将微服务应用进行了使用docker打包，并<br>在正式使用时，使用docker-compose进行编排部署。<br>现在就打算写个blog对自己做的这些做个总结，如果能对大家有帮助的话，更好不过了。</p>
+<h1 id="docker简介"><a href="#docker简介" class="headerlink" title="docker简介"></a>docker简介</h1><h2 id="容器与虚拟机"><a href="#容器与虚拟机" class="headerlink" title="容器与虚拟机"></a>容器与虚拟机</h2><blockquote>
 <p>我们在理解 docker 之前，首先我们得先区分清楚两个概念，容器和虚拟机。<br>可能很多朋友都用过虚拟机，而对容器这个概念比较的陌生。<br>我们用的传统虚拟机如 VMware ， VisualBox 之类的需要模拟整台机器包括硬件，每台虚拟机都需要有自己的操作系统，虚拟机一旦被开启，预分配给它的资源将全部被占用。每一台虚拟机包括应用，必要的二进制和库，以及一个完整的用户操作系统。<br>而容器技术是和我们的宿主机共享硬件资源及操作系统，可以实现资源的动态分配。容器包含应用和其所有的依赖包，但是与其他容器共享内核。容器在宿主机操作系统中，在用户空间以分离的进程运行。<br>容器技术是实现操作系统虚拟化的一种途径，可以让您在资源受到隔离的进程中运行应用程序及其依赖关系。通过使用容器，我们可以轻松打包应用程序的代码、配置和依赖关系，将其变成容易使用的构建块，从而实现环境一致性、运营效率、开发人员生产力和版本控制等诸多目标。容器可以帮助保证应用程序快速、可靠、一致地部署，其间不受部署环境的影响。容器还赋予我们对资源更多的精细化控制能力，让我们的基础设施效率更高。  </p>
 </blockquote>
 <blockquote>
 <p><strong>Docker 属于 Linux 容器的一种封装，提供简单易用的容器使用接口。</strong> 它是目前最流行的 Linux 容器解决方案。<br>而 Linux 容器是 Linux 发展出了另一种虚拟化技术，简单来讲， Linux 容器不是模拟一个完整的操作系统，而是对进程进行隔离，相当于是在正常进程的外面套了一个保护层。对于容器里面的进程来说，它接触到的各种资源都是虚拟的，从而实现与底层系统的隔离。<br>Docker 将应用程序与该程序的依赖，打包在一个文件里面。运行这个文件，就会生成一个虚拟容器。程序在这个虚拟容器里运行，就好像在真实的物理机上运行一样。有了 Docker ，就不用担心环境问题。<br>总体来说， Docker 的接口相当简单，用户可以方便地创建和使用容器，把自己的应用放入容器。容器还可以进行版本管理、复制、分享、修改，就像管理普通的代码一样。  </p>
 </blockquote>
+<p>在进行了解了下docker后，一切的开始当然是从docker的安装开始，这里我只做docker的ubuntu版本进行操作，其他操作系统看看后面补上。</p>
 <h1 id="docker-安装（这里以ubuntu为例子）"><a href="#docker-安装（这里以ubuntu为例子）" class="headerlink" title="docker 安装（这里以ubuntu为例子）"></a>docker 安装（这里以ubuntu为例子）</h1><ol>
 <li><p>卸载旧版docker（如果是全新安装的系统，无需执行）</p>
  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt-get remove docker docker-engine docker.io</span><br></pre></td></tr></table></figure></li>
@@ -78,6 +45,41 @@
 ]]></content>
       <tags>
         <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>About Me</title>
+    <url>/2020/about/</url>
+    <content><![CDATA[<blockquote>
+<p>A Coder, live in Xiamen, China.</p>
+</blockquote>
+<p>GitHub: <a href="https://github.com/ChengNJ" target="_blank" rel="noopener">ChengNJ</a><br>QQ: <a href="http://wpa.qq.com/msgrd?v=3&uin=337455685&site=qq&menu=yes" target="_blank" rel="noopener">337455685</a><br>微信: w-jy-1993</p>
+<a id="more"></a>
+
+<!-- ![avatar.jpg](https://i.loli.net/2019/12/02/Hw5WJIMKzi1YrU8.jpg) -->
+
+<!-- <img src="https://i.loli.net/2019/12/28/ewSHTg3uWyJkaEv.jpg" alt="avatar" width="300" style="border-radius:50%"/> -->]]></content>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>nvidia-docker支持docker使用gpu</title>
+    <url>/2020/docker-gpu/</url>
+    <content><![CDATA[<h1 id="docker支持使用nvidia驱动"><a href="#docker支持使用nvidia驱动" class="headerlink" title="docker支持使用nvidia驱动"></a>docker支持使用nvidia驱动</h1><p>nvidia-docker是一个可以使用GPU的docker，nvidia-docker是在docker上做了一层封装，通过nvidia-docker-plugin，然后调用到docker上，其最终实现的还是在docker的启动命令上携带一些必要的参数。因此在安装nvidia-docker之前，还是需要安装docker的。<br>docker一般都是使用基于CPU的应用，而如果是GPU的话，就需要安装特有的硬件环境，比如需要安装nvidia driver。所以docker容器并不直接支持Nvidia GPU。为了解决这个问题，最早的处理办法是在容器内部，全部重新安装nvidia driver，然后通过设置相应的设备参数来启动container，然而这种办法是很脆弱的。因为宿主机的driver的版本必须完全匹配容器内的driver版本，这样导致docker image无法共享，很可能本地机器的不一致导致每台机器都需要去重复操作，这很大的违背了docker的设计之初。<br>为了使docker image能很便利的使用Nvidia GPU，从而产生了nvidia-docker，由它来制作nvidia driver的image，这就要求在目标机器上启动container时，确保字符设备以及驱动文件已经被挂载。<br>nvidia-docker-plugin是一个docker plugin，被用来帮助我们轻松部署container到GPU混合的环境下。类似一个守护进程，发现宿主机驱动文件以及GPU 设备，并且将这些挂载到来自docker守护进程的请求中。以此来支持docker GPU的使用</p>
+<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><p>需要提前安装好docker，这个可以看之前的文章 docker安装<br>还有一个就是在宿机上安装nvidia显卡驱动，这个自行百度~</p>
+<h1 id="nvidia-docker安装"><a href="#nvidia-docker安装" class="headerlink" title="nvidia-docker安装"></a>nvidia-docker安装</h1><p>此处是操作官方文档进行操作 <a href="https://github.com/NVIDIA/nvidia-docker/" target="_blank" rel="noopener">nvidia-docker</a>  </p>
+<h2 id="Ubuntu-16-04-18-04-Debian-Jessie-Stretch-Buster"><a href="#Ubuntu-16-04-18-04-Debian-Jessie-Stretch-Buster" class="headerlink" title="Ubuntu 16.04/18.04, Debian Jessie/Stretch/Buster"></a>Ubuntu 16.04/18.04, Debian Jessie/Stretch/Buster</h2>  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">distribution&#x3D;$(. &#x2F;etc&#x2F;os-release;echo $ID$VERSION_ID)</span><br><span class="line"></span><br><span class="line">curl -s -L https:&#x2F;&#x2F;nvidia.github.io&#x2F;nvidia-docker&#x2F;gpgkey | sudo apt-key add -</span><br><span class="line"></span><br><span class="line">curl -s -L https:&#x2F;&#x2F;nvidia.github.io&#x2F;nvidia-docker&#x2F;$distribution&#x2F;nvidia-docker.list | sudo tee &#x2F;etc&#x2F;apt&#x2F;sources.list.d&#x2F;nvidia-docker.list</span><br><span class="line"></span><br><span class="line">sudo apt-get update &amp;&amp; sudo apt-get install -y nvidia-container-toolkit</span><br><span class="line">    </span><br><span class="line">sudo systemctl restart docker</span><br></pre></td></tr></table></figure>
+<h2 id="CentOS-7-docker-ce-RHEL-7-4-7-5-docker-ce-Amazon-Linux-1-2"><a href="#CentOS-7-docker-ce-RHEL-7-4-7-5-docker-ce-Amazon-Linux-1-2" class="headerlink" title="CentOS 7 (docker-ce), RHEL 7.4/7.5 (docker-ce), Amazon Linux 1/2"></a>CentOS 7 (docker-ce), RHEL 7.4/7.5 (docker-ce), Amazon Linux 1/2</h2>  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">distribution&#x3D;$(. &#x2F;etc&#x2F;os-release;echo $ID$VERSION_ID)</span><br><span class="line"></span><br><span class="line">curl -s -L https:&#x2F;&#x2F;nvidia.github.io&#x2F;nvidia-docker&#x2F;$distribution&#x2F;nvidia-docker.repo | sudo tee &#x2F;etc&#x2F;yum.repos.d&#x2F;nvidia-docker.repo</span><br><span class="line"></span><br><span class="line">sudo yum install -y nvidia-container-toolkit</span><br><span class="line"></span><br><span class="line">sudo systemctl restart docker</span><br></pre></td></tr></table></figure>
+
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1>  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#### Test nvidia-smi with the latest official CUDA image</span><br><span class="line">docker run --gpus all nvidia&#x2F;cuda:9.0-base nvidia-smi</span><br><span class="line"></span><br><span class="line"># Start a GPU enabled container on two GPUs</span><br><span class="line">docker run --gpus 2 nvidia&#x2F;cuda:9.0-base nvidia-smi</span><br><span class="line"></span><br><span class="line"># Starting a GPU enabled container on specific GPUs</span><br><span class="line">docker run --gpus &#39;&quot;device&#x3D;1,2&quot;&#39; nvidia&#x2F;cuda:9.0-base nvidia-smi</span><br><span class="line">docker run --gpus &#39;&quot;device&#x3D;UUID-ABCDEF,1&quot;&#39; nvidia&#x2F;cuda:9.0-base nvidia-smi</span><br><span class="line"></span><br><span class="line"># Specifying a capability (graphics, compute, ...) for my container</span><br><span class="line"># Note this is rarely if ever used this way</span><br><span class="line">docker run --gpus all,capabilities&#x3D;utility nvidia&#x2F;cuda:9.0-base nvidia-smi</span><br></pre></td></tr></table></figure>
+
+<h1 id="自定义镜像"><a href="#自定义镜像" class="headerlink" title="自定义镜像"></a>自定义镜像</h1><p>如果是想自己定义镜像的话 可以直接基于nvidia/cuda的镜像进行操作。</p>
+]]></content>
+      <tags>
+        <tag>docker</tag>
+        <tag>gpu</tag>
+        <tag>nvidia</tag>
       </tags>
   </entry>
 </search>
