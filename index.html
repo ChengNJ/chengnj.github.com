@@ -104,7 +104,7 @@
 <p>options<br>-a :拉取所有tagged镜像<br>–disable-content-trust :忽略镜像的校验,默认开启<br>registry-url 镜像仓库的地址，可不写，默认是从docker hub拉取，如果是其他镜像仓库，需要指定。<br>namespace 命名空间，镜像的所属命名空间<br>image 镜像名称<br>tag 镜像版本，如果没有的话 默认最新：latest</p>
 </blockquote>
 <h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><p>拉取官方镜像hello-world</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">docker pull hello-world</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull hello-world</span><br></pre></td></tr></table></figure>
 
 <h2 id="run-启动容器"><a href="#run-启动容器" class="headerlink" title="run 启动容器"></a>run 启动容器</h2><p>通过docker run可创建一个新容器并运行某个命令<br>docker run [options]] image [command] [arg…]</p>
 <blockquote>
@@ -120,6 +120,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -p 127.0.0.1:80:8080&#x2F;tcp ubuntu bash</span><br></pre></td></tr></table></figure>
 <p>使用镜像nginx:latest以交互模式启动一个容器,在容器内执行/bin/bash命令。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it nginx:latest &#x2F;bin&#x2F;bash</span><br></pre></td></tr></table></figure>
+
 <h2 id="ps-查询容器"><a href="#ps-查询容器" class="headerlink" title="ps 查询容器"></a>ps 查询容器</h2><h2 id="exec-进入容器"><a href="#exec-进入容器" class="headerlink" title="exec 进入容器"></a>exec 进入容器</h2><h2 id="commit-将修改的容器提交为镜像"><a href="#commit-将修改的容器提交为镜像" class="headerlink" title="commit 将修改的容器提交为镜像"></a>commit 将修改的容器提交为镜像</h2><h2 id="images-查看本地镜像列表"><a href="#images-查看本地镜像列表" class="headerlink" title="images 查看本地镜像列表"></a>images 查看本地镜像列表</h2><h2 id="tag-标记本地镜像，将其归入某一仓库"><a href="#tag-标记本地镜像，将其归入某一仓库" class="headerlink" title="tag 标记本地镜像，将其归入某一仓库"></a>tag 标记本地镜像，将其归入某一仓库</h2><h2 id="push-推送镜像到仓库"><a href="#push-推送镜像到仓库" class="headerlink" title="push 推送镜像到仓库"></a>push 推送镜像到仓库</h2><p>将本地的镜像推送到仓库中<br>docker push [registry-url/]namespace/img[:tag]</p>
 
       
@@ -127,7 +128,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chengnj.github.io/2020/docker3/" data-id="ck582w2gl000295owduqg2dfb"
+      <a data-url="https://chengnj.github.io/2020/docker3/" data-id="ck582yz9m0004cmow9y2oe40n"
         class="article-share-link">分享</a>
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/" rel="tag">docker</a></li></ul>
@@ -214,7 +215,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chengnj.github.io/2020/docker2/" data-id="ck582w2gr000595owaizwgs4z"
+      <a data-url="https://chengnj.github.io/2020/docker2/" data-id="ck582yz9n0005cmow2yq49cf6"
         class="article-share-link">分享</a>
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/" rel="tag">docker</a></li></ul>
@@ -319,7 +320,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chengnj.github.io/2020/docker1/" data-id="ck582w2gs000695ow2xv7e52v"
+      <a data-url="https://chengnj.github.io/2020/docker1/" data-id="ck582yz9h0002cmow2dqf8gm4"
         class="article-share-link">分享</a>
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/" rel="tag">docker</a></li></ul>
@@ -391,7 +392,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chengnj.github.io/2020/docker-gpu/" data-id="ck582w2gp000495owgj4m8jl7"
+      <a data-url="https://chengnj.github.io/2020/docker-gpu/" data-id="ck582yz9p0006cmow7o87duth"
         class="article-share-link">分享</a>
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gpu/" rel="tag">gpu</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nvidia/" rel="tag">nvidia</a></li></ul>
@@ -460,7 +461,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chengnj.github.io/2020/about/" data-id="ck582w2ge000095ow8g25ac7m"
+      <a data-url="https://chengnj.github.io/2020/about/" data-id="ck582yz970000cmowg4ldcmcg"
         class="article-share-link">分享</a>
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
