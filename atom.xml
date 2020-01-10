@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://chengnj.github.io/"/>
-  <updated>2020-01-10T09:21:25.864Z</updated>
+  <updated>2020-01-10T09:23:40.003Z</updated>
   <id>https://chengnj.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://chengnj.github.io/2020/docker2/"/>
     <id>https://chengnj.github.io/2020/docker2/</id>
     <published>2020-01-10T08:29:12.000Z</published>
-    <updated>2020-01-10T09:21:25.864Z</updated>
+    <updated>2020-01-10T09:23:40.003Z</updated>
     
     <summary type="html">
     
@@ -29,7 +29,7 @@
       
         
         
-          &lt;p&gt;工欲善其事必先利其器，所以在安装完docker后，我们需要对docker修改配置。&lt;br&gt;docker的配置文件&lt;strong&gt;是/etc/docker/daemon.json&lt;/strong&gt;如果没有这个文件，就新建一个。&lt;br&gt;&lt;strong&gt;该配置文件修改完后，需要重
+          &lt;p&gt;&lt;a
         
       
     
@@ -42,11 +42,11 @@
   </entry>
   
   <entry>
-    <title>docker系列（一）docker安装</title>
+    <title>docker系列一docker安装</title>
     <link href="https://chengnj.github.io/2020/docker1/"/>
     <id>https://chengnj.github.io/2020/docker1/</id>
     <published>2020-01-10T04:19:39.000Z</published>
-    <updated>2020-01-10T09:21:28.854Z</updated>
+    <updated>2020-01-10T09:23:35.471Z</updated>
     
     <summary type="html">
     
