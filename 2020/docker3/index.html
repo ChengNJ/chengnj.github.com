@@ -103,7 +103,6 @@
 </blockquote>
 <h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><p>拉取官方镜像hello-world</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull hello-world</span><br></pre></td></tr></table></figure>
-
 <h2 id="run-启动容器"><a href="#run-启动容器" class="headerlink" title="run 启动容器"></a>run 启动容器</h2><p>通过docker run可创建一个新容器并运行某个命令<br>docker run [options]] image [command] [arg…]</p>
 <blockquote>
 <p>options<br>-a stdin: 指定标准输入输出内容类型，可选 STDIN/STDOUT/STDERR 三项；<br>-d: 后台运行容器，并返回容器ID；<br>-i: 以交互模式运行容器，通常与 -t 同时使用；<br>-P: 随机端口映射，容器内部端口随机映射到主机的高端口<br>-p: 指定端口映射，格式为：主机(宿主)端口:容器端口<br>-t: 为容器重新分配一个伪输入终端，通常与 -i 同时使用；<br>–name=”容器名”: 为容器指定一个名称；<br>–dns 8.8.8.8: 指定容器使用的DNS服务器，默认和宿主一致；<br>–dns-search example.com: 指定容器DNS搜索域名，默认和宿主一致；<br>-h “mars”: 指定容器的hostname；<br>-e username=”ritchie”: 设置环境变量；<br>–env-file=[]: 从指定文件读入环境变量；<br>–cpuset=”0-2” or –cpuset=”0,1,2”: 绑定容器到指定CPU运行；<br>-m :设置容器使用内存最大值；<br>–net=”bridge”: 指定容器的网络连接类型，支持 bridge/host/none/container: 四种类型；<br>–link=[]: 添加链接到另一个容器；<br>–expose=[]: 开放一个端口或一组端口；<br>–volume , -v: 绑定一个卷<br>command arg 容器启动运行的命令</p>
@@ -118,7 +117,6 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -p 127.0.0.1:80:8080&#x2F;tcp ubuntu bash</span><br></pre></td></tr></table></figure>
 <p>使用镜像nginx:latest以交互模式启动一个容器,在容器内执行/bin/bash命令。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it nginx:latest &#x2F;bin&#x2F;bash</span><br></pre></td></tr></table></figure>
-
 <h2 id="ps-查询容器"><a href="#ps-查询容器" class="headerlink" title="ps 查询容器"></a>ps 查询容器</h2><h2 id="exec-进入容器"><a href="#exec-进入容器" class="headerlink" title="exec 进入容器"></a>exec 进入容器</h2><h2 id="commit-将修改的容器提交为镜像"><a href="#commit-将修改的容器提交为镜像" class="headerlink" title="commit 将修改的容器提交为镜像"></a>commit 将修改的容器提交为镜像</h2><h2 id="images-查看本地镜像列表"><a href="#images-查看本地镜像列表" class="headerlink" title="images 查看本地镜像列表"></a>images 查看本地镜像列表</h2><h2 id="tag-标记本地镜像，将其归入某一仓库"><a href="#tag-标记本地镜像，将其归入某一仓库" class="headerlink" title="tag 标记本地镜像，将其归入某一仓库"></a>tag 标记本地镜像，将其归入某一仓库</h2><h2 id="push-推送镜像到仓库"><a href="#push-推送镜像到仓库" class="headerlink" title="push 推送镜像到仓库"></a>push 推送镜像到仓库</h2><p>将本地的镜像推送到仓库中<br>docker push [registry-url/]namespace/img[:tag]</p>
 
       
@@ -130,7 +128,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chengnj.github.io/2020/docker3/" data-id="ck582yz9m0004cmow9y2oe40n"
+      <a data-url="https://chengnj.github.io/2020/docker3/" data-id="ck5830wz30002ezowc8t03e3c"
         class="article-share-link">分享</a>
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/" rel="tag">docker</a></li></ul>
