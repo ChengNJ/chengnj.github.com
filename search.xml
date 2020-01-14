@@ -1,21 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>docker系列三docker基本操作</title>
+    <title>docker系列三docker命令</title>
     <url>/2020/docker3/</url>
     <content><![CDATA[<p><a href="/2020/docker1/">docker系列一docker安装</a><br><a href="/2020/docker2/">docker系列二docker配置优化</a></p>
-<p>经过前两篇的前期准备，这篇开始就可以真正地进入docker的实地操作啦！那么先来了解下docker的几个指令操作。</p>
+<p>经过前两篇的前期准备，这篇开始就可以真正地进入docker的实地操作啦！那么先来了解下docker的命令操作。以下所有涉及到容器的，既可以使用容器名称，也可以使用容器id(只需要输入id前3位即可，不行就四位。。。)</p>
+<h1 id="镜像仓库"><a href="#镜像仓库" class="headerlink" title="镜像仓库"></a>镜像仓库</h1><h2 id="login-登录镜像仓库"><a href="#login-登录镜像仓库" class="headerlink" title="login 登录镜像仓库"></a>login 登录镜像仓库</h2><p>docker login : 登陆到一个Docker镜像仓库，如果未指定镜像仓库地址，默认为官方仓库 Docker Hub<br>docker logout : 登出一个Docker镜像仓库，如果未指定镜像仓库地址，默认为官方仓库 Docker Hub</p>
+<p>docker login [OPTIONS] [SERVER]<br>docker logout [OPTIONS] [SERVER]</p>
+<blockquote>
+<p>OPTIONS说明：<br>-u :登陆的用户名<br>-p :登陆的密码</p>
+</blockquote>
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><p>登陆到Docker Hub</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker login -u 用户名 -p 密码</span><br></pre></td></tr></table></figure>
+<p>登出Docker Hub</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker logout</span><br></pre></td></tr></table></figure>
+<p>登录到指定镜像仓库 例如阿里</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo docker login --username&#x3D;你的账号 \</span><br><span class="line">registry.cn-hangzhou.aliyuncs.com</span><br></pre></td></tr></table></figure>
 <h2 id="pull-拉取镜像"><a href="#pull-拉取镜像" class="headerlink" title="pull 拉取镜像"></a>pull 拉取镜像</h2><p>从镜像仓库中拉取或者更新指定镜像，可拉取一个或者多个<br>docker pull [options] [registry-url/]namespace/image[:tag]</p>
 <blockquote>
 <p>options<br>-a :拉取所有tagged镜像<br>–disable-content-trust :忽略镜像的校验,默认开启<br>registry-url 镜像仓库的地址，可不写，默认是从docker hub拉取，如果是其他镜像仓库，需要指定。<br>namespace 命名空间，镜像的所属命名空间<br>image 镜像名称<br>tag 镜像版本，如果没有的话 默认最新：latest</p>
 </blockquote>
-<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><p>拉取官方镜像hello-world</p>
+<h3 id="实例-1"><a href="#实例-1" class="headerlink" title="实例"></a>实例</h3><p>拉取官方镜像hello-world</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker pull hello-world</span><br></pre></td></tr></table></figure>
-<h2 id="run-启动容器"><a href="#run-启动容器" class="headerlink" title="run 启动容器"></a>run 启动容器</h2><p>通过docker run可创建一个新容器并运行某个命令<br>docker run [options]] image [command] [arg…]</p>
+<h2 id="push-推送镜像到仓库"><a href="#push-推送镜像到仓库" class="headerlink" title="push 推送镜像到仓库"></a>push 推送镜像到仓库</h2><p>将本地的镜像推送到仓库中<br>docker push [registry-url/]namespace/img[:tag]</p>
+<h2 id="serch-查找镜像"><a href="#serch-查找镜像" class="headerlink" title="serch 查找镜像"></a>serch 查找镜像</h2><p>docker search : 从Docker Hub查找镜像<br>docker search [options] image</p>
+<blockquote>
+<p>options说明：<br>–automated :只列出 automated build类型的镜像；<br>–no-trunc :显示完整的镜像描述；<br>-s :列出收藏数不小于指定值的镜像。</p>
+</blockquote>
+<h3 id="实例-2"><a href="#实例-2" class="headerlink" title="实例"></a>实例</h3><p>从Docker Hub查找所有镜像名包含java，并且收藏数大于10的镜像</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker search -s 10 java</span><br></pre></td></tr></table></figure>
+<h1 id="容器生命周期管理"><a href="#容器生命周期管理" class="headerlink" title="容器生命周期管理"></a>容器生命周期管理</h1><h2 id="run-启动容器"><a href="#run-启动容器" class="headerlink" title="run 启动容器"></a>run 启动容器</h2><p>通过docker run可创建一个新容器并运行某个命令<br>docker run [options]] image [command] [arg…]</p>
 <blockquote>
 <p>options<br>-a stdin: 指定标准输入输出内容类型，可选 STDIN/STDOUT/STDERR 三项；<br>-d: 后台运行容器，并返回容器ID；<br>-i: 以交互模式运行容器，通常与 -t 同时使用；<br>-P: 随机端口映射，容器内部端口随机映射到主机的高端口<br>-p: 指定端口映射，格式为：主机(宿主)端口:容器端口<br>-t: 为容器重新分配一个伪输入终端，通常与 -i 同时使用；<br>–name=”容器名”: 为容器指定一个名称；<br>–dns 8.8.8.8: 指定容器使用的DNS服务器，默认和宿主一致；<br>–dns-search example.com: 指定容器DNS搜索域名，默认和宿主一致；<br>-h “mars”: 指定容器的hostname；<br>-e username=”ritchie”: 设置环境变量；<br>–env-file=[]: 从指定文件读入环境变量；<br>–cpuset=”0-2” or –cpuset=”0,1,2”: 绑定容器到指定CPU运行；<br>-m :设置容器使用内存最大值；<br>–net=”bridge”: 指定容器的网络连接类型，支持 bridge/host/none/container: 四种类型；<br>–link=[]: 添加链接到另一个容器；<br>–expose=[]: 开放一个端口或一组端口；<br>–volume , -v: 绑定一个卷<br>command arg 容器启动运行的命令</p>
 </blockquote>
-<h3 id="实例-1"><a href="#实例-1" class="headerlink" title="实例"></a>实例</h3><p>使用docker镜像nginx:latest以后台模式启动一个容器,并将容器命名为mynginx。</p>
+<h3 id="实例-3"><a href="#实例-3" class="headerlink" title="实例"></a>实例</h3><p>使用docker镜像nginx:latest以后台模式启动一个容器,并将容器命名为mynginx。</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker run --name mynginx -d nginx:latest</span><br></pre></td></tr></table></figure>
 <p>使用镜像nginx:latest以后台模式启动一个容器,并将容器的80端口映射到主机随机端口。</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker run -P -d nginx:latest</span><br></pre></td></tr></table></figure>
@@ -25,7 +43,122 @@
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker run -p 127.0.0.1:80:8080&#x2F;tcp ubuntu bash</span><br></pre></td></tr></table></figure>
 <p>使用镜像nginx:latest以交互模式启动一个容器,在容器内执行/bin/bash命令。</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker run -it nginx:latest &#x2F;bin&#x2F;bash</span><br></pre></td></tr></table></figure>
-<h2 id="ps-查询容器"><a href="#ps-查询容器" class="headerlink" title="ps 查询容器"></a>ps 查询容器</h2><h2 id="exec-进入容器"><a href="#exec-进入容器" class="headerlink" title="exec 进入容器"></a>exec 进入容器</h2><h2 id="commit-将修改的容器提交为镜像"><a href="#commit-将修改的容器提交为镜像" class="headerlink" title="commit 将修改的容器提交为镜像"></a>commit 将修改的容器提交为镜像</h2><h2 id="images-查看本地镜像列表"><a href="#images-查看本地镜像列表" class="headerlink" title="images 查看本地镜像列表"></a>images 查看本地镜像列表</h2><h2 id="tag-标记本地镜像，将其归入某一仓库"><a href="#tag-标记本地镜像，将其归入某一仓库" class="headerlink" title="tag 标记本地镜像，将其归入某一仓库"></a>tag 标记本地镜像，将其归入某一仓库</h2><h2 id="push-推送镜像到仓库"><a href="#push-推送镜像到仓库" class="headerlink" title="push 推送镜像到仓库"></a>push 推送镜像到仓库</h2><p>将本地的镜像推送到仓库中<br>docker push [registry-url/]namespace/img[:tag]</p>
+<h2 id="start-stop-restart"><a href="#start-stop-restart" class="headerlink" title="start stop restart"></a>start stop restart</h2><p>docker start: 启动一个或者多个已经被停止的容器<br>docker stop: 停止一个运行中的容器<br>docker restart: 重启容器</p>
+<h3 id="实例-4"><a href="#实例-4" class="headerlink" title="实例"></a>实例</h3><p>启动已被停止的容器nginx</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker start nginx</span><br></pre></td></tr></table></figure>
+<p>停止运行中的容器nginx</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker stop nginx</span><br></pre></td></tr></table></figure>
+<p>重启容器nginx</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker restart nginx</span><br></pre></td></tr></table></figure>
+<h2 id="rm-移除一个或多个容器"><a href="#rm-移除一个或多个容器" class="headerlink" title="rm 移除一个或多个容器"></a>rm 移除一个或多个容器</h2><p>docker rm [options] container [container]</p>
+<blockquote>
+<p>options:<br>-f 强制删除一个运行中的容器<br>-l 移除容器间的网络连接，而非容器本身<br>-v 删除容器关联的卷</p>
+</blockquote>
+<h3 id="实例-5"><a href="#实例-5" class="headerlink" title="实例"></a>实例</h3><p>强制删除nginx</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker rm -f nginx</span><br></pre></td></tr></table></figure>
+<p>移除容器nginx 对容器db1的连接，连接名db:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker rm -l db</span><br></pre></td></tr></table></figure>
+<p>删除容器nginx,并删除容器挂载的数据卷</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker rm -v nginx</span><br></pre></td></tr></table></figure>
+<p>删除所有已经停止的容器</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker rm $(docker ps -a -q)</span><br></pre></td></tr></table></figure>
+<h2 id="pause-unpause-暂停-恢复进程"><a href="#pause-unpause-暂停-恢复进程" class="headerlink" title="pause unpause 暂停/恢复进程"></a>pause unpause 暂停/恢复进程</h2><p>docker pause/unpause container</p>
+<h2 id="create-创建容器但不启动它"><a href="#create-创建容器但不启动它" class="headerlink" title="create 创建容器但不启动它"></a>create 创建容器但不启动它</h2><p>docker create [options] image [command] [arg…]</p>
+<h3 id="实例-6"><a href="#实例-6" class="headerlink" title="实例"></a>实例</h3><p>使用镜像nginx:latest创建一个名字为nginx01的容器</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker create --name nginx01 nginx:latest</span><br></pre></td></tr></table></figure>
+<h2 id="exec-在运行中的容器执行命令"><a href="#exec-在运行中的容器执行命令" class="headerlink" title="exec 在运行中的容器执行命令"></a>exec 在运行中的容器执行命令</h2><p>docker exec [options] container command [arg…]</p>
+<blockquote>
+<p>options:<br>-d 在后台运行<br>-i 即使没有附加也保持stdin打开 通常与t一起使用<br>-t 分配一个伪终端 通常与i一起使用</p>
+</blockquote>
+<h3 id="实例-7"><a href="#实例-7" class="headerlink" title="实例"></a>实例</h3><p>在容器nginx中以交互模式执行容器内某脚本</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker exec -it nginx &#x2F;bin&#x2F;sh &#x2F;root&#x2F;read.sh</span><br></pre></td></tr></table></figure>
+<p>在容器nginx中开启一个交互模式的终端</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker exec -it nginx &#x2F;bin&#x2F;bash</span><br></pre></td></tr></table></figure>
+<h1 id="容器操作"><a href="#容器操作" class="headerlink" title="容器操作"></a>容器操作</h1><h2 id="ps-列出容器"><a href="#ps-列出容器" class="headerlink" title="ps 列出容器"></a>ps 列出容器</h2><p>docker ps [options]</p>
+<blockquote>
+<p>options:<br>-a :显示所有的容器，包括未运行的。<br>-f :根据条件过滤显示的内容。<br>–format :指定返回值的模板文件。 –filter “name=test”<br>-l :显示最近创建的容器。<br>-n :列出最近创建的n个容器。<br>–no-trunc :不截断输出。<br>-q :静默模式，只显示容器编号。<br>-s :显示总的文件大小。</p>
+</blockquote>
+<h2 id="inspect-获取容器-镜像的元数据"><a href="#inspect-获取容器-镜像的元数据" class="headerlink" title="inspect 获取容器/镜像的元数据"></a>inspect 获取容器/镜像的元数据</h2><p>docker inspect [options] name|id </p>
+<blockquote>
+<p>options:<br>-f 指定返回值的模板文件<br>-s 显示总的文件大小<br>–type 为指定类型返回json</p>
+</blockquote>
+<h3 id="实例-8"><a href="#实例-8" class="headerlink" title="实例"></a>实例</h3><p>获取镜像nginx:latest 的元信息</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker inspect nginx:latest</span><br><span class="line">返回</span><br><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        &quot;Id&quot;: &quot;sha256:c7460dfcab502275e9c842588df406444069c00a48d9a995619c243079a4c2f7&quot;,</span><br><span class="line">        &quot;RepoTags&quot;: [</span><br><span class="line">            &quot;nginx:latest&quot;</span><br><span class="line">        ],</span><br><span class="line">        &quot;RepoDigests&quot;: [</span><br><span class="line">            &quot;nginx@sha256:8aa7f6a9585d908a63e5e418dc5d14ae7467d2e36e1ab4f0d8f9d059a3d071ce&quot;</span><br><span class="line">        ],</span><br><span class="line">        &quot;Parent&quot;: &quot;&quot;,</span><br><span class="line">        &quot;Comment&quot;: &quot;&quot;,</span><br><span class="line">        &quot;Created&quot;: &quot;2020-01-09T22:20:18.366859777Z&quot;,</span><br><span class="line">        &quot;Container&quot;: &quot;613e0b9d718b9d81b04fa7e682d0f770f3a321b34fcc4f790b6304ee1c3ff765&quot;,</span><br><span class="line">        &quot;ContainerConfig&quot;: &#123;</span><br><span class="line">            &quot;Hostname&quot;: &quot;613e0b9d718b&quot;,</span><br><span class="line">            &quot;Domainname&quot;: &quot;&quot;,</span><br><span class="line">            &quot;User&quot;: &quot;&quot;,</span><br><span class="line">            &quot;AttachStdin&quot;: false,</span><br><span class="line">            &quot;AttachStdout&quot;: false,</span><br><span class="line">            &quot;AttachStderr&quot;: false,</span><br><span class="line">            &quot;ExposedPorts&quot;: &#123;</span><br><span class="line">                &quot;80&#x2F;tcp&quot;: &#123;&#125;</span><br><span class="line">            &#125;,</span><br><span class="line">            ...</span><br></pre></td></tr></table></figure>
+<p>获取正在运行的容器nginx的ip</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker inspect --format&#x3D;&#39;&#123;&#123;range .NetworkSettings.Networks&#125;&#125;&#123;&#123;.IPAddress&#125;&#125;&#123;&#123;end&#125;&#125;&#39; nginx</span><br></pre></td></tr></table></figure>
+<h2 id="top-查看容器中运行的进程信息"><a href="#top-查看容器中运行的进程信息" class="headerlink" title="top 查看容器中运行的进程信息"></a>top 查看容器中运行的进程信息</h2><p>docker top contain [ps options]<br>容器运行时不一定有/bin/bash终端来交互执行top命令，而且容器还不一定有top命令，可以使用docker top来实现查看container中正在运行的进程,支持ps命令参数</p>
+<h3 id="实例-9"><a href="#实例-9" class="headerlink" title="实例"></a>实例</h3><p>查看容器nginx的进程信息</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker top nginx</span><br></pre></td></tr></table></figure>
+<h2 id="attach-连接到容器"><a href="#attach-连接到容器" class="headerlink" title="attach 连接到容器"></a>attach 连接到容器</h2><p>要attach上去的容器必须正在运行，可以同时连接上同一个container来共享屏幕（与screen命令的attach类似）。<br>官方文档中说attach后可以通过CTRL-C来detach，但实际上经过我的测试，如果container当前在运行bash，CTRL-C自然是当前行的输入，没有退出；如果container当前正在前台运行进程，如输出nginx的access.log日志，CTRL-C不仅会导致退出容器，而且还stop了。这不是我们想要的，detach的意思按理应该是脱离容器终端，但容器依然运行。好在attach是可以带上–sig-proxy=false来确保CTRL-D或CTRL-C不会关闭容器。</p>
+<h3 id="实例-10"><a href="#实例-10" class="headerlink" title="实例"></a>实例</h3><p>容器nginx将访问日志指定到标准输出，连接到容器可以查看访问信息</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker attach --sig-proxy&#x3D;false nginx</span><br></pre></td></tr></table></figure>
+<h2 id="events-从服务器获取实时事件"><a href="#events-从服务器获取实时事件" class="headerlink" title="events 从服务器获取实时事件"></a>events 从服务器获取实时事件</h2><p>docker events [options]</p>
+<blockquote>
+<p>options:<br>-f 根据条件过滤事件 -f “image=”mysql:5.6”<br>–since 从指定时间戳后显示所有事件 如果是日期可以直接–since=”2020-01-13”，如果是到秒级的，需要将时间转成时间戳<br>–until 流水事件显示到指定时间为止</p>
+</blockquote>
+<h2 id="logs-查看容器日志"><a href="#logs-查看容器日志" class="headerlink" title="logs 查看容器日志"></a>logs 查看容器日志</h2><p>docker logs [options] container</p>
+<blockquote>
+<p>options:<br>-f 跟踪日志输出<br>–since :显示某个开始时间的所有日志<br>-t : 显示时间戳<br>–tail :仅列出最新N条容器日志</p>
+</blockquote>
+<h2 id="wait-阻塞运行直到容器停止，然后打印出它的退出代码"><a href="#wait-阻塞运行直到容器停止，然后打印出它的退出代码" class="headerlink" title="wait 阻塞运行直到容器停止，然后打印出它的退出代码"></a>wait 阻塞运行直到容器停止，然后打印出它的退出代码</h2><h2 id="port-列出容器端口映射"><a href="#port-列出容器端口映射" class="headerlink" title="port 列出容器端口映射"></a>port 列出容器端口映射</h2><p>docker port [options] container [PRIVATE_PORT[/PROTO]]</p>
+<h1 id="本地镜像管理"><a href="#本地镜像管理" class="headerlink" title="本地镜像管理"></a>本地镜像管理</h1><h2 id="images-查看本地镜像列表"><a href="#images-查看本地镜像列表" class="headerlink" title="images 查看本地镜像列表"></a>images 查看本地镜像列表</h2><p>docker images [options] [repository[:tag]]</p>
+<blockquote>
+<p>options:<br>-a :列出本地所有的镜像（含中间映像层，默认情况下，过滤掉中间映像层）；<br>–digests :显示镜像的摘要信息；<br>-f :显示满足条件的镜像；<br>–format :指定返回值的模板文件；<br>–no-trunc :显示完整的镜像信息；<br>-q :只显示镜像ID</p>
+</blockquote>
+<h3 id="实例-11"><a href="#实例-11" class="headerlink" title="实例"></a>实例</h3><p>列出本地镜像中repository为ubuntu的镜像列表</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker images ubuntu</span><br></pre></td></tr></table></figure>
+<h2 id="rmi-删除镜像"><a href="#rmi-删除镜像" class="headerlink" title="rmi 删除镜像"></a>rmi 删除镜像</h2><p>docker rmi [options] image [images …]</p>
+<blockquote>
+<p>options:<br>-f 强制删除<br>–no-prune 不移除该镜像的过程镜像，默认移除</p>
+</blockquote>
+<h2 id="tag-标记本地镜像，将其归入某一仓库"><a href="#tag-标记本地镜像，将其归入某一仓库" class="headerlink" title="tag 标记本地镜像，将其归入某一仓库"></a>tag 标记本地镜像，将其归入某一仓库</h2><p>docker tag [options] image[:tag] [repository/][username/]name[:tag]</p>
+<h3 id="实例-12"><a href="#实例-12" class="headerlink" title="实例"></a>实例</h3><p>将ubuntu：15.10标记为drookie/ubuntu:v3</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker tag ubuntu:15.10 drookie&#x2F;ubuntu:v3</span><br></pre></td></tr></table></figure>
+<h2 id="build-通过dockerfile构建镜像"><a href="#build-通过dockerfile构建镜像" class="headerlink" title="build 通过dockerfile构建镜像"></a>build 通过dockerfile构建镜像</h2><p>docker build [options]  path|url|- </p>
+<blockquote>
+<p>options:<br>–build-arg=[] :设置镜像创建时的变量；<br>–cpu-shares :设置 cpu 使用权重；<br>–cpu-period :限制 CPU CFS周期；<br>–cpu-quota :限制 CPU CFS配额；<br>–cpuset-cpus :指定使用的CPU id；<br>–cpuset-mems :指定使用的内存 id；<br>–disable-content-trust :忽略校验，默认开启；<br>-f :指定要使用的Dockerfile路径；<br>–force-rm :设置镜像过程中删除中间容器；<br>–isolation :使用容器隔离技术；<br>–label=[] :设置镜像使用的元数据；<br>-m :设置内存最大值；<br>–memory-swap :设置Swap的最大值为内存+swap，”-1”表示不限swap；<br>–no-cache :创建镜像的过程不使用缓存；<br>–pull :尝试去更新镜像的新版本；<br>–quiet, -q :安静模式，成功后只输出镜像 ID；<br>–rm :设置镜像成功后删除中间容器；<br>–shm-size :设置/dev/shm的大小，默认值是64M；<br>–ulimit :Ulimit配置。<br>–tag, -t: 镜像的名字及标签，通常 name:tag 或者 name 格式；可以在一次构建中为一个镜像设置多个标签。<br>–network: 默认 default。在构建期间设置RUN指令的网络模式</p>
+</blockquote>
+<h3 id="实例-13"><a href="#实例-13" class="headerlink" title="实例"></a>实例</h3><p>使用当前目录的 Dockerfile 创建镜像，标签为 runoob/ubuntu:v1。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker build -t runoob&#x2F;ubuntu:v1 .</span><br></pre></td></tr></table></figure>
+<p>使用URL github.com/creack/docker-firefox 的 Dockerfile 创建镜像。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker build github.com&#x2F;creack&#x2F;docker-firefox</span><br></pre></td></tr></table></figure>
+<p>也可以通过 -f Dockerfile 文件的位置：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker build -f &#x2F;path&#x2F;to&#x2F;a&#x2F;Dockerfile .</span><br></pre></td></tr></table></figure>
+<h2 id="history-查看指定镜像的创建历史"><a href="#history-查看指定镜像的创建历史" class="headerlink" title="history 查看指定镜像的创建历史"></a>history 查看指定镜像的创建历史</h2><p>docker history [options] image</p>
+<blockquote>
+<p>options:<br>-H :以可读的格式打印镜像大小和日期，默认为true；<br>–no-trunc :显示完整的提交记录；<br>-q :仅列出提交记录ID。</p>
+</blockquote>
+<h2 id="save-将镜像打包成tar文件"><a href="#save-将镜像打包成tar文件" class="headerlink" title="save 将镜像打包成tar文件"></a>save 将镜像打包成tar文件</h2><p>docker save [options] image [image…]</p>
+<blockquote>
+<p>options:<br>-o 输出到的文件</p>
+</blockquote>
+<h3 id="实例-14"><a href="#实例-14" class="headerlink" title="实例"></a>实例</h3><p>将镜像nginx:latest生成nginx_v3.tar文档</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker save -o nginx_v3.tar nginx:latest</span><br></pre></td></tr></table></figure>
+<h2 id="load-导入使用save导出的镜像"><a href="#load-导入使用save导出的镜像" class="headerlink" title="load 导入使用save导出的镜像"></a>load 导入使用save导出的镜像</h2><p>docker load [options]</p>
+<blockquote>
+<p>options:<br>–input , -i : 指定导入的文件，代替 STDIN。<br>–quiet , -q : 精简输出信息。</p>
+</blockquote>
+<h3 id="实例-15"><a href="#实例-15" class="headerlink" title="实例"></a>实例</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker load &lt; nginx_v3.tar</span><br><span class="line">或者</span><br><span class="line">docker load -i nginx_v3.tar</span><br></pre></td></tr></table></figure>
+<h1 id="容器rootfs命令"><a href="#容器rootfs命令" class="headerlink" title="容器rootfs命令"></a>容器rootfs命令</h1><h2 id="commit-从容器中创建一个新镜像"><a href="#commit-从容器中创建一个新镜像" class="headerlink" title="commit 从容器中创建一个新镜像"></a>commit 从容器中创建一个新镜像</h2><p>我们在镜像中做的修改可以通过commit命令将其在生成的新镜像中有效<br>docker commit [options] container [repository[:tag]]</p>
+<blockquote>
+<p>options:<br>-a :提交的镜像作者；<br>-c :使用Dockerfile指令来创建镜像；<br>-m :提交时的说明文字；<br>-p :在commit时，将容器暂停。</p>
+</blockquote>
+<h3 id="实例-16"><a href="#实例-16" class="headerlink" title="实例"></a>实例</h3><p>将容器a404c6c174a2 保存为新的镜像,并添加提交人信息和说明信息。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker commit -a &quot;runoob.com&quot; -m &quot;my apache&quot; a404c6c174a2  mymysql:v1</span><br></pre></td></tr></table></figure>
+<h2 id="cp-容器与主机之间的数据拷贝"><a href="#cp-容器与主机之间的数据拷贝" class="headerlink" title="cp 容器与主机之间的数据拷贝"></a>cp 容器与主机之间的数据拷贝</h2><p>docker cp [options] CONTAINER:SRC_PATH DEST_PATH|-<br>docker cp [options] SRC_PATH|- CONTAINER:DEST_PATH</p>
+<blockquote>
+<p>options:<br>-L 保持源目标中的连接</p>
+</blockquote>
+<h3 id="实例-17"><a href="#实例-17" class="headerlink" title="实例"></a>实例</h3><p>将主机/www/runoob目录拷贝到容器96f7f14e99ab的/www目录下。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker cp &#x2F;www&#x2F;runoob 96f7f14e99ab:&#x2F;www&#x2F;</span><br></pre></td></tr></table></figure>
+<p>将主机/www/runoob目录拷贝到容器96f7f14e99ab中，目录重命名为www。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker cp &#x2F;www&#x2F;runoob 96f7f14e99ab:&#x2F;www</span><br></pre></td></tr></table></figure>
+<p>将容器96f7f14e99ab的/www目录拷贝到主机的/tmp目录中。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker cp  96f7f14e99ab:&#x2F;www &#x2F;tmp&#x2F;</span><br></pre></td></tr></table></figure>
+<h2 id="diff-检查容器里文件结构的更改"><a href="#diff-检查容器里文件结构的更改" class="headerlink" title="diff 检查容器里文件结构的更改"></a>diff 检查容器里文件结构的更改</h2><p>docker diff [options] container</p>
+<h3 id="实例-18"><a href="#实例-18" class="headerlink" title="实例"></a>实例</h3><p>查看容器mymysql的文件结构更改。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker diff mymysql</span><br><span class="line">A &#x2F;logs</span><br><span class="line">A &#x2F;mysql_data</span><br><span class="line">C &#x2F;run</span><br><span class="line">C &#x2F;run&#x2F;mysqld</span><br><span class="line">A &#x2F;run&#x2F;mysqld&#x2F;mysqld.pid</span><br><span class="line">A &#x2F;run&#x2F;mysqld&#x2F;mysqld.sock</span><br><span class="line">C &#x2F;tmp</span><br></pre></td></tr></table></figure>
+<p>以上参考自菜鸟教程</p>
 ]]></content>
       <tags>
         <tag>docker</tag>
