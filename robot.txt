@@ -1,0 +1,16 @@
+# hexo robots.txt
+User-agent: *
+Allow: /
+Allow: /archives/
+Allow: /2020/
+Allow: /tags/
+
+Disallow: /vendors/
+Disallow: /js/
+Disallow: /css/
+Disallow: /fonts/
+Disallow: /vendors/
+Disallow: /fancybox/
+
+Sitemap: https://chengnj.github.io/sitemap.xml
+Sitemap: https://chengnj.github.io/baidusitemap.xml
