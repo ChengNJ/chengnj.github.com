@@ -18,8 +18,8 @@
   
   <entry>
     <title>docker系列三docker命令</title>
-    <link href="https://chengnj.github.io/2020/docker3/"/>
-    <id>https://chengnj.github.io/2020/docker3/</id>
+    <link href="https://chengnj.github.io/docker/2020/docker3/"/>
+    <id>https://chengnj.github.io/docker/2020/docker3/</id>
     <published>2020-01-10T09:48:37.000Z</published>
     <updated>2020-01-28T09:05:23.148Z</updated>
     
@@ -45,8 +45,8 @@
   
   <entry>
     <title>docker系列二docker配置优化</title>
-    <link href="https://chengnj.github.io/2020/docker2/"/>
-    <id>https://chengnj.github.io/2020/docker2/</id>
+    <link href="https://chengnj.github.io/docker/2020/docker2/"/>
+    <id>https://chengnj.github.io/docker/2020/docker2/</id>
     <published>2020-01-10T08:29:12.000Z</published>
     <updated>2020-01-28T09:05:17.357Z</updated>
     
@@ -72,8 +72,8 @@
   
   <entry>
     <title>docker系列一docker安装</title>
-    <link href="https://chengnj.github.io/2020/docker1/"/>
-    <id>https://chengnj.github.io/2020/docker1/</id>
+    <link href="https://chengnj.github.io/docker/2020/docker1/"/>
+    <id>https://chengnj.github.io/docker/2020/docker1/</id>
     <published>2020-01-10T04:19:39.000Z</published>
     <updated>2020-01-28T09:05:39.558Z</updated>
     
@@ -99,8 +99,8 @@
   
   <entry>
     <title>nvidia-docker支持docker使用gpu</title>
-    <link href="https://chengnj.github.io/2020/docker-gpu/"/>
-    <id>https://chengnj.github.io/2020/docker-gpu/</id>
+    <link href="https://chengnj.github.io/docker/2020/docker-gpu/"/>
+    <id>https://chengnj.github.io/docker/2020/docker-gpu/</id>
     <published>2020-01-08T02:21:59.000Z</published>
     <updated>2020-01-28T09:05:46.526Z</updated>
     
@@ -125,28 +125,6 @@
       <category term="gpu" scheme="https://chengnj.github.io/tags/gpu/"/>
     
       <category term="nvidia" scheme="https://chengnj.github.io/tags/nvidia/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>About Me</title>
-    <link href="https://chengnj.github.io/2020/about/"/>
-    <id>https://chengnj.github.io/2020/about/</id>
-    <published>2020-01-07T02:37:04.000Z</published>
-    <updated>2020-01-10T09:26:05.548Z</updated>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;A Coder, live in Xiamen, China.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;GitHub: &lt;a href=&quot;https://github.com/ChengNJ&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;ChengNJ&lt;/a&gt;&lt;br&gt;QQ: &lt;a href=&quot;http://wpa.qq.com/msgrd?v=3&amp;uin=337455685&amp;site=qq&amp;menu=yes&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;337455685&lt;/a&gt;&lt;br&gt;微信: w-jy-1993&lt;/p&gt;
-    
-    </summary>
-    
-    
-    
-      <category term="随笔" scheme="https://chengnj.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
