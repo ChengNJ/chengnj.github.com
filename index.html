@@ -1,772 +1,644 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-  <meta charset="utf-8" />
-    
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-  <title>
-     杂言闲语
-  </title>
-  <meta name="generator" content="hexo-theme-yilia-plus">
-  
-  <link rel="shortcut icon" href="/favicon.ico" />
-  
-  
-<link rel="stylesheet" href="/css/style.css">
-
-  
-<script src="/js/pace.min.js"></script>
-
-
-  
-
-  
-
-<link rel="alternate" href="/atom.xml" title="杂言闲语" type="application/atom+xml">
-</head>
-
-</html>
-
-<body>
-  <div id="app">
-    <main class="content">
-      
-<section class="cover">
-    
-  <div class="cover-frame">
-    <div class="bg-box">
-      <img src="/images/cover1.jpg" alt="image frame" />
-    </div>
-    <div class="cover-inner text-center text-white">
-      <h1><a href="/">杂言闲语</a></h1>
-      <h2>za yan xian yu</h2>
-      <div>
-        
-      </div>
-    </div>
-  </div>
-  <div class="cover-learn-more">
-    <a href="#main" class="anchor"><i class="ri-arrow-down-line"></i></a>
-  </div>
-</section>
-
-<div id="main">
-  <section class="outer">
-  <article class="articles">
-    
-    <h1 class="page-type-title"></h1>
-
-    
-    
-    <article id="post-docker系列三docker命令" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/docker3/"
-    >docker系列三docker命令</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/docker3/" class="article-date">
-  <time datetime="2020-01-10T09:48:37.000Z" itemprop="datePublished">2020-01-10</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <p><a href="/2020/docker1/">docker系列一docker安装</a><br><a href="/2020/docker2/">docker系列二docker配置优化</a></p>
-<p>经过前两篇的前期准备，这篇开始就可以真正地进入docker的实地操作啦！那么先来了解下docker的命令操作。以下所有涉及到容器的，既可以使用容器名称，也可以使用容器id(只需要输入id前3位即可，不行就四位。。。)</p>
-<h1 id="镜像仓库"><a href="#镜像仓库" class="headerlink" title="镜像仓库"></a>镜像仓库</h1><h2 id="login-登录镜像仓库"><a href="#login-登录镜像仓库" class="headerlink" title="login 登录镜像仓库"></a>login 登录镜像仓库</h2><p>docker login : 登陆到一个Docker镜像仓库，如果未指定镜像仓库地址，默认为官方仓库 Docker Hub<br>docker logout : 登出一个Docker镜像仓库，如果未指定镜像仓库地址，默认为官方仓库 Docker Hub</p>
-<p>docker login [OPTIONS] [SERVER]<br>docker logout [OPTIONS] [SERVER]</p>
-<blockquote>
-<p>OPTIONS说明：<br>-u :登陆的用户名<br>-p :登陆的密码</p>
-</blockquote>
-<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><p>登陆到Docker Hub</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker login -u 用户名 -p 密码</span><br></pre></td></tr></table></figure>
-<p>登出Docker Hub</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker logout</span><br></pre></td></tr></table></figure>
-<p>登录到指定镜像仓库 例如阿里</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo docker login --username&#x3D;你的账号 \</span><br><span class="line">registry.cn-hangzhou.aliyuncs.com</span><br></pre></td></tr></table></figure>
-<h2 id="pull-拉取镜像"><a href="#pull-拉取镜像" class="headerlink" title="pull 拉取镜像"></a>pull 拉取镜像</h2><p>从镜像仓库中拉取或者更新指定镜像，可拉取一个或者多个<br>docker pull [options] [registry-url/]namespace/image[:tag]</p>
-<blockquote>
-<p>options<br>-a :拉取所有tagged镜像<br>–disable-content-trust :忽略镜像的校验,默认开启<br>registry-url 镜像仓库的地址，可不写，默认是从docker hub拉取，如果是其他镜像仓库，需要指定。<br>namespace 命名空间，镜像的所属命名空间<br>image 镜像名称<br>tag 镜像版本，如果没有的话 默认最新：latest</p>
-</blockquote>
-<h3 id="实例-1"><a href="#实例-1" class="headerlink" title="实例"></a>实例</h3><p>拉取官方镜像hello-world</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull hello-world</span><br></pre></td></tr></table></figure>
-<h2 id="push-推送镜像到仓库"><a href="#push-推送镜像到仓库" class="headerlink" title="push 推送镜像到仓库"></a>push 推送镜像到仓库</h2><p>将本地的镜像推送到仓库中<br>docker push [registry-url/]namespace/img[:tag]</p>
-<h2 id="serch-查找镜像"><a href="#serch-查找镜像" class="headerlink" title="serch 查找镜像"></a>serch 查找镜像</h2><p>docker search : 从Docker Hub查找镜像<br>docker search [options] image</p>
-<blockquote>
-<p>options说明：<br>–automated :只列出 automated build类型的镜像；<br>–no-trunc :显示完整的镜像描述；<br>-s :列出收藏数不小于指定值的镜像。</p>
-</blockquote>
-<h3 id="实例-2"><a href="#实例-2" class="headerlink" title="实例"></a>实例</h3><p>从Docker Hub查找所有镜像名包含java，并且收藏数大于10的镜像</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker search -s 10 java</span><br></pre></td></tr></table></figure>
-<h1 id="容器生命周期管理"><a href="#容器生命周期管理" class="headerlink" title="容器生命周期管理"></a>容器生命周期管理</h1><h2 id="run-启动容器"><a href="#run-启动容器" class="headerlink" title="run 启动容器"></a>run 启动容器</h2><p>通过docker run可创建一个新容器并运行某个命令<br>docker run [options]] image [command] [arg…]</p>
-<blockquote>
-<p>options<br>-a stdin: 指定标准输入输出内容类型，可选 STDIN/STDOUT/STDERR 三项；<br>-d: 后台运行容器，并返回容器ID；<br>-i: 以交互模式运行容器，通常与 -t 同时使用；<br>-P: 随机端口映射，容器内部端口随机映射到主机的高端口<br>-p: 指定端口映射，格式为：主机(宿主)端口:容器端口<br>-t: 为容器重新分配一个伪输入终端，通常与 -i 同时使用；<br>–name=”容器名”: 为容器指定一个名称；<br>–dns 8.8.8.8: 指定容器使用的DNS服务器，默认和宿主一致；<br>–dns-search example.com: 指定容器DNS搜索域名，默认和宿主一致；<br>-h “mars”: 指定容器的hostname；<br>-e username=”ritchie”: 设置环境变量；<br>–env-file=[]: 从指定文件读入环境变量；<br>–cpuset=”0-2” or –cpuset=”0,1,2”: 绑定容器到指定CPU运行；<br>-m :设置容器使用内存最大值；<br>–net=”bridge”: 指定容器的网络连接类型，支持 bridge/host/none/container: 四种类型；<br>–link=[]: 添加链接到另一个容器；<br>–expose=[]: 开放一个端口或一组端口；<br>–volume , -v: 绑定一个卷<br>command arg 容器启动运行的命令</p>
-</blockquote>
-<h3 id="实例-3"><a href="#实例-3" class="headerlink" title="实例"></a>实例</h3><p>使用docker镜像nginx:latest以后台模式启动一个容器,并将容器命名为mynginx。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name mynginx -d nginx:latest</span><br></pre></td></tr></table></figure>
-<p>使用镜像nginx:latest以后台模式启动一个容器,并将容器的80端口映射到主机随机端口。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -P -d nginx:latest</span><br></pre></td></tr></table></figure>
-<p>使用镜像 nginx:latest，以后台模式启动一个容器,将容器的 80 端口映射到主机的 80 端口,主机的目录 /data 映射到容器的 /data。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -p 80:80 -v &#x2F;data:&#x2F;data -d nginx:latest</span><br></pre></td></tr></table></figure>
-<p>绑定容器的 8080 端口，并将其映射到本地主机 127.0.0.1 的 80 端口上。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -p 127.0.0.1:80:8080&#x2F;tcp ubuntu bash</span><br></pre></td></tr></table></figure>
-<p>使用镜像nginx:latest以交互模式启动一个容器,在容器内执行/bin/bash命令。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it nginx:latest &#x2F;bin&#x2F;bash</span><br></pre></td></tr></table></figure>
-<h2 id="start-stop-restart"><a href="#start-stop-restart" class="headerlink" title="start stop restart"></a>start stop restart</h2><p>docker start: 启动一个或者多个已经被停止的容器<br>docker stop: 停止一个运行中的容器<br>docker restart: 重启容器</p>
-<h3 id="实例-4"><a href="#实例-4" class="headerlink" title="实例"></a>实例</h3><p>启动已被停止的容器nginx</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker start nginx</span><br></pre></td></tr></table></figure>
-<p>停止运行中的容器nginx</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker stop nginx</span><br></pre></td></tr></table></figure>
-<p>重启容器nginx</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker restart nginx</span><br></pre></td></tr></table></figure>
-<h2 id="rm-移除一个或多个容器"><a href="#rm-移除一个或多个容器" class="headerlink" title="rm 移除一个或多个容器"></a>rm 移除一个或多个容器</h2><p>docker rm [options] container [container]</p>
-<blockquote>
-<p>options:<br>-f 强制删除一个运行中的容器<br>-l 移除容器间的网络连接，而非容器本身<br>-v 删除容器关联的卷</p>
-</blockquote>
-<h3 id="实例-5"><a href="#实例-5" class="headerlink" title="实例"></a>实例</h3><p>强制删除nginx</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rm -f nginx</span><br></pre></td></tr></table></figure>
-<p>移除容器nginx 对容器db1的连接，连接名db:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rm -l db</span><br></pre></td></tr></table></figure>
-<p>删除容器nginx,并删除容器挂载的数据卷</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rm -v nginx</span><br></pre></td></tr></table></figure>
-<p>删除所有已经停止的容器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rm $(docker ps -a -q)</span><br></pre></td></tr></table></figure>
-<h2 id="pause-unpause-暂停-恢复进程"><a href="#pause-unpause-暂停-恢复进程" class="headerlink" title="pause unpause 暂停/恢复进程"></a>pause unpause 暂停/恢复进程</h2><p>docker pause/unpause container</p>
-<h2 id="create-创建容器但不启动它"><a href="#create-创建容器但不启动它" class="headerlink" title="create 创建容器但不启动它"></a>create 创建容器但不启动它</h2><p>docker create [options] image [command] [arg…]</p>
-<h3 id="实例-6"><a href="#实例-6" class="headerlink" title="实例"></a>实例</h3><p>使用镜像nginx:latest创建一个名字为nginx01的容器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker create --name nginx01 nginx:latest</span><br></pre></td></tr></table></figure>
-<h2 id="exec-在运行中的容器执行命令"><a href="#exec-在运行中的容器执行命令" class="headerlink" title="exec 在运行中的容器执行命令"></a>exec 在运行中的容器执行命令</h2><p>docker exec [options] container command [arg…]</p>
-<blockquote>
-<p>options:<br>-d 在后台运行<br>-i 即使没有附加也保持stdin打开 通常与t一起使用<br>-t 分配一个伪终端 通常与i一起使用</p>
-</blockquote>
-<h3 id="实例-7"><a href="#实例-7" class="headerlink" title="实例"></a>实例</h3><p>在容器nginx中以交互模式执行容器内某脚本</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it nginx &#x2F;bin&#x2F;sh &#x2F;root&#x2F;read.sh</span><br></pre></td></tr></table></figure>
-<p>在容器nginx中开启一个交互模式的终端</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it nginx &#x2F;bin&#x2F;bash</span><br></pre></td></tr></table></figure>
-<h1 id="容器操作"><a href="#容器操作" class="headerlink" title="容器操作"></a>容器操作</h1><h2 id="ps-列出容器"><a href="#ps-列出容器" class="headerlink" title="ps 列出容器"></a>ps 列出容器</h2><p>docker ps [options]</p>
-<blockquote>
-<p>options:<br>-a :显示所有的容器，包括未运行的。<br>-f :根据条件过滤显示的内容。<br>–format :指定返回值的模板文件。 –filter “name=test”<br>-l :显示最近创建的容器。<br>-n :列出最近创建的n个容器。<br>–no-trunc :不截断输出。<br>-q :静默模式，只显示容器编号。<br>-s :显示总的文件大小。</p>
-</blockquote>
-<h2 id="inspect-获取容器-镜像的元数据"><a href="#inspect-获取容器-镜像的元数据" class="headerlink" title="inspect 获取容器/镜像的元数据"></a>inspect 获取容器/镜像的元数据</h2><p>docker inspect [options] name|id </p>
-<blockquote>
-<p>options:<br>-f 指定返回值的模板文件<br>-s 显示总的文件大小<br>–type 为指定类型返回json</p>
-</blockquote>
-<h3 id="实例-8"><a href="#实例-8" class="headerlink" title="实例"></a>实例</h3><p>获取镜像nginx:latest 的元信息</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">docker inspect nginx:latest</span><br><span class="line">返回</span><br><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        &quot;Id&quot;: &quot;sha256:c7460dfcab502275e9c842588df406444069c00a48d9a995619c243079a4c2f7&quot;,</span><br><span class="line">        &quot;RepoTags&quot;: [</span><br><span class="line">            &quot;nginx:latest&quot;</span><br><span class="line">        ],</span><br><span class="line">        &quot;RepoDigests&quot;: [</span><br><span class="line">            &quot;nginx@sha256:8aa7f6a9585d908a63e5e418dc5d14ae7467d2e36e1ab4f0d8f9d059a3d071ce&quot;</span><br><span class="line">        ],</span><br><span class="line">        &quot;Parent&quot;: &quot;&quot;,</span><br><span class="line">        &quot;Comment&quot;: &quot;&quot;,</span><br><span class="line">        &quot;Created&quot;: &quot;2020-01-09T22:20:18.366859777Z&quot;,</span><br><span class="line">        &quot;Container&quot;: &quot;613e0b9d718b9d81b04fa7e682d0f770f3a321b34fcc4f790b6304ee1c3ff765&quot;,</span><br><span class="line">        &quot;ContainerConfig&quot;: &#123;</span><br><span class="line">            &quot;Hostname&quot;: &quot;613e0b9d718b&quot;,</span><br><span class="line">            &quot;Domainname&quot;: &quot;&quot;,</span><br><span class="line">            &quot;User&quot;: &quot;&quot;,</span><br><span class="line">            &quot;AttachStdin&quot;: false,</span><br><span class="line">            &quot;AttachStdout&quot;: false,</span><br><span class="line">            &quot;AttachStderr&quot;: false,</span><br><span class="line">            &quot;ExposedPorts&quot;: &#123;</span><br><span class="line">                &quot;80&#x2F;tcp&quot;: &#123;&#125;</span><br><span class="line">            &#125;,</span><br><span class="line">            ...</span><br></pre></td></tr></table></figure>
-<p>获取正在运行的容器nginx的ip</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker inspect --format&#x3D;&#39;&#123;&#123;range .NetworkSettings.Networks&#125;&#125;&#123;&#123;.IPAddress&#125;&#125;&#123;&#123;end&#125;&#125;&#39; nginx</span><br></pre></td></tr></table></figure>
-<h2 id="top-查看容器中运行的进程信息"><a href="#top-查看容器中运行的进程信息" class="headerlink" title="top 查看容器中运行的进程信息"></a>top 查看容器中运行的进程信息</h2><p>docker top contain [ps options]<br>容器运行时不一定有/bin/bash终端来交互执行top命令，而且容器还不一定有top命令，可以使用docker top来实现查看container中正在运行的进程,支持ps命令参数</p>
-<h3 id="实例-9"><a href="#实例-9" class="headerlink" title="实例"></a>实例</h3><p>查看容器nginx的进程信息</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker top nginx</span><br></pre></td></tr></table></figure>
-<h2 id="attach-连接到容器"><a href="#attach-连接到容器" class="headerlink" title="attach 连接到容器"></a>attach 连接到容器</h2><p>要attach上去的容器必须正在运行，可以同时连接上同一个container来共享屏幕（与screen命令的attach类似）。<br>官方文档中说attach后可以通过CTRL-C来detach，但实际上经过我的测试，如果container当前在运行bash，CTRL-C自然是当前行的输入，没有退出；如果container当前正在前台运行进程，如输出nginx的access.log日志，CTRL-C不仅会导致退出容器，而且还stop了。这不是我们想要的，detach的意思按理应该是脱离容器终端，但容器依然运行。好在attach是可以带上–sig-proxy=false来确保CTRL-D或CTRL-C不会关闭容器。</p>
-<h3 id="实例-10"><a href="#实例-10" class="headerlink" title="实例"></a>实例</h3><p>容器nginx将访问日志指定到标准输出，连接到容器可以查看访问信息</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker attach --sig-proxy&#x3D;false nginx</span><br></pre></td></tr></table></figure>
-<h2 id="events-从服务器获取实时事件"><a href="#events-从服务器获取实时事件" class="headerlink" title="events 从服务器获取实时事件"></a>events 从服务器获取实时事件</h2><p>docker events [options]</p>
-<blockquote>
-<p>options:<br>-f 根据条件过滤事件 -f “image=”mysql:5.6”<br>–since 从指定时间戳后显示所有事件 如果是日期可以直接–since=”2020-01-13”，如果是到秒级的，需要将时间转成时间戳<br>–until 流水事件显示到指定时间为止</p>
-</blockquote>
-<h2 id="logs-查看容器日志"><a href="#logs-查看容器日志" class="headerlink" title="logs 查看容器日志"></a>logs 查看容器日志</h2><p>docker logs [options] container</p>
-<blockquote>
-<p>options:<br>-f 跟踪日志输出<br>–since :显示某个开始时间的所有日志<br>-t : 显示时间戳<br>–tail :仅列出最新N条容器日志</p>
-</blockquote>
-<h2 id="wait-阻塞运行直到容器停止，然后打印出它的退出代码"><a href="#wait-阻塞运行直到容器停止，然后打印出它的退出代码" class="headerlink" title="wait 阻塞运行直到容器停止，然后打印出它的退出代码"></a>wait 阻塞运行直到容器停止，然后打印出它的退出代码</h2><h2 id="port-列出容器端口映射"><a href="#port-列出容器端口映射" class="headerlink" title="port 列出容器端口映射"></a>port 列出容器端口映射</h2><p>docker port [options] container [PRIVATE_PORT[/PROTO]]</p>
-<h1 id="本地镜像管理"><a href="#本地镜像管理" class="headerlink" title="本地镜像管理"></a>本地镜像管理</h1><h2 id="images-查看本地镜像列表"><a href="#images-查看本地镜像列表" class="headerlink" title="images 查看本地镜像列表"></a>images 查看本地镜像列表</h2><p>docker images [options] [repository[:tag]]</p>
-<blockquote>
-<p>options:<br>-a :列出本地所有的镜像（含中间映像层，默认情况下，过滤掉中间映像层）；<br>–digests :显示镜像的摘要信息；<br>-f :显示满足条件的镜像；<br>–format :指定返回值的模板文件；<br>–no-trunc :显示完整的镜像信息；<br>-q :只显示镜像ID</p>
-</blockquote>
-<h3 id="实例-11"><a href="#实例-11" class="headerlink" title="实例"></a>实例</h3><p>列出本地镜像中repository为ubuntu的镜像列表</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker images ubuntu</span><br></pre></td></tr></table></figure>
-<h2 id="rmi-删除镜像"><a href="#rmi-删除镜像" class="headerlink" title="rmi 删除镜像"></a>rmi 删除镜像</h2><p>docker rmi [options] image [images …]</p>
-<blockquote>
-<p>options:<br>-f 强制删除<br>–no-prune 不移除该镜像的过程镜像，默认移除</p>
-</blockquote>
-<h2 id="tag-标记本地镜像，将其归入某一仓库"><a href="#tag-标记本地镜像，将其归入某一仓库" class="headerlink" title="tag 标记本地镜像，将其归入某一仓库"></a>tag 标记本地镜像，将其归入某一仓库</h2><p>docker tag [options] image[:tag] [repository/][username/]name[:tag]</p>
-<h3 id="实例-12"><a href="#实例-12" class="headerlink" title="实例"></a>实例</h3><p>将ubuntu：15.10标记为drookie/ubuntu:v3</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker tag ubuntu:15.10 drookie&#x2F;ubuntu:v3</span><br></pre></td></tr></table></figure>
-<h2 id="build-通过dockerfile构建镜像"><a href="#build-通过dockerfile构建镜像" class="headerlink" title="build 通过dockerfile构建镜像"></a>build 通过dockerfile构建镜像</h2><p>docker build [options]  path|url|- </p>
-<blockquote>
-<p>options:<br>–build-arg=[] :设置镜像创建时的变量；<br>–cpu-shares :设置 cpu 使用权重；<br>–cpu-period :限制 CPU CFS周期；<br>–cpu-quota :限制 CPU CFS配额；<br>–cpuset-cpus :指定使用的CPU id；<br>–cpuset-mems :指定使用的内存 id；<br>–disable-content-trust :忽略校验，默认开启；<br>-f :指定要使用的Dockerfile路径；<br>–force-rm :设置镜像过程中删除中间容器；<br>–isolation :使用容器隔离技术；<br>–label=[] :设置镜像使用的元数据；<br>-m :设置内存最大值；<br>–memory-swap :设置Swap的最大值为内存+swap，”-1”表示不限swap；<br>–no-cache :创建镜像的过程不使用缓存；<br>–pull :尝试去更新镜像的新版本；<br>–quiet, -q :安静模式，成功后只输出镜像 ID；<br>–rm :设置镜像成功后删除中间容器；<br>–shm-size :设置/dev/shm的大小，默认值是64M；<br>–ulimit :Ulimit配置。<br>–tag, -t: 镜像的名字及标签，通常 name:tag 或者 name 格式；可以在一次构建中为一个镜像设置多个标签。<br>–network: 默认 default。在构建期间设置RUN指令的网络模式</p>
-</blockquote>
-<h3 id="实例-13"><a href="#实例-13" class="headerlink" title="实例"></a>实例</h3><p>使用当前目录的 Dockerfile 创建镜像，标签为 runoob/ubuntu:v1。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -t runoob&#x2F;ubuntu:v1 .</span><br></pre></td></tr></table></figure>
-<p>使用URL github.com/creack/docker-firefox 的 Dockerfile 创建镜像。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build github.com&#x2F;creack&#x2F;docker-firefox</span><br></pre></td></tr></table></figure>
-<p>也可以通过 -f Dockerfile 文件的位置：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -f &#x2F;path&#x2F;to&#x2F;a&#x2F;Dockerfile .</span><br></pre></td></tr></table></figure>
-<h2 id="history-查看指定镜像的创建历史"><a href="#history-查看指定镜像的创建历史" class="headerlink" title="history 查看指定镜像的创建历史"></a>history 查看指定镜像的创建历史</h2><p>docker history [options] image</p>
-<blockquote>
-<p>options:<br>-H :以可读的格式打印镜像大小和日期，默认为true；<br>–no-trunc :显示完整的提交记录；<br>-q :仅列出提交记录ID。</p>
-</blockquote>
-<h2 id="save-将镜像打包成tar文件"><a href="#save-将镜像打包成tar文件" class="headerlink" title="save 将镜像打包成tar文件"></a>save 将镜像打包成tar文件</h2><p>docker save [options] image [image…]</p>
-<blockquote>
-<p>options:<br>-o 输出到的文件</p>
-</blockquote>
-<h3 id="实例-14"><a href="#实例-14" class="headerlink" title="实例"></a>实例</h3><p>将镜像nginx:latest生成nginx_v3.tar文档</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker save -o nginx_v3.tar nginx:latest</span><br></pre></td></tr></table></figure>
-<h2 id="load-导入使用save导出的镜像"><a href="#load-导入使用save导出的镜像" class="headerlink" title="load 导入使用save导出的镜像"></a>load 导入使用save导出的镜像</h2><p>docker load [options]</p>
-<blockquote>
-<p>options:<br>–input , -i : 指定导入的文件，代替 STDIN。<br>–quiet , -q : 精简输出信息。</p>
-</blockquote>
-<h3 id="实例-15"><a href="#实例-15" class="headerlink" title="实例"></a>实例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker load &lt; nginx_v3.tar</span><br><span class="line">或者</span><br><span class="line">docker load -i nginx_v3.tar</span><br></pre></td></tr></table></figure>
-<h1 id="容器rootfs命令"><a href="#容器rootfs命令" class="headerlink" title="容器rootfs命令"></a>容器rootfs命令</h1><h2 id="commit-从容器中创建一个新镜像"><a href="#commit-从容器中创建一个新镜像" class="headerlink" title="commit 从容器中创建一个新镜像"></a>commit 从容器中创建一个新镜像</h2><p>我们在镜像中做的修改可以通过commit命令将其在生成的新镜像中有效<br>docker commit [options] container [repository[:tag]]</p>
-<blockquote>
-<p>options:<br>-a :提交的镜像作者；<br>-c :使用Dockerfile指令来创建镜像；<br>-m :提交时的说明文字；<br>-p :在commit时，将容器暂停。</p>
-</blockquote>
-<h3 id="实例-16"><a href="#实例-16" class="headerlink" title="实例"></a>实例</h3><p>将容器a404c6c174a2 保存为新的镜像,并添加提交人信息和说明信息。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker commit -a &quot;runoob.com&quot; -m &quot;my apache&quot; a404c6c174a2  mymysql:v1</span><br></pre></td></tr></table></figure>
-<h2 id="cp-容器与主机之间的数据拷贝"><a href="#cp-容器与主机之间的数据拷贝" class="headerlink" title="cp 容器与主机之间的数据拷贝"></a>cp 容器与主机之间的数据拷贝</h2><p>docker cp [options] CONTAINER:SRC_PATH DEST_PATH|-<br>docker cp [options] SRC_PATH|- CONTAINER:DEST_PATH</p>
-<blockquote>
-<p>options:<br>-L 保持源目标中的连接</p>
-</blockquote>
-<h3 id="实例-17"><a href="#实例-17" class="headerlink" title="实例"></a>实例</h3><p>将主机/www/runoob目录拷贝到容器96f7f14e99ab的/www目录下。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker cp &#x2F;www&#x2F;runoob 96f7f14e99ab:&#x2F;www&#x2F;</span><br></pre></td></tr></table></figure>
-<p>将主机/www/runoob目录拷贝到容器96f7f14e99ab中，目录重命名为www。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker cp &#x2F;www&#x2F;runoob 96f7f14e99ab:&#x2F;www</span><br></pre></td></tr></table></figure>
-<p>将容器96f7f14e99ab的/www目录拷贝到主机的/tmp目录中。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker cp  96f7f14e99ab:&#x2F;www &#x2F;tmp&#x2F;</span><br></pre></td></tr></table></figure>
-<h2 id="diff-检查容器里文件结构的更改"><a href="#diff-检查容器里文件结构的更改" class="headerlink" title="diff 检查容器里文件结构的更改"></a>diff 检查容器里文件结构的更改</h2><p>docker diff [options] container</p>
-<h3 id="实例-18"><a href="#实例-18" class="headerlink" title="实例"></a>实例</h3><p>查看容器mymysql的文件结构更改。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">docker diff mymysql</span><br><span class="line">A &#x2F;logs</span><br><span class="line">A &#x2F;mysql_data</span><br><span class="line">C &#x2F;run</span><br><span class="line">C &#x2F;run&#x2F;mysqld</span><br><span class="line">A &#x2F;run&#x2F;mysqld&#x2F;mysqld.pid</span><br><span class="line">A &#x2F;run&#x2F;mysqld&#x2F;mysqld.sock</span><br><span class="line">C &#x2F;tmp</span><br></pre></td></tr></table></figure>
-<p>以上参考自菜鸟教程</p>
-
-      
-      <!-- 打赏 -->
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://chengnj.github.io/2020/docker3/" data-id="ck5ggn0x10003j1owfh1z634a"
-        class="article-share-link">分享</a>
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/" rel="tag">docker</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-docker系列二docker配置优化" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/docker2/"
-    >docker系列二docker配置优化</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/docker2/" class="article-date">
-  <time datetime="2020-01-10T08:29:12.000Z" itemprop="datePublished">2020-01-10</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <p><a href="/2020/docker1/">docker系列一docker安装</a></p>
-<p>工欲善其事必先利其器，所以在安装完docker后，我们需要对docker修改配置。<br>docker的配置文件<strong>是/etc/docker/daemon.json</strong>如果没有这个文件，就新建一个。<br><strong>该配置文件修改完后，需要重启docker使配置生效。</strong><br>重启方式</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl daemon-reload</span><br><span class="line">sudo systemctl restart docker</span><br></pre></td></tr></table></figure>
-<h2 id="查看docker信息"><a href="#查看docker信息" class="headerlink" title="查看docker信息"></a>查看docker信息</h2><p>使用docker info 可以进行查看docker的信息</p>
-<h2 id="镜像加速"><a href="#镜像加速" class="headerlink" title="镜像加速"></a>镜像加速</h2><p>由于默认的docker镜像是从国外拉取的，所以速度会比较慢，所以我们这边采用阿里的镜像仓库，后续我们也可以把自己的镜像推送到阿里云，这样我们在其他服务器拉取镜像就会比较快。</p>
-<ol>
-<li>阿里云仓库 <a href="https://dev.aliyun.com/search.html" target="_blank" rel="noopener">https://dev.aliyun.com/search.html</a></li>
-<li>进去后有账号的话直接登录，没有的就注册下，登录后在搜索框搜索”容器镜像服务“，选择进入该服务面板。</li>
-<li>在镜像中心-镜像加速器，有你的加速地址。下面还有操作文档告诉你怎么操作。/etc/docker/daemon.json中的配置如下<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">   &quot;registry-mirrors&quot;:[&quot;你的阿里云加速地址&quot;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h2 id="登录docker"><a href="#登录docker" class="headerlink" title="登录docker"></a>登录docker</h2><p>由于我们将镜像仓库改为阿里云，所以我们需要登录到该仓库。登录账号密码就是网站的登录账号密码。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo docker login --username&#x3D;你的账号 \</span><br><span class="line">registry.cn-hangzhou.aliyuncs.com</span><br></pre></td></tr></table></figure>
-<h2 id="修改docker的存储位置"><a href="#修改docker的存储位置" class="headerlink" title="修改docker的存储位置"></a>修改docker的存储位置</h2><p>我们系统的主要数据是放在另一个额外挂载的大容量硬盘里。最开始的时候，由于docker采用的是默认的存储位置，导致后面镜像太多了，占用了很多存储空间，直接把系统的根目录存储占用满了。所以如果有这个需求的话需要修改下docker的存储位置。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;graph&quot;:&quot;&#x2F;data&#x2F;docker&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>还有另一种修改存储位置的方法，但是我们还是推荐上面那种。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd &#x2F;etc&#x2F;systemd&#x2F;system&#x2F;multi-user.target.wants</span><br><span class="line">vim docker.service</span><br><span class="line">#在执行命令中添加--graph&#x3D;你的存储位置</span><br><span class="line">ExecStart&#x3D;&#x2F;usr&#x2F;bin&#x2F;dockerd --graph&#x3D;&#x2F;data&#x2F;docker .....</span><br></pre></td></tr></table></figure>
-<h2 id="日志大小限制"><a href="#日志大小限制" class="headerlink" title="日志大小限制"></a>日志大小限制</h2><p>docker会产生自己的启动日志，所以我们这边为了节省空间，对docker的日志做一些限制</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;log-driver&quot;:&quot;json-file&quot;,</span><br><span class="line">  &quot;log-opts&quot;: &#123;&quot;max-size&quot;:&quot;10m&quot;, &quot;max-file&quot;:&quot;2&quot;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>附上我的daemon.json所有配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;graph&quot;:&quot;存储位置&quot;,</span><br><span class="line">  &quot;registry-mirrors&quot;:[&quot;你的加速地址&quot;],</span><br><span class="line">  &quot;log-driver&quot;:&quot;json-file&quot;,</span><br><span class="line">  &quot;log-opts&quot;: &#123;&quot;max-size&quot;:&quot;10m&quot;, &quot;max-file&quot;:&quot;2&quot;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-      
-      <!-- 打赏 -->
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://chengnj.github.io/2020/docker2/" data-id="ck5ggn0x20004j1owbh2th0iv"
-        class="article-share-link">分享</a>
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/" rel="tag">docker</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-docker系列一docker安装" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/docker1/"
-    >docker系列一docker安装</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/docker1/" class="article-date">
-  <time datetime="2020-01-10T04:19:39.000Z" itemprop="datePublished">2020-01-10</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <p>最近打开印象笔记，发现自己在18年就有做docker的一些相关记录。后面就没了。。没了。。了。。。<br>现在在这家公司，最开始是由于正式使用是内网环境，用docker有点麻烦，就因此把服务docker化部署这个任务闲置了，最近开始公司开始采用联通云，使用云上部署，加上最近自己手头的任务也比较没那么紧张，所以就又开始了docker的研究使用。<br>这里，我将mysql、redis、kafka、nginx进行了根据我们的实际使用进行了定制化。并且将微服务应用进行了使用docker打包，并在正式使用时，使用docker-compose进行编排部署。<br>现在就打算写个blog对自己做的这些做个总结，如果能对大家有帮助的话，更好不过了。  </p>
-<h1 id="docker简介"><a href="#docker简介" class="headerlink" title="docker简介"></a>docker简介</h1><h2 id="虚拟机"><a href="#虚拟机" class="headerlink" title="虚拟机"></a>虚拟机</h2><blockquote>
-<p>可能很多朋友都用过虚拟机，我们用的传统虚拟机如 VMware，VisualBox 之类的需要模拟整台机器包括硬件，每台虚拟机都需要有自己的操作系统，虚拟机一旦被开启，预分配给它的资源将全部被占用。每一台虚拟机包括应用，必要的二进制和库，以及一个完整的用户操作系统。  </p>
-</blockquote>
-<h2 id="容器技术与docker"><a href="#容器技术与docker" class="headerlink" title="容器技术与docker"></a>容器技术与docker</h2><blockquote>
-<p>容器技术是和我们的宿主机共享硬件资源及操作系统，可以实现资源的动态分配。容器包含应用和其所有的依赖包，但是与其他容器共享内核。容器在宿主机操作系统中，在用户空间以分离的进程运行。<br>容器技术是实现操作系统虚拟化的一种途径，可以让您在资源受到隔离的进程中运行应用程序及其依赖关系。通过使用容器，我们可以轻松打包应用程序的代码、配置和依赖关系，将其变成容易使用的构建块，从而实现环境一致性、运营效率、开发人员生产力和版本控制等诸多目标。容器可以帮助保证应用程序快速、可靠、一致地部署，其间不受部署环境的影响。容器还赋予我们对资源更多的精细化控制能力，让我们的基础设施效率更高。<br>Linux 容器是 Linux 发展出了另一种虚拟化技术，简单来讲， Linux 容器不是模拟一个完整的操作系统，而是对进程进行隔离，相当于是在正常进程的外面套了一个保护层。对于容器里面的进程来说，它接触到的各种资源都是虚拟的，从而实现与底层系统的隔离。<strong>Docker 属于 Linux 容器的一种封装，提供简单易用的容器使用接口。</strong> 它是目前最流行的 Linux 容器解决方案。而docker将应用程序与该程序的依赖，打包在一个文件里面。运行这个文件，就会生成一个虚拟容器。程序在这个虚拟容器里运行，就好像在真实的物理机上运行一样。有了 docker ，就不用担心环境问题。<br>总体来说， Docker 的接口相当简单，用户可以方便地创建和使用容器，把自己的应用放入容器。容器还可以进行版本管理、复制、分享、修改，就像管理普通的代码一样。  </p>
-</blockquote>
-<p>在进行了解了下docker后，一切的开始当然是从docker的安装开始，这里我只做docker的ubuntu版本进行操作，其他操作系统看看后面补上。</p>
-<h1 id="docker-安装（这里以ubuntu为例子）"><a href="#docker-安装（这里以ubuntu为例子）" class="headerlink" title="docker 安装（这里以ubuntu为例子）"></a>docker 安装（这里以ubuntu为例子）</h1><ol>
-<li><p>卸载旧版docker（如果是全新安装的系统，无需执行）</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get remove docker docker-engine docker.io</span><br></pre></td></tr></table></figure></li>
-<li><p>更新系统软件  </p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure></li>
-<li><p>安装依赖包  </p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install -y \</span><br><span class="line">    apt-transport-https \</span><br><span class="line">    ca-certificates \</span><br><span class="line">    curl \</span><br><span class="line">    software-properties-common</span><br></pre></td></tr></table></figure></li>
-<li><p>添加官方密钥<br>建议用下面的国内源,下载会更快，执行可能需要小等一会，会出现ok</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo curl -fsSL https:&#x2F;&#x2F;mirrors.ustc.edu.cn&#x2F;docker-ce&#x2F;linux&#x2F;ubuntu&#x2F;gpg \</span><br><span class="line">| sudo apt-key add -</span><br></pre></td></tr></table></figure>
-<p> 以下为官方</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo curl -fsSL https:&#x2F;&#x2F;download.docker.com&#x2F;linux&#x2F;ubuntu&#x2F;gpg \</span><br><span class="line">| sudo apt-key add -</span><br></pre></td></tr></table></figure></li>
-<li><p>添加仓库<br>建议用下面的国内源  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository \</span><br><span class="line">&quot;deb [arch&#x3D;amd64] https:&#x2F;&#x2F;mirrors.ustc.edu.cn&#x2F;docker-ce&#x2F;linux&#x2F;ubuntu \</span><br><span class="line">$(lsb_release -cs) \</span><br><span class="line">stable&quot;</span><br></pre></td></tr></table></figure>
-<p>以下为官方</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository \</span><br><span class="line">&quot;deb [arch&#x3D;amd64] https:&#x2F;&#x2F;download.docker.com&#x2F;linux&#x2F;ubuntu \</span><br><span class="line">$(lsb_release -cs) \</span><br><span class="line">stable&quot;</span><br></pre></td></tr></table></figure></li>
-<li><p>再次更新软件  </p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure></li>
-<li><p>安装docker  </p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install -y docker-ce</span><br></pre></td></tr></table></figure>
-<p> 静等下载安装完成。  </p>
-</li>
-<li><p>查看docker版本  </p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker -v</span><br></pre></td></tr></table></figure>
-
-
-</li>
-</ol>
-<h1 id="docker-compose安装-用于多个服务的启动"><a href="#docker-compose安装-用于多个服务的启动" class="headerlink" title="docker-compose安装(用于多个服务的启动)"></a>docker-compose安装(用于多个服务的启动)</h1><ol>
-<li>安装 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install -y docker-compose</span><br></pre></td></tr></table></figure></li>
-<li>查看版本   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose --version</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<p><a href="/2020/docker2/">docker系列二docker配置优化</a></p>
-
-      
-      <!-- 打赏 -->
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://chengnj.github.io/2020/docker1/" data-id="ck5ggn0wx0001j1ow7f141j0o"
-        class="article-share-link">分享</a>
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/" rel="tag">docker</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-nvidia-docker支持docker使用gpu" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/docker-gpu/"
-    >nvidia-docker支持docker使用gpu</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/docker-gpu/" class="article-date">
-  <time datetime="2020-01-08T02:21:59.000Z" itemprop="datePublished">2020-01-08</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <h1 id="docker支持使用nvidia驱动"><a href="#docker支持使用nvidia驱动" class="headerlink" title="docker支持使用nvidia驱动"></a>docker支持使用nvidia驱动</h1><p>nvidia-docker是一个可以使用GPU的docker，nvidia-docker是在docker上做了一层封装，通过nvidia-docker-plugin，然后调用到docker上，其最终实现的还是在docker的启动命令上携带一些必要的参数。因此在安装nvidia-docker之前，还是需要安装docker的。<br>docker一般都是使用基于CPU的应用，而如果是GPU的话，就需要安装特有的硬件环境，比如需要安装nvidia driver。所以docker容器并不直接支持Nvidia GPU。为了解决这个问题，最早的处理办法是在容器内部，全部重新安装nvidia driver，然后通过设置相应的设备参数来启动container，然而这种办法是很脆弱的。因为宿主机的driver的版本必须完全匹配容器内的driver版本，这样导致docker image无法共享，很可能本地机器的不一致导致每台机器都需要去重复操作，这很大的违背了docker的设计之初。<br>为了使docker image能很便利的使用Nvidia GPU，从而产生了nvidia-docker，由它来制作nvidia driver的image，这就要求在目标机器上启动container时，确保字符设备以及驱动文件已经被挂载。<br>nvidia-docker-plugin是一个docker plugin，被用来帮助我们轻松部署container到GPU混合的环境下。类似一个守护进程，发现宿主机驱动文件以及GPU 设备，并且将这些挂载到来自docker守护进程的请求中。以此来支持docker GPU的使用</p>
-<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><p>需要提前安装好docker，这个可以看之前的文章 docker安装<br>还有一个就是在宿机上安装nvidia显卡驱动，这个自行百度~</p>
-<h1 id="nvidia-docker安装"><a href="#nvidia-docker安装" class="headerlink" title="nvidia-docker安装"></a>nvidia-docker安装</h1><p>此处是操作官方文档进行操作 <a href="https://github.com/NVIDIA/nvidia-docker/" target="_blank" rel="noopener">nvidia-docker</a>  </p>
-<h2 id="Ubuntu-16-04-18-04-Debian-Jessie-Stretch-Buster"><a href="#Ubuntu-16-04-18-04-Debian-Jessie-Stretch-Buster" class="headerlink" title="Ubuntu 16.04/18.04, Debian Jessie/Stretch/Buster"></a>Ubuntu 16.04/18.04, Debian Jessie/Stretch/Buster</h2>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">distribution&#x3D;$(. &#x2F;etc&#x2F;os-release;echo $ID$VERSION_ID)</span><br><span class="line"></span><br><span class="line">curl -s -L https:&#x2F;&#x2F;nvidia.github.io&#x2F;nvidia-docker&#x2F;gpgkey | sudo apt-key add -</span><br><span class="line"></span><br><span class="line">curl -s -L https:&#x2F;&#x2F;nvidia.github.io&#x2F;nvidia-docker&#x2F;$distribution&#x2F;nvidia-docker.list | sudo tee &#x2F;etc&#x2F;apt&#x2F;sources.list.d&#x2F;nvidia-docker.list</span><br><span class="line"></span><br><span class="line">sudo apt-get update &amp;&amp; sudo apt-get install -y nvidia-container-toolkit</span><br><span class="line">    </span><br><span class="line">sudo systemctl restart docker</span><br></pre></td></tr></table></figure>
-<h2 id="CentOS-7-docker-ce-RHEL-7-4-7-5-docker-ce-Amazon-Linux-1-2"><a href="#CentOS-7-docker-ce-RHEL-7-4-7-5-docker-ce-Amazon-Linux-1-2" class="headerlink" title="CentOS 7 (docker-ce), RHEL 7.4/7.5 (docker-ce), Amazon Linux 1/2"></a>CentOS 7 (docker-ce), RHEL 7.4/7.5 (docker-ce), Amazon Linux 1/2</h2>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">distribution&#x3D;$(. &#x2F;etc&#x2F;os-release;echo $ID$VERSION_ID)</span><br><span class="line"></span><br><span class="line">curl -s -L https:&#x2F;&#x2F;nvidia.github.io&#x2F;nvidia-docker&#x2F;$distribution&#x2F;nvidia-docker.repo | sudo tee &#x2F;etc&#x2F;yum.repos.d&#x2F;nvidia-docker.repo</span><br><span class="line"></span><br><span class="line">sudo yum install -y nvidia-container-toolkit</span><br><span class="line"></span><br><span class="line">sudo systemctl restart docker</span><br></pre></td></tr></table></figure>
-
-<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#### Test nvidia-smi with the latest official CUDA image</span><br><span class="line">docker run --gpus all nvidia&#x2F;cuda:9.0-base nvidia-smi</span><br><span class="line"></span><br><span class="line"># Start a GPU enabled container on two GPUs</span><br><span class="line">docker run --gpus 2 nvidia&#x2F;cuda:9.0-base nvidia-smi</span><br><span class="line"></span><br><span class="line"># Starting a GPU enabled container on specific GPUs</span><br><span class="line">docker run --gpus &#39;&quot;device&#x3D;1,2&quot;&#39; nvidia&#x2F;cuda:9.0-base nvidia-smi</span><br><span class="line">docker run --gpus &#39;&quot;device&#x3D;UUID-ABCDEF,1&quot;&#39; nvidia&#x2F;cuda:9.0-base nvidia-smi</span><br><span class="line"></span><br><span class="line"># Specifying a capability (graphics, compute, ...) for my container</span><br><span class="line"># Note this is rarely if ever used this way</span><br><span class="line">docker run --gpus all,capabilities&#x3D;utility nvidia&#x2F;cuda:9.0-base nvidia-smi</span><br></pre></td></tr></table></figure>
-
-<h1 id="自定义镜像"><a href="#自定义镜像" class="headerlink" title="自定义镜像"></a>自定义镜像</h1><p>如果是想自己定义镜像的话 可以直接基于nvidia/cuda的镜像进行操作。</p>
-
-      
-      <!-- 打赏 -->
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://chengnj.github.io/2020/docker-gpu/" data-id="ck5ggn0x30005j1ow1j8w0jsu"
-        class="article-share-link">分享</a>
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gpu/" rel="tag">gpu</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nvidia/" rel="tag">nvidia</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-about" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/about/"
-    >About Me</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/about/" class="article-date">
-  <time datetime="2020-01-07T02:37:04.000Z" itemprop="datePublished">2020-01-07</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <blockquote>
-<p>A Coder, live in Xiamen, China.</p>
-</blockquote>
-<p>GitHub: <a href="https://github.com/ChengNJ" target="_blank" rel="noopener">ChengNJ</a><br>QQ: <a href="http://wpa.qq.com/msgrd?v=3&uin=337455685&site=qq&menu=yes" target="_blank" rel="noopener">337455685</a><br>微信: w-jy-1993</p>
-      
-      <a class="article-more-link" href="/2020/about/">阅读更多...</a>
-      
-      
-      <!-- 打赏 -->
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://chengnj.github.io/2020/about/" data-id="ck5ggn0wq0000j1owbu2j8pih"
-        class="article-share-link">分享</a>
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-  </article>
-  
-
-  
-</section>
-</div>
-
-      <footer class="footer">
-  <div class="outer">
-    <ul class="list-inline">
-      <li>
-        &copy;
-        2020
-        wjy
-      </li>
-      <li>
-        
-      </li>
-    </ul>
-    <ul class="list-inline">
-      <li>
-        
-        
-        <ul class="list-inline">
-  <li>PV:<span id="busuanzi_value_page_pv"></span></li>
-  <li>UV:<span id="busuanzi_value_site_uv"></span></li>
-</ul>
-        
-      </li>
-      <li>
-        <!-- cnzz统计 -->
-        
-      </li>
-    </ul>
-  </div>
-</footer>
-    <div class="to_top">
-        <div class="totop" id="totop">
-  <i class="ri-arrow-up-line"></i>
-</div>
-      </div>
-    </main>
-    
-      <aside class="sidebar">
-        
-        <button class="navbar-toggle"></button>
-<nav class="navbar">
-  
-  <div class="logo">
-    <a href="/"><img src="/images/ayer-side.svg" alt="杂言闲语"></a>
-  </div>
-  
-  <ul class="nav nav-main">
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/">主页</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/archives">目录</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/tags">标签</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/2020/about">关于我</a>
-    </li>
-    
-  </ul>
-</nav>
-<nav class="navbar navbar-bottom">
-  <ul class="nav">
-    <li class="nav-item">
-      
-      <a class="nav-item-link nav-item-search"  title="Search">
-        <i class="ri-search-line"></i>
-      </a>
-      
-      
-      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
-        <i class="ri-rss-line"></i>
-      </a>
-      
-    </li>
-  </ul>
-</nav>
-<div class="search-form-wrap">
-  <div class="local-search local-search-plugin">
-  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
-  <div id="local-search-result" class="local-search-result"></div>
-</div>
-</div>
-      </aside>
-      <div id="mask"></div>
-
-<!-- #reward -->
-<div id="reward">
-  <span class="close"><i class="ri-close-line"></i></span>
-  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
-  <div class="reward-box">
-    
-    <div class="reward-item">
-      <img class="reward-img" src="/images/alipay.jpg">
-      <span class="reward-type">支付宝</span>
-    </div>
-    
-    
-    <div class="reward-item">
-      <img class="reward-img" src="/images/wechat.jpg">
-      <span class="reward-type">微信</span>
-    </div>
-    
-  </div>
-</div>
-      
-<script src="/js/jquery-2.0.3.min.js"></script>
-
-
-<script src="/js/jquery.justifiedGallery.min.js"></script>
-
-
-<script src="/js/lazyload.min.js"></script>
-
-
-<script src="/js/busuanzi-2.3.pure.min.js"></script>
-
-
-  
-<script src="/fancybox/jquery.fancybox.min.js"></script>
-
-
-
-
-
+  <meta charset="utf-8">
+  <title>杂言闲语</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="杂言闲语">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta property="og:type" content="website">
+<meta property="og:title" content="tags">
+<meta property="og:url" content="https://chengnj.github.io/tags/index.html">
+<meta property="og:site_name" content="杂言闲语">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-01-09T03:23:12.010Z">
+<meta property="article:modified_time" content="2020-01-09T03:23:12.010Z">
+<meta property="article:author" content="wjy">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.0.1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1" ></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
 <script>
-  var ayerConfig = {
-    mathjax: false
-  }
+    hljs.initHighlightingOnLoad();
 </script>
 
-
-<script src="/js/ayer.js"></script>
-
-
-<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
 
 
 
-<script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
-  
-  
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js" ></script>
 
-  </div>
+<script src="/js/iconfont.js?v=1.0.1" ></script>
+
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="杂言闲语" type="application/atom+xml">
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="false">
+  <input class="theme_blog_path" value="">
+</div>
+
+<body>
+<aside class="nav mobile">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/avatar.jpg" />
+</a>
+<div class="author">
+    <span>wjy</span>
+</div>
+
+<div class="icon">
+    
+        
+        <a title="rss" href="/atom.xml" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-rss"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="github" href="https://github.com/yelog" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-github"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="facebook" href="https://www.facebook.com/faker.tops" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-facebook"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+    
+        
+    
+        
+        <a title="instagram" href="https://www.facebook.com/faker.tops" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-instagram"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="reddit" href="https://www.reddit.com/user/yelog/" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-reddit"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="weibo" href="http://weibo.com/u/2307534817" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-weibo"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="jianshu" href="https://www.jianshu.com/u/ff56736de7cf" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-jianshu"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="zhihu" href="https://www.zhihu.com/people/jaytp/activities" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-zhihu"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+    
+        
+        <a title="oschina" href="https://my.oschina.net/yelog" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-oschina"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+    
+        
+        <a title="email" href="mailto:jaytp@qq.com" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-email"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="qq" href="http://wpa.qq.com/msgrd?v=3&uin=872336115&site=qq&menu=yes" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-qq"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="kugou" href="https://www.kugou.com/" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-kugou"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="neteasemusic" href="https://music.163.com/#/user/home?id=88151013" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-neteasemusic"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all active">全部文章<small>(5)</small></div></li>
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    
+    
+    </div>
+    <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="5">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode === 13){return false;}">
+        <input id="local-search-input" class="search" type="text" placeholder="Search..." />
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none" />
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a class="color3">随笔</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">docker</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">gpu</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">nvidia</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a  class=""
+           href="/2020/docker3/"
+           data-tag="docker"
+           data-author="" >
+            <span class="post-title" title="docker系列三docker命令">docker系列三docker命令</span>
+            <span class="post-date" title="2020-01-10 17:48:37">2020/01/10</span>
+        </a>
+        
+        <a  class=""
+           href="/2020/docker2/"
+           data-tag="docker"
+           data-author="" >
+            <span class="post-title" title="docker系列二docker配置优化">docker系列二docker配置优化</span>
+            <span class="post-date" title="2020-01-10 16:29:12">2020/01/10</span>
+        </a>
+        
+        <a  class=""
+           href="/2020/docker1/"
+           data-tag="docker"
+           data-author="" >
+            <span class="post-title" title="docker系列一docker安装">docker系列一docker安装</span>
+            <span class="post-date" title="2020-01-10 12:19:39">2020/01/10</span>
+        </a>
+        
+        <a  class=""
+           href="/2020/docker-gpu/"
+           data-tag="docker,gpu,nvidia"
+           data-author="" >
+            <span class="post-title" title="nvidia-docker支持docker使用gpu">nvidia-docker支持docker使用gpu</span>
+            <span class="post-date" title="2020-01-08 10:21:59">2020/01/08</span>
+        </a>
+        
+        <a  class=""
+           href="/2020/about/"
+           data-tag="随笔"
+           data-author="" >
+            <span class="post-title" title="About Me">About Me</span>
+            <span class="post-date" title="2020-01-07 10:37:04">2020/01/07</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post index">
+    <div class="pjax">
+        <article class="index">
+            <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Why-Blog"><span class="toc-text">Why Blog</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#对博客的理解"><span class="toc-text">对博客的理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关于叶落阁"><span class="toc-text">关于叶落阁</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#博客平台"><span class="toc-text">博客平台</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+            <h1 id="Why-Blog"><a href="#Why-Blog" class="headerlink" title="Why Blog"></a>Why Blog</h1><h2 id="对博客的理解"><a href="#对博客的理解" class="headerlink" title="对博客的理解"></a>对博客的理解</h2><p>喜欢写Blog的人，会经历三个阶段。</p>
+<blockquote>
+<p>第一阶段，刚接触Blog，觉得很新鲜，试着选择一个免费空间来写。</p>
+</blockquote>
+<blockquote>
+<p>第二阶段，发现免费空间限制太多，就自己购买域名和空间，搭建独立博客。</p>
+</blockquote>
+<blockquote>
+<p>第三阶段，觉得独立博客的管理太麻烦，最好在保留控制权的前提下，让别人来管，自己只负责写文章。</p>
+</blockquote>
+<p>我们每个人的在网络上产生的数据越来越多，这些信息是我们在互联网上存在过的痕迹，值得我们认真对待。但是它们被分散分布在各个网站上。很多时候我们很难将它们聚合在一起，而且各个网站的信息排布方式也没有办法自由控制，所以我们需要一个可以由自己主宰的空间——博客。</p>
+<p>通过博客，我们可以记录自己的生活和成长的轨迹。它不像 Twitter 那样碎片化，也不像 Facebook 那样关系化，它是私人的空间。</p>
+<h2 id="关于叶落阁"><a href="#关于叶落阁" class="headerlink" title="关于叶落阁"></a>关于叶落阁</h2><p><strong>叶落阁</strong> 是阿杰（杨玉杰）的个人站。</p>
+<p>到目前为止已经写了<code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字。</p>
+<p>本站访问人数：<code class="site_uv"></code>人次 ， 访问量：<code class="site_pv"></code>次</p>
+<h2 id="博客平台"><a href="#博客平台" class="headerlink" title="博客平台"></a>博客平台</h2><p>这个博客通过 <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> 生成，部署在 <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a>，主题 <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank" rel="noopener">3-hexo</a> 已经在github上开源</p>
+<p>主要功能：</p>
+<ul>
+<li>搜索支持文章标题、标签(#标签)、作者(@作者)</li>
+<li>pad/手机等移动端适配</li>
+<li>页面全局快捷键 <a href='http://yelog.org/2017/03/24/3-hexo-shortcuts/' target="_blank" rel="noopener">3-hexo快捷键说明</a></li>
+</ul>
+
+        </article>
+        
+        <p>
+            <a  class="dashang" onclick="dashangToggle()">赏</a>
+        </p>
+        
+        
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">©2016-2019 Yelog</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+<div class="acParent"></div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
 </body>
+<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
+
+<script src="/js/script.js?v=1.0.1" ></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['#随笔','#docker','#gpu','#nvidia',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $(".post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().split('\n').length - 1, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 0.5em 3px 0.7em 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: #fafafa;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    .post .pjax article .article-entry>ol, .post .pjax article .article-entry>ul, .post .pjax article>ol, .post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    .post .pjax article .article-entry li>ol, .post .pjax article .article-entry li>ul,.post .pjax article li>ol, .post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .post .pjax article .article-entry>ol>li, .post .pjax article .article-entry>ul>li,.post .pjax article>ol>li, .post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    .post .pjax article .article-entry li>ol>li, .post .pjax article .article-entry li>ul>li,.post .pjax article li>ol>li, .post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
 
 </html>

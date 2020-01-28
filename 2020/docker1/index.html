@@ -1,101 +1,388 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-  <meta charset="utf-8" />
-    
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-  <title>
-    docker系列一docker安装 |  杂言闲语
-  </title>
-  <meta name="generator" content="hexo-theme-yilia-plus">
-  
-  <link rel="shortcut icon" href="/favicon.ico" />
-  
-  
-<link rel="stylesheet" href="/css/style.css">
+  <meta charset="utf-8">
+  <title>docker系列一docker安装 | 杂言闲语</title>
+  <meta name="keywords" content=" docker ">
+  <meta name="description" content="docker系列一docker安装 | 杂言闲语">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta property="og:type" content="website">
+<meta property="og:title" content="tags">
+<meta property="og:url" content="https://chengnj.github.io/tags/index.html">
+<meta property="og:site_name" content="杂言闲语">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-01-09T03:23:12.010Z">
+<meta property="article:modified_time" content="2020-01-09T03:23:12.010Z">
+<meta property="article:author" content="wjy">
+<meta name="twitter:card" content="summary">
 
-  
-<script src="/js/pace.min.js"></script>
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.0.1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1" ></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
 
 
-  
 
-  
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js" ></script>
 
-<link rel="alternate" href="/atom.xml" title="杂言闲语" type="application/atom+xml">
+<script src="/js/iconfont.js?v=1.0.1" ></script>
+
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="杂言闲语" type="application/atom+xml">
 </head>
-
-</html>
-
-<body>
-  <div id="app">
-    <main class="content">
-      <section class="outer">
-  <article id="post-docker系列一docker安装" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  docker系列一docker安装
-</h1>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/docker1/" class="article-date">
-  <time datetime="2020-01-10T04:19:39.000Z" itemprop="datePublished">2020-01-10</time>
-</a>
-      
-      
-      
-<div class="word_count">
-    <span class="post-time">
-        <span class="post-meta-item-icon">
-            <i class="ri-quill-pen-line"></i>
-            <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">1.2k字</span>
-        </span>
-    </span>
-
-    <span class="post-time">
-        &nbsp; | &nbsp;
-        <span class="post-meta-item-icon">
-            <i class="ri-book-open-line"></i>
-            <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">4分钟</span>
-        </span>
-    </span>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="false">
+  <input class="theme_blog_path" value="">
 </div>
 
-      
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/avatar.jpg" />
+</a>
+<div class="author">
+    <span>wjy</span>
+</div>
+
+<div class="icon">
+    
+        
+        <a title="rss" href="/atom.xml" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-rss"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="github" href="https://github.com/yelog" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-github"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="facebook" href="https://www.facebook.com/faker.tops" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-facebook"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+    
+        
+    
+        
+        <a title="instagram" href="https://www.facebook.com/faker.tops" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-instagram"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="reddit" href="https://www.reddit.com/user/yelog/" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-reddit"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="weibo" href="http://weibo.com/u/2307534817" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-weibo"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="jianshu" href="https://www.jianshu.com/u/ff56736de7cf" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-jianshu"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="zhihu" href="https://www.zhihu.com/people/jaytp/activities" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-zhihu"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+    
+        
+        <a title="oschina" href="https://my.oschina.net/yelog" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-oschina"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+    
+        
+        <a title="email" href="mailto:jaytp@qq.com" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-email"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="qq" href="http://wpa.qq.com/msgrd?v=3&uin=872336115&site=qq&menu=yes" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-qq"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="kugou" href="https://www.kugou.com/" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-kugou"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="neteasemusic" href="https://music.163.com/#/user/home?id=88151013" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-neteasemusic"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all active">全部文章<small>(5)</small></div></li>
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    
+    
+    </div>
+    <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="5">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode === 13){return false;}">
+        <input id="local-search-input" class="search" type="text" placeholder="Search..." />
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none" />
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a class="color3">随笔</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">docker</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">gpu</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">nvidia</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a  class=""
+           href="/2020/docker3/"
+           data-tag="docker"
+           data-author="" >
+            <span class="post-title" title="docker系列三docker命令">docker系列三docker命令</span>
+            <span class="post-date" title="2020-01-10 17:48:37">2020/01/10</span>
+        </a>
+        
+        <a  class=""
+           href="/2020/docker2/"
+           data-tag="docker"
+           data-author="" >
+            <span class="post-title" title="docker系列二docker配置优化">docker系列二docker配置优化</span>
+            <span class="post-date" title="2020-01-10 16:29:12">2020/01/10</span>
+        </a>
+        
+        <a  class=""
+           href="/2020/docker1/"
+           data-tag="docker"
+           data-author="" >
+            <span class="post-title" title="docker系列一docker安装">docker系列一docker安装</span>
+            <span class="post-date" title="2020-01-10 12:19:39">2020/01/10</span>
+        </a>
+        
+        <a  class=""
+           href="/2020/docker-gpu/"
+           data-tag="docker,gpu,nvidia"
+           data-author="" >
+            <span class="post-title" title="nvidia-docker支持docker使用gpu">nvidia-docker支持docker使用gpu</span>
+            <span class="post-date" title="2020-01-08 10:21:59">2020/01/08</span>
+        </a>
+        
+        <a  class=""
+           href="/2020/about/"
+           data-tag="随笔"
+           data-author="" >
+            <span class="post-title" title="About Me">About Me</span>
+            <span class="post-date" title="2020-01-07 10:37:04">2020/01/07</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-docker系列一docker安装" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">docker系列一docker安装</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        
+        <span class="tag">
+            
+            <a class="color2">docker</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2020-01-10 17:31:36'>2020-01-10 12:19</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
     </div>
     
-
+    <div class="toc-ref">
     
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#docker简介"><span class="toc-text">docker简介</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#虚拟机"><span class="toc-text">虚拟机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#容器技术与docker"><span class="toc-text">容器技术与docker</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#docker-安装（这里以ubuntu为例子）"><span class="toc-text">docker 安装（这里以ubuntu为例子）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#docker-compose安装-用于多个服务的启动"><span class="toc-text">docker-compose安装(用于多个服务的启动)</span></a></li></ol>
     
-    <div class="tocbot"></div>
-
-
-
-
-
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
     
-
     <div class="article-entry" itemprop="articleBody">
       
-
-
-      
-
-      
-      <p>最近打开印象笔记，发现自己在18年就有做docker的一些相关记录。后面就没了。。没了。。了。。。<br>现在在这家公司，最开始是由于正式使用是内网环境，用docker有点麻烦，就因此把服务docker化部署这个任务闲置了，最近开始公司开始采用联通云，使用云上部署，加上最近自己手头的任务也比较没那么紧张，所以就又开始了docker的研究使用。<br>这里，我将mysql、redis、kafka、nginx进行了根据我们的实际使用进行了定制化。并且将微服务应用进行了使用docker打包，并在正式使用时，使用docker-compose进行编排部署。<br>现在就打算写个blog对自己做的这些做个总结，如果能对大家有帮助的话，更好不过了。  </p>
+        <p>最近打开印象笔记，发现自己在18年就有做docker的一些相关记录。后面就没了。。没了。。了。。。<br>现在在这家公司，最开始是由于正式使用是内网环境，用docker有点麻烦，就因此把服务docker化部署这个任务闲置了，最近开始公司开始采用联通云，使用云上部署，加上最近自己手头的任务也比较没那么紧张，所以就又开始了docker的研究使用。<br>这里，我将mysql、redis、kafka、nginx进行了根据我们的实际使用进行了定制化。并且将微服务应用进行了使用docker打包，并在正式使用时，使用docker-compose进行编排部署。<br>现在就打算写个blog对自己做的这些做个总结，如果能对大家有帮助的话，更好不过了。  </p>
 <h1 id="docker简介"><a href="#docker简介" class="headerlink" title="docker简介"></a>docker简介</h1><h2 id="虚拟机"><a href="#虚拟机" class="headerlink" title="虚拟机"></a>虚拟机</h2><blockquote>
 <p>可能很多朋友都用过虚拟机，我们用的传统虚拟机如 VMware，VisualBox 之类的需要模拟整台机器包括硬件，每台虚拟机都需要有自己的操作系统，虚拟机一旦被开启，预分配给它的资源将全部被占用。每一台虚拟机包括应用，必要的二进制和库，以及一个完整的用户操作系统。  </p>
 </blockquote>
@@ -139,277 +426,304 @@
 <p><a href="/2020/docker2/">docker系列二docker配置优化</a></p>
 
       
-      <!-- 打赏 -->
-      
-      <div id="reward-btn">
-        打赏
-      </div>
-      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
     </div>
-    <footer class="article-footer">
-      <a data-url="https://chengnj.github.io/2020/docker1/" data-id="ck5ggn0wx0001j1ow7f141j0o"
-        class="article-share-link">分享</a>
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/" rel="tag">docker</a></li></ul>
+</article>
 
-    </footer>
 
-  </div>
+<p>
+    <a  class="dashang" onclick="dashangToggle()">赏</a>
+</p>
 
-  
-  
-  <nav class="article-nav">
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>docker系列一docker安装</p>
     
-      <a href="/2020/docker2/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            docker系列二docker配置优化
-          
-        </div>
-      </a>
-    
-    
-      <a href="/2020/docker-gpu/" class="article-nav-link">
-        <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">nvidia-docker支持docker使用gpu</div>
-      </a>
-    
-  </nav>
+    <p><span class="copy-title">本文作者:</span><a  title="wjy">wjy</a></p>
+    <p><span class="copy-title">发布时间:</span>2020-01-10, 12:19:39</p>
+    <p><span class="copy-title">最后更新:</span>2020-01-10, 17:31:36</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2020/docker1/" title="docker系列一docker安装">https://chengnj.github.io/2020/docker1/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
 
 
-  
 
-  
-  
-<!-- valine评论 -->
-<div id="vcomments-box">
-    <div id="vcomments">
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">©2016-2019 Yelog</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
     </div>
 </div>
-<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+<div class="acParent"></div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
+
+<script src="/js/script.js?v=1.0.1" ></script>
 <script>
-    new Valine({
-        el: '#vcomments',
-        notify: false,
-        verify: false,
-        app_id: '',
-        app_key: '',
-        path: window.location.pathname,
-        avatar: 'mp',
-        placeholder: '给我的文章加点评论吧~',
-        recordIP: true
-    });
-    const infoEle = document.querySelector('#vcomments .info');
-    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
-        infoEle.childNodes.forEach(function (item) {
-            item.parentNode.removeChild(item);
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['#随笔','#docker','#gpu','#nvidia',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $(".post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().split('\n').length - 1, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
         });
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
     }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
 </script>
+
+<!--加入行号的高亮代码块样式-->
+
 <style>
-    #vcomments-box {
-        padding: 5px 30px;
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
     }
-
-    @media screen and (max-width: 800px) {
-        #vcomments-box {
-            padding: 5px 0px;
-        }
+    code.has-numbering{
+        margin-left: 30px;
     }
-
-    #vcomments-box #vcomments {
-        background-color: #fff;
+    code.has-numbering.widther{
+        margin-left: 35px;
     }
-
-    .v .vlist .vcard .vh {
-        padding-right: 20px;
+    .pre-numbering{
+        margin: 0px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 0.5em 3px 0.7em 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: #fafafa;
     }
-
-    .v .vlist .vcard {
-        padding-left: 10px;
+    .pre-numbering.widther {
+        width: 35px;
     }
 </style>
 
-  
-
-  
-  
-  
-
-</article>
-</section>
-      <footer class="footer">
-  <div class="outer">
-    <ul class="list-inline">
-      <li>
-        &copy;
-        2020
-        wjy
-      </li>
-      <li>
-        
-      </li>
-    </ul>
-    <ul class="list-inline">
-      <li>
-        
-        
-        <ul class="list-inline">
-  <li>PV:<span id="busuanzi_value_page_pv"></span></li>
-  <li>UV:<span id="busuanzi_value_site_uv"></span></li>
-</ul>
-        
-      </li>
-      <li>
-        <!-- cnzz统计 -->
-        
-      </li>
-    </ul>
-  </div>
-</footer>
-    <div class="to_top">
-        <div class="totop" id="totop">
-  <i class="ri-arrow-up-line"></i>
-</div>
-      </div>
-    </main>
-    
-    <aside class="sidebar">
-      
-        <button class="navbar-toggle"></button>
-<nav class="navbar">
-  
-  <div class="logo">
-    <a href="/"><img src="/images/ayer-side.svg" alt="杂言闲语"></a>
-  </div>
-  
-  <ul class="nav nav-main">
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/">主页</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/archives">目录</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/tags">标签</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/2020/about">关于我</a>
-    </li>
-    
-  </ul>
-</nav>
-<nav class="navbar navbar-bottom">
-  <ul class="nav">
-    <li class="nav-item">
-      
-      <a class="nav-item-link nav-item-search"  title="Search">
-        <i class="ri-search-line"></i>
-      </a>
-      
-      
-      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
-        <i class="ri-rss-line"></i>
-      </a>
-      
-    </li>
-  </ul>
-</nav>
-<div class="search-form-wrap">
-  <div class="local-search local-search-plugin">
-  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
-  <div id="local-search-result" class="local-search-result"></div>
-</div>
-</div>
-      </aside>
-      <div id="mask"></div>
-
-<!-- #reward -->
-<div id="reward">
-  <span class="close"><i class="ri-close-line"></i></span>
-  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
-  <div class="reward-box">
-    
-    <div class="reward-item">
-      <img class="reward-img" src="/images/alipay.jpg">
-      <span class="reward-type">支付宝</span>
-    </div>
+<!--自定义样式设置-->
+<style>
     
     
-    <div class="reward-item">
-      <img class="reward-img" src="/images/wechat.jpg">
-      <span class="reward-type">微信</span>
-    </div>
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
     
-  </div>
-</div>
-      
-<script src="/js/jquery-2.0.3.min.js"></script>
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    .post .pjax article .article-entry>ol, .post .pjax article .article-entry>ul, .post .pjax article>ol, .post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    .post .pjax article .article-entry li>ol, .post .pjax article .article-entry li>ul,.post .pjax article li>ol, .post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .post .pjax article .article-entry>ol>li, .post .pjax article .article-entry>ul>li,.post .pjax article>ol>li, .post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    .post .pjax article .article-entry li>ol>li, .post .pjax article .article-entry li>ul>li,.post .pjax article li>ol>li, .post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
 
 
-<script src="/js/jquery.justifiedGallery.min.js"></script>
+    /*引用块样式*/
+    
 
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
 
-<script src="/js/lazyload.min.js"></script>
-
-
-<script src="/js/busuanzi-2.3.pure.min.js"></script>
-
-
-  
-<script src="/fancybox/jquery.fancybox.min.js"></script>
-
-
-
-
-  
-<script src="/js/tocbot.min.js"></script>
-
-  <script>
-    // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
-    tocbot.init({
-      tocSelector: '.tocbot',
-      contentSelector: '.article-entry',
-      headingSelector: 'h1, h2, h3, h4, h5, h6',
-      hasInnerContainers: true,
-      scrollSmooth: true,
-      positionFixedSelector: '.tocbot',
-      positionFixedClass: 'is-position-fixed',
-      fixedSidebarOffset: 'auto',
-			onClick: (e) => {
-      	document.getElementById(e.target.innerText).scrollIntoView()
-      	return false;
-    	}
-    });
-  </script>
-
-
-<script>
-  var ayerConfig = {
-    mathjax: false
-  }
-</script>
-
-
-<script src="/js/ayer.js"></script>
-
-
-<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+    
+</style>
 
 
 
-<script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
-  
-  
 
-  </div>
-</body>
+
+
 
 </html>
