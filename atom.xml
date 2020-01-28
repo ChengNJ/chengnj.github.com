@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://chengnj.github.io/"/>
-  <updated>2020-01-14T08:11:30.514Z</updated>
+  <updated>2020-01-28T09:05:23.148Z</updated>
   <id>https://chengnj.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://chengnj.github.io/2020/docker3/"/>
     <id>https://chengnj.github.io/2020/docker3/</id>
     <published>2020-01-10T09:48:37.000Z</published>
-    <updated>2020-01-14T08:11:30.514Z</updated>
+    <updated>2020-01-28T09:05:23.148Z</updated>
     
     <summary type="html">
     
@@ -36,6 +36,8 @@
     </summary>
     
     
+      <category term="docker" scheme="https://chengnj.github.io/categories/docker/"/>
+    
     
       <category term="docker" scheme="https://chengnj.github.io/tags/docker/"/>
     
@@ -46,7 +48,7 @@
     <link href="https://chengnj.github.io/2020/docker2/"/>
     <id>https://chengnj.github.io/2020/docker2/</id>
     <published>2020-01-10T08:29:12.000Z</published>
-    <updated>2020-01-10T09:31:47.529Z</updated>
+    <updated>2020-01-28T09:05:17.357Z</updated>
     
     <summary type="html">
     
@@ -61,6 +63,8 @@
     </summary>
     
     
+      <category term="docker" scheme="https://chengnj.github.io/categories/docker/"/>
+    
     
       <category term="docker" scheme="https://chengnj.github.io/tags/docker/"/>
     
@@ -71,7 +75,7 @@
     <link href="https://chengnj.github.io/2020/docker1/"/>
     <id>https://chengnj.github.io/2020/docker1/</id>
     <published>2020-01-10T04:19:39.000Z</published>
-    <updated>2020-01-10T09:31:36.657Z</updated>
+    <updated>2020-01-28T09:05:39.558Z</updated>
     
     <summary type="html">
     
@@ -86,6 +90,8 @@
     </summary>
     
     
+      <category term="docker" scheme="https://chengnj.github.io/categories/docker/"/>
+    
     
       <category term="docker" scheme="https://chengnj.github.io/tags/docker/"/>
     
@@ -96,7 +102,7 @@
     <link href="https://chengnj.github.io/2020/docker-gpu/"/>
     <id>https://chengnj.github.io/2020/docker-gpu/</id>
     <published>2020-01-08T02:21:59.000Z</published>
-    <updated>2020-01-09T03:37:01.548Z</updated>
+    <updated>2020-01-28T09:05:46.526Z</updated>
     
     <summary type="html">
     
@@ -110,6 +116,8 @@
     
     </summary>
     
+    
+      <category term="docker" scheme="https://chengnj.github.io/categories/docker/"/>
     
     
       <category term="docker" scheme="https://chengnj.github.io/tags/docker/"/>

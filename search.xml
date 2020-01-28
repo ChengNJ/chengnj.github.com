@@ -160,6 +160,9 @@
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker diff mymysql</span><br><span class="line">A &#x2F;logs</span><br><span class="line">A &#x2F;mysql_data</span><br><span class="line">C &#x2F;run</span><br><span class="line">C &#x2F;run&#x2F;mysqld</span><br><span class="line">A &#x2F;run&#x2F;mysqld&#x2F;mysqld.pid</span><br><span class="line">A &#x2F;run&#x2F;mysqld&#x2F;mysqld.sock</span><br><span class="line">C &#x2F;tmp</span><br></pre></td></tr></table></figure>
 <p>以上参考自菜鸟教程</p>
 ]]></content>
+      <categories>
+        <category>docker</category>
+      </categories>
       <tags>
         <tag>docker</tag>
       </tags>
@@ -192,6 +195,9 @@
 
 
 ]]></content>
+      <categories>
+        <category>docker</category>
+      </categories>
       <tags>
         <tag>docker</tag>
       </tags>
@@ -242,6 +248,9 @@
 </ol>
 <p><a href="/2020/docker2/">docker系列二docker配置优化</a></p>
 ]]></content>
+      <categories>
+        <category>docker</category>
+      </categories>
       <tags>
         <tag>docker</tag>
       </tags>
@@ -259,6 +268,9 @@
 
 <h1 id="自定义镜像"><a href="#自定义镜像" class="headerlink" title="自定义镜像"></a>自定义镜像</h1><p>如果是想自己定义镜像的话 可以直接基于nvidia/cuda的镜像进行操作。</p>
 ]]></content>
+      <categories>
+        <category>docker</category>
+      </categories>
       <tags>
         <tag>docker</tag>
         <tag>gpu</tag>
