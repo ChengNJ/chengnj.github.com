@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>docker系列四使用Dockerfile创建镜像 | 杂言闲语</title>
-  <meta name="keywords" content=" docker ">
-  <meta name="description" content="docker系列四使用Dockerfile创建镜像 | 杂言闲语">
+  <title>dial tcp lookup registry.cn-hangzhou.aliyuncs.com on 8.8.8.8:53 read udp 192.168.0.188:54861-&gt;8.8.8.8:53 i/o timeout | 杂言闲语</title>
+  <meta name="keywords" content=" docker , docker问题 ">
+  <meta name="description" content="dial tcp lookup registry.cn-hangzhou.aliyuncs.com on 8.8.8.8:53 read udp 192.168.0.188:54861-&gt;8.8.8.8:53 i/o timeout | 杂言闲语">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="A Coder, live in Xiamen, China.  GitHub: ChengNJQQ: 337455685微信: w-jy-1993">
 <meta property="og:type" content="website">
@@ -270,9 +270,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-docker系列四使用Dockerfile创建镜像" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-pulltimeout" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">docker系列四使用Dockerfile创建镜像</h1>
+        <h1 class="article-title">dial tcp lookup registry.cn-hangzhou.aliyuncs.com on 8.8.8.8:53 read udp 192.168.0.188:54861-&gt;8.8.8.8:53 i/o timeout</h1>
     
     <div class="article-meta">
         
@@ -289,17 +289,19 @@
             
             <a class="color2">docker</a>
             
+            <a class="color4">docker问题</a>
+            
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2020-02-04 17:21:20'>2020-01-28 18:12</time>
+        创建时间:<time class="date" title='更新时间: 2020-02-08 17:41:34'>2020-02-08 17:10</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:1.4k</span>
+        <span>字数:331</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -329,7 +331,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#什么是Dockerfile"><span class="toc-text">什么是Dockerfile</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#dockerfile示例"><span class="toc-text">dockerfile示例</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#dockerfile中的基本命令"><span class="toc-text">dockerfile中的基本命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#FROM"><span class="toc-text">FROM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MAINTAINER"><span class="toc-text">MAINTAINER</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#USER"><span class="toc-text">USER</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RUN"><span class="toc-text">RUN</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ADD"><span class="toc-text">ADD</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#COPY"><span class="toc-text">COPY</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WORKDIR"><span class="toc-text">WORKDIR</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#VOLUME"><span class="toc-text">VOLUME</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#EXPOSE"><span class="toc-text">EXPOSE</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CMD"><span class="toc-text">CMD</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ENTRYPOINT"><span class="toc-text">ENTRYPOINT</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ENV"><span class="toc-text">ENV</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HEALTHCHECK"><span class="toc-text">HEALTHCHECK</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ARG"><span class="toc-text">ARG</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#使用docker-build-进行构建镜像"><span class="toc-text">使用docker build 进行构建镜像</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#实例"><span class="toc-text">实例</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#将镜像传输到仓库"><span class="toc-text">将镜像传输到仓库</span></a></li></ol>
+        
     
 <style>
     .left-col .switch-btn,
@@ -345,60 +347,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="/docker/2020/docker1/">docker系列一docker安装</a><br><a href="/docker/2020/docker2/">docker系列二docker配置优化</a><br><a href="docker/2020/docker3/">docker系列三docker基本操作</a></p>
-<p>前面都是通过镜像仓库进行拉取别人构建好的镜像进行操作，所以这次我们进行编写dockerfile进行自定义构建镜像。</p>
-<h1 id="什么是Dockerfile"><a href="#什么是Dockerfile" class="headerlink" title="什么是Dockerfile"></a>什么是Dockerfile</h1><p>docker中最常见的创建镜像方式就是使用Dockerfile。Dockerfile是docker镜像的描述文件，包含着一条条的指令，每一条指令构建一层，所以每一条指令的内容就是描述该层是如何被构建的。</p>
-<h2 id="dockerfile示例"><a href="#dockerfile示例" class="headerlink" title="dockerfile示例"></a>dockerfile示例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">#基于centos镜像</span><br><span class="line">FROM centos</span><br><span class="line"></span><br><span class="line">#维护人信息</span><br><span class="line">MAINTAINER  the centos project &lt;*@qq.com&gt;</span><br><span class="line"></span><br><span class="line">#安装httpd软件包</span><br><span class="line">RUN yum -y update</span><br><span class="line">RUN yum -y install httpd</span><br><span class="line"></span><br><span class="line">#复制网站首页文件到镜像web站点下</span><br><span class="line">COPY index.html &#x2F;var&#x2F;www&#x2F;html&#x2F;index.htm</span><br><span class="line"></span><br><span class="line">#复制脚本到镜像中并修改权限</span><br><span class="line">ADD run.sh &#x2F;run.sh</span><br><span class="line">RUN chmod 775 &#x2F;run.sh</span><br><span class="line"></span><br><span class="line">#开启80端口</span><br><span class="line">EXPOSE 80</span><br><span class="line"></span><br><span class="line">#当容器启动时执行的命令</span><br><span class="line">CMD [&quot;&#x2F;run.sh&quot;]</span><br></pre></td></tr></table></figure>
-<p>从上面的文档可以看出dockerfile结构大概可以分为4部分：</p>
-<ol>
-<li>基础镜像信息</li>
-<li>维护者信息</li>
-<li>镜像操作指令</li>
-<li>容器启动时执行的指令</li>
-</ol>
-<p>Dockerfile每行支持一条指令，每条指令可带多个参数，支持使用以#号开头的注释。下面会对上面使用到的一些常用指令做一些介绍。</p>
-<h1 id="dockerfile中的基本命令"><a href="#dockerfile中的基本命令" class="headerlink" title="dockerfile中的基本命令"></a>dockerfile中的基本命令</h1><h2 id="FROM"><a href="#FROM" class="headerlink" title="FROM"></a>FROM</h2><p>指定新构建的镜像是基于哪个基础镜像</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FROM centos:6</span><br></pre></td></tr></table></figure>
-<h2 id="MAINTAINER"><a href="#MAINTAINER" class="headerlink" title="MAINTAINER"></a>MAINTAINER</h2><p>指明镜像维护者以及联系方式</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MAINTAINER XXX &lt;XXX@hotmail.com&gt;</span><br></pre></td></tr></table></figure>
-<h2 id="USER"><a href="#USER" class="headerlink" title="USER"></a>USER</h2><p>为RUN CMD ENTRYPOINT执行shell命令指定运行用户</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">USER &lt;user&gt;[:&lt;usergroup&gt;]</span><br><span class="line">USER &lt;UID&gt;[:&lt;UID&gt;]</span><br><span class="line">USER XXX</span><br></pre></td></tr></table></figure>
-<h2 id="RUN"><a href="#RUN" class="headerlink" title="RUN"></a>RUN</h2><p>构建镜像时运行的shell命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">RUN [&quot;yum&quot;,&quot;-y&quot;,&quot;install&quot;,&quot;httpd&quot;]</span><br><span class="line">RUN yum -y install httpd</span><br></pre></td></tr></table></figure>
-<h2 id="ADD"><a href="#ADD" class="headerlink" title="ADD"></a>ADD</h2><p>拷贝文件或者目录到镜像中，如果是url或者压缩包，则会自动下载或者自动解压</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ADD &lt;src&gt; &lt;dest&gt;</span><br><span class="line">ADD html.tar.gz &#x2F;var&#x2F;www&#x2F;html</span><br><span class="line">ADD https:&#x2F;&#x2F;xxx.com&#x2F;html.tar.gz &#x2F;var&#x2F;www&#x2F;html</span><br></pre></td></tr></table></figure>
-<h2 id="COPY"><a href="#COPY" class="headerlink" title="COPY"></a>COPY</h2><p>拷贝文件或者目录到镜像中，用法跟ADD一样，只不过不支持自动下载或者解压</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">COPY .&#x2F;start.sh &#x2F;start.sh</span><br></pre></td></tr></table></figure>
-<h2 id="WORKDIR"><a href="#WORKDIR" class="headerlink" title="WORKDIR"></a>WORKDIR</h2><p>为RUN、CMD、ENTRYPOINT以及COPY和AND设置工作目录</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WORKDIR &#x2F;data</span><br></pre></td></tr></table></figure>
-<h2 id="VOLUME"><a href="#VOLUME" class="headerlink" title="VOLUME"></a>VOLUME</h2><p>指定容器挂载点到宿主机自动生成的目录或者其他容器,一般不会再dockerfile中使用，而是在docker run的时候用-v 数据卷使用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">VOLUME [&quot;&#x2F;var&#x2F;lib&#x2F;mysql&quot;]</span><br></pre></td></tr></table></figure>
-<h2 id="EXPOSE"><a href="#EXPOSE" class="headerlink" title="EXPOSE"></a>EXPOSE</h2><p>声明容器运行的服务端口</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EXPOSE 80 443</span><br></pre></td></tr></table></figure>
-<h2 id="CMD"><a href="#CMD" class="headerlink" title="CMD"></a>CMD</h2><p>启动容器时执行的shell命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">CMD [&quot;-C&quot;, &quot;&#x2F;start.sh&quot;] </span><br><span class="line">CMD [&quot;&#x2F;usr&#x2F;sbin&#x2F;sshd&quot;, &quot;-D&quot;] </span><br><span class="line">CMD &#x2F;usr&#x2F;sbin&#x2F;sshd -D</span><br></pre></td></tr></table></figure>
-<h2 id="ENTRYPOINT"><a href="#ENTRYPOINT" class="headerlink" title="ENTRYPOINT"></a>ENTRYPOINT</h2><p>启动容器时执行的Shell命令，同CMD类似，只是由ENTRYPOINT启动的程序不会被docker run命令行指定的参数所覆盖，而且，这些命令行参数会被当作参数传递给ENTRYPOINT指定的程序，如果存在多个ENTRYPOINT指令，仅有最后一个有效</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ENTRYPOINT [&quot;&#x2F;bin&#x2F;bash&quot;, &quot;-C&quot;, &quot;&#x2F;start.sh&quot;]</span><br><span class="line">ENTRYPOINT &#x2F;bin&#x2F;bash -C &#39;&#x2F;start.sh&#39;</span><br></pre></td></tr></table></figure>
-<h2 id="ENV"><a href="#ENV" class="headerlink" title="ENV"></a>ENV</h2><p>设置环境变量</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ENV MYSQL_ROOT_PASSWORD 123456</span><br></pre></td></tr></table></figure>
-<h2 id="HEALTHCHECK"><a href="#HEALTHCHECK" class="headerlink" title="HEALTHCHECK"></a>HEALTHCHECK</h2><p>告诉docker如何检测容器以检查它是否正常工作，也就是健康检查<br> –interval=DURATION (default: 30s)：每隔多长时间探测一次，默认30秒<br> – timeout= DURATION (default: 30s)：服务响应超时时长，默认30秒<br> –start-period= DURATION (default: 0s)：服务启动多久后开始探测，默认0秒<br> –retries=N (default: 3)：认为检测失败几次为宕机，默认3次<br>一些返回值的说明：</p>
-<p>  0：容器成功是健康的，随时可以使用<br>  1：不健康的容器无法正常工作<br>  2：保留不使用此退出代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HEALTHCHECK --interval&#x3D;5m --timeout&#x3D;3s --retries&#x3D;3 CMD curl -f http:&#x2F;localhost&#x2F; ||exit 1</span><br></pre></td></tr></table></figure>
-<h2 id="ARG"><a href="#ARG" class="headerlink" title="ARG"></a>ARG</h2><p>构建镜像时，指定一些参数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">FROM centos:6</span><br><span class="line">ARG user</span><br><span class="line">USER $user</span><br></pre></td></tr></table></figure>
-<p>然后我们在构建镜像的时候可以自定义参数user</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build --build-arg user&#x3D;root Dockerfile .</span><br></pre></td></tr></table></figure>
-<h1 id="使用docker-build-进行构建镜像"><a href="#使用docker-build-进行构建镜像" class="headerlink" title="使用docker build 进行构建镜像"></a>使用docker build 进行构建镜像</h1><p>docker build [options]  path|url|- </p>
+        <p>在使用docker-compose pull进行拉取镜像的时候，出现timeout异常，报错如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Pulling police (registry.cn-hangzhou.aliyuncs.com&#x2F;aitensor-hub&#x2F;center-apps-police:3.2.1)...</span><br><span class="line">ERROR: Get https:&#x2F;&#x2F;registry.cn-hangzhou.aliyuncs.com&#x2F;v2&#x2F;aitensor-hub&#x2F;center-apps-police&#x2F;manifests&#x2F;3.2.1: dial tcp: lookup registry.cn-hangzhou.aliyuncs.com on 8.8.8.8:53: read udp 192.168.0.188:54861-&gt;8.8.8.8:53: i&#x2F;o timeout</span><br></pre></td></tr></table></figure>
+<p>可能有的人的报错不是8.8.8.8而是114.114.114.114，这是dns服务器地址。<br>通过 <strong><em>192.168.0.188:54861-&gt;8.8.8.8:53</em></strong> 可以看出本次的超时原因可能是随机的本机（192.168.0.188）的端口无法正常访问。所以我们就绕过向dns服务器请求，<br>也就是直接把 registry.cn-hangzhou.aliyuncs.com 的ip映射直接写到hosts里面。</p>
 <blockquote>
-<p>options:<br>–build-arg=[] :设置镜像创建时的变量；<br>–cpu-shares :设置 cpu 使用权重；<br>–cpu-period :限制 CPU CFS周期；<br>–cpu-quota :限制 CPU CFS配额；<br>–cpuset-cpus :指定使用的CPU id；<br>–cpuset-mems :指定使用的内存 id；<br>–disable-content-trust :忽略校验，默认开启；<br>-f :指定要使用的Dockerfile路径；<br>–force-rm :设置镜像过程中删除中间容器；<br>–isolation :使用容器隔离技术；<br>–label=[] :设置镜像使用的元数据；<br>-m :设置内存最大值；<br>–memory-swap :设置Swap的最大值为内存+swap，”-1”表示不限swap；<br>–no-cache :创建镜像的过程不使用缓存；<br>–pull :尝试去更新镜像的新版本；<br>–quiet, -q :安静模式，成功后只输出镜像 ID；<br>–rm :设置镜像成功后删除中间容器；<br>–shm-size :设置/dev/shm的大小，默认值是64M；<br>–ulimit :Ulimit配置。<br>–tag, -t: 镜像的名字及标签，通常 name:tag 或者 name 格式；可以在一次构建中为一个镜像设置多个标签。<br>–network: 默认 default。在构建期间设置RUN指令的网络模式</p>
+<ol>
+<li>手动ping registry.cn-hangzhou.aliyuncs.com 获取得到ip</li>
+<li>将 ip registry.cn-hangzhou.aliyuncs.com 写入到/etc/hosts中保存退出</li>
+<li>重新pull镜像，如果出现同样的报错，重复1 2步骤将对应的ip 网址映射写到hosts即可</li>
+</ol>
 </blockquote>
-<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><p>使用当前目录的 Dockerfile 创建镜像，标签为 runoob/ubuntu:v1。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -t runoob&#x2F;ubuntu:v1 .</span><br></pre></td></tr></table></figure>
-<p>使用URL github.com/creack/docker-firefox 的 Dockerfile 创建镜像。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build github.com&#x2F;creack&#x2F;docker-firefox</span><br></pre></td></tr></table></figure>
-<p>也可以通过 -f Dockerfile 文件的位置：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -f &#x2F;path&#x2F;to&#x2F;a&#x2F;Dockerfile .</span><br></pre></td></tr></table></figure>
-<h1 id="将镜像传输到仓库"><a href="#将镜像传输到仓库" class="headerlink" title="将镜像传输到仓库"></a>将镜像传输到仓库</h1><p>将本地的镜像推送到仓库中<br>docker push [registry-url/]namespace/img[:tag]</p>
+<p>我大概添加了三条映射就可以使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">112.124.225.62    dockerauth.cn-hangzhou.aliyuncs.com</span><br><span class="line">120.55.105.209    registry.cn-hangzhou.aliyuncs.com</span><br><span class="line">112.13.97.151     aliregistry.oss-cn-hangzhou.aliyuncs.com</span><br></pre></td></tr></table></figure>
+<p>为了避免ip变动导致的错误，建议还是自己手动ping获取ip。</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 337455685@qq.com </span>
@@ -412,12 +373,12 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>docker系列四使用Dockerfile创建镜像</p>
-    <p><span class="copy-title">文章字数:</span><span class="post-count">1.4k</span></p>
+    <p><span class="copy-title">文章标题:</span>dial tcp lookup registry.cn-hangzhou.aliyuncs.com on 8.8.8.8:53 read udp 192.168.0.188:54861-&gt;8.8.8.8:53 i/o timeout</p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">331</span></p>
     <p><span class="copy-title">本文作者:</span><a  title="wjy">wjy</a></p>
-    <p><span class="copy-title">发布时间:</span>2020-01-28, 18:12:34</p>
-    <p><span class="copy-title">最后更新:</span>2020-02-04, 17:21:20</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/docker/2020/docker4/" title="docker系列四使用Dockerfile创建镜像">https://chengnj.github.io/docker/2020/docker4/</a>
+    <p><span class="copy-title">发布时间:</span>2020-02-08, 17:10:39</p>
+    <p><span class="copy-title">最后更新:</span>2020-02-08, 17:41:34</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/docker/2020/dockerpull/" title="dial tcp lookup registry.cn-hangzhou.aliyuncs.com on 8.8.8.8:53 read udp 192.168.0.188:54861-&gt;8.8.8.8:53 i/o timeout">https://chengnj.github.io/docker/2020/dockerpull/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>

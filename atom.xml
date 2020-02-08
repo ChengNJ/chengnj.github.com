@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://chengnj.github.io/"/>
-  <updated>2020-02-04T09:21:20.153Z</updated>
+  <updated>2020-02-08T09:41:34.156Z</updated>
   <id>https://chengnj.github.io/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>dial tcp lookup registry.cn-hangzhou.aliyuncs.com on 8.8.8.8:53 read udp 192.168.0.188:54861-&gt;8.8.8.8:53 i/o timeout</title>
+    <link href="https://chengnj.github.io/docker/2020/dockerpull/"/>
+    <id>https://chengnj.github.io/docker/2020/dockerpull/</id>
+    <published>2020-02-08T09:10:39.000Z</published>
+    <updated>2020-02-08T09:41:34.156Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;在使用docker-compose pull进行拉取镜像的时候，出现timeout异常，报错如下：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span
+        
+      
+    
+    </summary>
+    
+    
+      <category term="docker" scheme="https://chengnj.github.io/categories/docker/"/>
+    
+    
+      <category term="docker" scheme="https://chengnj.github.io/tags/docker/"/>
+    
+      <category term="docker问题" scheme="https://chengnj.github.io/tags/docker%E9%97%AE%E9%A2%98/"/>
+    
+  </entry>
   
   <entry>
     <title>docker系列四使用Dockerfile创建镜像</title>

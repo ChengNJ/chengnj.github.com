@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://chengnj.github.io/docker/2020/dockerpull/</loc>
+    
+    <lastmod>2020-02-08T09:41:34.156Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://chengnj.github.io/docker/2020/docker4/</loc>
     
     <lastmod>2020-02-04T09:21:20.153Z</lastmod>
