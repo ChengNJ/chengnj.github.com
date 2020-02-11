@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://chengnj.github.io/docker/2020/docker1/</loc>
+    
+    <lastmod>2020-02-11T01:39:17.135Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://chengnj.github.io/docker/2020/dockerpull/</loc>
     
-    <lastmod>2020-02-08T09:41:34.156Z</lastmod>
+    <lastmod>2020-02-08T10:26:14.752Z</lastmod>
     
   </url>
   
@@ -26,13 +33,6 @@
     <loc>https://chengnj.github.io/docker/2020/docker-gpu/</loc>
     
     <lastmod>2020-01-28T09:05:46.526Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://chengnj.github.io/docker/2020/docker1/</loc>
-    
-    <lastmod>2020-01-28T09:05:39.558Z</lastmod>
     
   </url>
   
