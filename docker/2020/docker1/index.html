@@ -6,15 +6,19 @@
   <meta name="keywords" content=" docker ">
   <meta name="description" content="docker系列一docker安装 | 杂言闲语">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="A Coder, live in Xiamen, China.  GitHub: ChengNJQQ: 337455685微信: w-jy-1993">
 <meta property="og:type" content="website">
-<meta property="og:title" content="tags">
-<meta property="og:url" content="https://chengnj.github.io/tags/index.html">
+<meta property="og:title" content="About Me">
+<meta property="og:url" content="https://chengnj.github.io/about/index.html">
 <meta property="og:site_name" content="杂言闲语">
+<meta property="og:description" content="A Coder, live in Xiamen, China.  GitHub: ChengNJQQ: 337455685微信: w-jy-1993">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-01-09T03:23:12.010Z">
-<meta property="article:modified_time" content="2020-01-09T03:23:12.010Z">
+<meta property="og:image" content="https://i.loli.net/2019/12/28/ewSHTg3uWyJkaEv.jpg">
+<meta property="article:published_time" content="2020-01-07T02:37:04.000Z">
+<meta property="article:modified_time" content="2020-01-28T09:23:44.381Z">
 <meta property="article:author" content="wjy">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2019/12/28/ewSHTg3uWyJkaEv.jpg">
 
 
 <link rel="icon" href="/img/avatar-1.jpeg">
@@ -290,7 +294,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2020-02-11 09:39:17'>2020-01-10 12:19</time>
+        创建时间:<time class="date" title='更新时间: 2020-02-11 09:43:13'>2020-01-10 12:19</time>
         
     </div>
     <div class="article-meta">
@@ -378,20 +382,26 @@
 </li>
 </ol>
 <h1 id="red-hat-centos-docker-安装"><a href="#red-hat-centos-docker-安装" class="headerlink" title="red hat/centos docker 安装"></a>red hat/centos docker 安装</h1><ol>
-<li>卸载旧版本<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">sudo yum remove docker \</span><br><span class="line">docker-client \</span><br><span class="line">docker-client-latest \</span><br><span class="line">docker-common \</span><br><span class="line">docker-latest \</span><br><span class="line">docker-latest-logrotate \</span><br><span class="line">docker-logrotate \</span><br><span class="line">docker-selinux \</span><br><span class="line">docker-engine-selinux \</span><br><span class="line">docker-engine</span><br></pre></td></tr></table></figure></li>
-<li>安装docker源<ol>
+<li><p>卸载旧版本</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">sudo yum remove docker \</span><br><span class="line">docker-client \</span><br><span class="line">docker-client-latest \</span><br><span class="line">docker-common \</span><br><span class="line">docker-latest \</span><br><span class="line">docker-latest-logrotate \</span><br><span class="line">docker-logrotate \</span><br><span class="line">docker-selinux \</span><br><span class="line">docker-engine-selinux \</span><br><span class="line">docker-engine</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装docker源</p>
+<ol>
 <li>安装yum功能包yum-utils用于支持yum-config-manager（yum配置管理器）功能，device-mapper-persistent-data和lv2用户支持devicemapper存储驱动 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install -y yum-utils \</span><br><span class="line">device-mapper-persistent-data \</span><br><span class="line">lvm2</span><br></pre></td></tr></table></figure></li>
 <li>增加稳定的docker源 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo yum-config-manager \</span><br><span class="line">--add-repo \</span><br><span class="line">https:&#x2F;&#x2F;download.docker.com&#x2F;linux&#x2F;centos&#x2F;docker-ce.repo</span><br></pre></td></tr></table></figure></li>
 </ol>
 </li>
-<li>安装docker ce<ol>
+<li><p>安装docker ce</p>
+<ol>
 <li>安装最新的docker ce <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install docker-ce</span><br></pre></td></tr></table></figure>
  如果报 <strong><em>No package docker available</em></strong> yum没有找到docker-ce包，而docker-ce是第三方软件，更新epel后，再次执行上面的安装语句即可 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install epel-release</span><br></pre></td></tr></table></figure>
 <h1 id="docker-compose安装-用于多个服务的启动"><a href="#docker-compose安装-用于多个服务的启动" class="headerlink" title="docker-compose安装(用于多个服务的启动)"></a>docker-compose安装(用于多个服务的启动)</h1></li>
 </ol>
 </li>
-<li>安装 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install -y docker-compose</span><br></pre></td></tr></table></figure></li>
-<li>查看版本   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose --version</span><br></pre></td></tr></table></figure>
+<li><p>安装</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install -y docker-compose</span><br></pre></td></tr></table></figure></li>
+<li><p>查看版本  </p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose --version</span><br></pre></td></tr></table></figure>
 
 </li>
 </ol>
@@ -413,7 +423,7 @@
     <p><span class="copy-title">文章字数:</span><span class="post-count">1.4k</span></p>
     <p><span class="copy-title">本文作者:</span><a  title="wjy">wjy</a></p>
     <p><span class="copy-title">发布时间:</span>2020-01-10, 12:19:39</p>
-    <p><span class="copy-title">最后更新:</span>2020-02-11, 09:39:17</p>
+    <p><span class="copy-title">最后更新:</span>2020-02-11, 09:43:13</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/docker/2020/docker1/" title="docker系列一docker安装">https://chengnj.github.io/docker/2020/docker1/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
