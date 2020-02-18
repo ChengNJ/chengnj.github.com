@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://chengnj.github.io/"/>
-  <updated>2020-02-08T10:26:14.752Z</updated>
+  <updated>2020-02-18T03:40:08.580Z</updated>
   <id>https://chengnj.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>docker系列五docker-compose编排服务</title>
+    <link href="https://chengnj.github.io/docker/2020/docker5/"/>
+    <id>https://chengnj.github.io/docker/2020/docker5/</id>
+    <published>2020-02-17T09:11:09.000Z</published>
+    <updated>2020-02-18T03:40:08.580Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;什么是docker-compose&quot;&gt;&lt;a href=&quot;#什么是docker-compose&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="docker" scheme="https://chengnj.github.io/categories/docker/"/>
+    
+    
+      <category term="docker" scheme="https://chengnj.github.io/tags/docker/"/>
+    
+  </entry>
   
   <entry>
     <title>dial tcp lookup registry.cn-hangzhou.aliyuncs.com on 8.8.8.8:53 read udp 192.168.0.188:54861-&gt;8.8.8.8:53 i/o timeout</title>
@@ -51,7 +78,7 @@
     <link href="https://chengnj.github.io/docker/2020/docker4/"/>
     <id>https://chengnj.github.io/docker/2020/docker4/</id>
     <published>2020-01-28T10:12:34.000Z</published>
-    <updated>2020-02-04T09:21:20.153Z</updated>
+    <updated>2020-02-17T09:12:13.550Z</updated>
     
     <summary type="html">
     
@@ -59,7 +86,8 @@
       
         
         
-          &lt;p&gt;&lt;a href=&quot;/docker/2020/docker1/&quot;&gt;docker系列一docker安装&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;/docker/2020/docker2/&quot;&gt;docker系列二docker配置优化&lt;/a&gt;&lt;br&gt;&lt;a
+          &lt;p&gt;前面都是通过镜像仓库进行拉取别人构建好的镜像进行操作，所以这次我们进行编写dockerfile进行自定义构建镜像。&lt;/p&gt;
+&lt;h1 id=&quot;什么是Dockerfile&quot;&gt;&lt;a href=&quot;#什么是Dockerfile&quot; class=&quot;headerlink&quot;
         
       
     
@@ -78,7 +106,7 @@
     <link href="https://chengnj.github.io/docker/2020/docker3/"/>
     <id>https://chengnj.github.io/docker/2020/docker3/</id>
     <published>2020-01-10T09:48:37.000Z</published>
-    <updated>2020-01-28T09:05:23.148Z</updated>
+    <updated>2020-02-17T09:12:08.040Z</updated>
     
     <summary type="html">
     
@@ -86,7 +114,8 @@
       
         
         
-          &lt;p&gt;&lt;a href=&quot;/2020/docker1/&quot;&gt;docker系列一docker安装&lt;/a&gt;&lt;br&gt;&lt;a
+          &lt;p&gt;经过前两篇的前期准备，这篇开始就可以真正地进入docker的实地操作啦！那么先来了解下docker的命令操作。以下所有涉及到容器的，既可以使用容器名称，也可以使用容器id(只需要输入id前3位即可，不行就四位。。。)&lt;/p&gt;
+&lt;h1 id=&quot;镜像仓库&quot;&gt;&lt;a
         
       
     
@@ -105,7 +134,7 @@
     <link href="https://chengnj.github.io/docker/2020/docker2/"/>
     <id>https://chengnj.github.io/docker/2020/docker2/</id>
     <published>2020-01-10T08:29:12.000Z</published>
-    <updated>2020-01-28T09:05:17.357Z</updated>
+    <updated>2020-02-17T09:12:04.841Z</updated>
     
     <summary type="html">
     
@@ -113,7 +142,7 @@
       
         
         
-          &lt;p&gt;&lt;a
+          &lt;p&gt;工欲善其事必先利其器，所以在安装完docker后，我们需要对docker修改配置。&lt;br&gt;docker的配置文件&lt;strong&gt;是/etc/docker/daemon.json&lt;/strong&gt;如果没有这个文件，就新建一个。&lt;br&gt;&lt;strong&gt;该配置文件修改完后，需要重
         
       
     
