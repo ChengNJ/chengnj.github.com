@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://chengnj.github.io/"/>
-  <updated>2020-02-21T03:47:07.043Z</updated>
+  <updated>2020-02-21T07:20:37.663Z</updated>
   <id>https://chengnj.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://chengnj.github.io/%E7%AC%94%E8%AE%B0/2020/base64q1/"/>
     <id>https://chengnj.github.io/%E7%AC%94%E8%AE%B0/2020/base64q1/</id>
     <published>2020-02-21T03:27:23.000Z</published>
-    <updated>2020-02-21T03:47:07.043Z</updated>
+    <updated>2020-02-21T07:20:37.663Z</updated>
     
     <summary type="html">
     
@@ -29,7 +29,7 @@
       
         
         
-          &lt;p&gt;在进行fdfs存储的时候，将前端传过来的编码进行解码时出现报错&lt;/p&gt;
+          &lt;p&gt;在进行fdfs存储的时候，将前端传过来的Base64进行解码时出现报错&lt;/p&gt;
 &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span
         
       
