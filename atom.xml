@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://chengnj.github.io/"/>
-  <updated>2020-02-18T03:40:08.580Z</updated>
+  <updated>2020-02-21T03:47:07.043Z</updated>
   <id>https://chengnj.github.io/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Base64编码包含换行符问题</title>
+    <link href="https://chengnj.github.io/%E7%AC%94%E8%AE%B0/2020/base64q1/"/>
+    <id>https://chengnj.github.io/%E7%AC%94%E8%AE%B0/2020/base64q1/</id>
+    <published>2020-02-21T03:27:23.000Z</published>
+    <updated>2020-02-21T03:47:07.043Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;在进行fdfs存储的时候，将前端传过来的编码进行解码时出现报错&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span
+        
+      
+    
+    </summary>
+    
+    
+      <category term="笔记" scheme="https://chengnj.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="base64" scheme="https://chengnj.github.io/tags/base64/"/>
+    
+      <category term="换行符" scheme="https://chengnj.github.io/tags/%E6%8D%A2%E8%A1%8C%E7%AC%A6/"/>
+    
+  </entry>
   
   <entry>
     <title>docker系列五docker-compose编排服务</title>

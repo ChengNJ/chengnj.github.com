@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Base64编码包含换行符问题</title>
+    <url>/%E7%AC%94%E8%AE%B0/2020/base64q1/</url>
+    <content><![CDATA[<p>在进行fdfs存储的时候，将前端传过来的编码进行解码时出现报错</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">java.lang.IllegalArgumentException: Illegal base64 character a</span><br><span class="line">        at java.util.Base64$Decoder.decode0(Base64.java:714) ~[?:1.8.0_201]</span><br><span class="line">        at java.util.Base64$Decoder.decode(Base64.java:526) ~[?:1.8.0_201]</span><br><span class="line">        at java.util.Base64$Decoder.decode(Base64.java:549) ~[?:1.8.0_201]</span><br></pre></td></tr></table></figure>
+<p>经过排查发现，这次前端将ocr给的Base64里面有换行符，导致解码出现错误。<br>base64编码的包很多,稍有不注意就会得不到期望的结果引起bug，这是由于根据RFC822规定，Base64Encoder编码每76个字符，还需要加上一个回车换行,部分Base64编码的java库还按照这个标准实行。<br>如果不想换行，可以使用Apache的common-codec.jar.</p>
+<p>这边我们是从其他处的到的编码，所以我们需要去除回车符，然后再进行解码就可以。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">imgBase64 &#x3D; imgBase64.replaceAll(&quot;[\\s*\t\n\r↵]&quot;, &quot;&quot;);</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>base64</tag>
+        <tag>换行符</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>docker系列五docker-compose编排服务</title>
     <url>/docker/2020/docker5/</url>
     <content><![CDATA[<h1 id="什么是docker-compose"><a href="#什么是docker-compose" class="headerlink" title="什么是docker-compose"></a>什么是docker-compose</h1><p>之前我们都是直接一条docker 命令行启动一个容器当做服务，这在我们应用或者中间件服务比较少的<br>情况下，就几条命令行，还是比较方便简单的。然而，在现实使用的时候我们往往服务是蛮多的，所以这<br>时候就需要docker-compose上场了。docker-compose是一个用户定义和运行多个容器的docker应用程序。<br>只需要一个简单的命令，就可以进行根据配置文件进行创建并启动你配置的所有服务。</p>

@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>docker系列一docker安装 | 杂言闲语</title>
-  <meta name="keywords" content=" docker ">
-  <meta name="description" content="docker系列一docker安装 | 杂言闲语">
+  <title>Base64编码包含换行符问题 | 杂言闲语</title>
+  <meta name="keywords" content=" base64 , 换行符 ">
+  <meta name="description" content="Base64编码包含换行符问题 | 杂言闲语">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="A Coder, live in Xiamen, China.  GitHub: ChengNJQQ: 337455685微信: w-jy-1993">
 <meta property="og:type" content="website">
@@ -302,9 +302,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-docker系列一docker安装" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-Base64编码包含换行符问题" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">docker系列一docker安装</h1>
+        <h1 class="article-title">Base64编码包含换行符问题</h1>
     
     <div class="article-meta">
         
@@ -312,26 +312,28 @@
         
         <span class="book">
             
-                <a  data-rel="docker">docker</a>
+                <a  data-rel="笔记">笔记</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a class="color2">docker</a>
+            <a class="color2">base64</a>
+            
+            <a class="color4">换行符</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2020-02-11 09:43:13'>2020-01-10 12:19</time>
+        创建时间:<time class="date" title='更新时间: 2020-02-21 11:47:07'>2020-02-21 11:27</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:1.4k</span>
+        <span>字数:227</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -361,7 +363,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#docker简介"><span class="toc-text">docker简介</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#虚拟机"><span class="toc-text">虚拟机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#容器技术与docker"><span class="toc-text">容器技术与docker</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ubuntu-docker-安装"><span class="toc-text">ubuntu docker 安装</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#red-hat-centos-docker-安装"><span class="toc-text">red hat&#x2F;centos docker 安装</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#docker-compose安装-用于多个服务的启动"><span class="toc-text">docker-compose安装(用于多个服务的启动)</span></a></li></ol>
+        
     
 <style>
     .left-col .switch-btn,
@@ -377,68 +379,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>最近打开印象笔记，发现自己在18年就有做docker的一些相关记录。后面就没了。。没了。。了。。。<br>现在在这家公司，最开始是由于正式使用是内网环境，用docker有点麻烦，就因此把服务docker化部署这个任务闲置了，最近开始公司开始采用联通云，使用云上部署，加上最近自己手头的任务也比较没那么紧张，所以就又开始了docker的研究使用。<br>这里，我将mysql、redis、kafka、nginx进行了根据我们的实际使用进行了定制化。并且将微服务应用进行了使用docker打包，并在正式使用时，使用docker-compose进行编排部署。<br>现在就打算写个blog对自己做的这些做个总结，如果能对大家有帮助的话，更好不过了。  </p>
-<h1 id="docker简介"><a href="#docker简介" class="headerlink" title="docker简介"></a>docker简介</h1><h2 id="虚拟机"><a href="#虚拟机" class="headerlink" title="虚拟机"></a>虚拟机</h2><blockquote>
-<p>可能很多朋友都用过虚拟机，我们用的传统虚拟机如 VMware，VisualBox 之类的需要模拟整台机器包括硬件，每台虚拟机都需要有自己的操作系统，虚拟机一旦被开启，预分配给它的资源将全部被占用。每一台虚拟机包括应用，必要的二进制和库，以及一个完整的用户操作系统。  </p>
-</blockquote>
-<h2 id="容器技术与docker"><a href="#容器技术与docker" class="headerlink" title="容器技术与docker"></a>容器技术与docker</h2><blockquote>
-<p>容器技术是和我们的宿主机共享硬件资源及操作系统，可以实现资源的动态分配。容器包含应用和其所有的依赖包，但是与其他容器共享内核。容器在宿主机操作系统中，在用户空间以分离的进程运行。<br>容器技术是实现操作系统虚拟化的一种途径，可以让您在资源受到隔离的进程中运行应用程序及其依赖关系。通过使用容器，我们可以轻松打包应用程序的代码、配置和依赖关系，将其变成容易使用的构建块，从而实现环境一致性、运营效率、开发人员生产力和版本控制等诸多目标。容器可以帮助保证应用程序快速、可靠、一致地部署，其间不受部署环境的影响。容器还赋予我们对资源更多的精细化控制能力，让我们的基础设施效率更高。<br>Linux 容器是 Linux 发展出了另一种虚拟化技术，简单来讲， Linux 容器不是模拟一个完整的操作系统，而是对进程进行隔离，相当于是在正常进程的外面套了一个保护层。对于容器里面的进程来说，它接触到的各种资源都是虚拟的，从而实现与底层系统的隔离。<strong>Docker 属于 Linux 容器的一种封装，提供简单易用的容器使用接口。</strong> 它是目前最流行的 Linux 容器解决方案。而docker将应用程序与该程序的依赖，打包在一个文件里面。运行这个文件，就会生成一个虚拟容器。程序在这个虚拟容器里运行，就好像在真实的物理机上运行一样。有了 docker ，就不用担心环境问题。<br>总体来说， Docker 的接口相当简单，用户可以方便地创建和使用容器，把自己的应用放入容器。容器还可以进行版本管理、复制、分享、修改，就像管理普通的代码一样。  </p>
-</blockquote>
-<p>在进行了解了下docker后，一切的开始当然是从docker的安装开始，这里我只做docker的ubuntu版本进行操作，其他操作系统看看后面补上。</p>
-<h1 id="ubuntu-docker-安装"><a href="#ubuntu-docker-安装" class="headerlink" title="ubuntu docker 安装"></a>ubuntu docker 安装</h1><ol>
-<li><p>卸载旧版docker（如果是全新安装的系统，无需执行）</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get remove docker docker-engine docker.io</span><br></pre></td></tr></table></figure></li>
-<li><p>更新系统软件  </p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure></li>
-<li><p>安装依赖包  </p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install -y \</span><br><span class="line">    apt-transport-https \</span><br><span class="line">    ca-certificates \</span><br><span class="line">    curl \</span><br><span class="line">    software-properties-common</span><br></pre></td></tr></table></figure></li>
-<li><p>添加官方密钥<br>建议用下面的国内源,下载会更快，执行可能需要小等一会，会出现ok</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo curl -fsSL https:&#x2F;&#x2F;mirrors.ustc.edu.cn&#x2F;docker-ce&#x2F;linux&#x2F;ubuntu&#x2F;gpg \</span><br><span class="line">| sudo apt-key add -</span><br></pre></td></tr></table></figure>
-<p> 以下为官方</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo curl -fsSL https:&#x2F;&#x2F;download.docker.com&#x2F;linux&#x2F;ubuntu&#x2F;gpg \</span><br><span class="line">| sudo apt-key add -</span><br></pre></td></tr></table></figure></li>
-<li><p>添加仓库<br>建议用下面的国内源  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository \</span><br><span class="line">&quot;deb [arch&#x3D;amd64] https:&#x2F;&#x2F;mirrors.ustc.edu.cn&#x2F;docker-ce&#x2F;linux&#x2F;ubuntu \</span><br><span class="line">$(lsb_release -cs) \</span><br><span class="line">stable&quot;</span><br></pre></td></tr></table></figure>
-<p>以下为官方</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository \</span><br><span class="line">&quot;deb [arch&#x3D;amd64] https:&#x2F;&#x2F;download.docker.com&#x2F;linux&#x2F;ubuntu \</span><br><span class="line">$(lsb_release -cs) \</span><br><span class="line">stable&quot;</span><br></pre></td></tr></table></figure></li>
-<li><p>再次更新软件  </p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure></li>
-<li><p>安装docker  </p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install -y docker-ce</span><br></pre></td></tr></table></figure>
-<p> 静等下载安装完成。  </p>
-</li>
-<li><p>查看docker版本  </p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker -v</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ol>
-<h1 id="red-hat-centos-docker-安装"><a href="#red-hat-centos-docker-安装" class="headerlink" title="red hat/centos docker 安装"></a>red hat/centos docker 安装</h1><ol>
-<li><p>卸载旧版本</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">sudo yum remove docker \</span><br><span class="line">docker-client \</span><br><span class="line">docker-client-latest \</span><br><span class="line">docker-common \</span><br><span class="line">docker-latest \</span><br><span class="line">docker-latest-logrotate \</span><br><span class="line">docker-logrotate \</span><br><span class="line">docker-selinux \</span><br><span class="line">docker-engine-selinux \</span><br><span class="line">docker-engine</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>安装docker源</p>
-<ol>
-<li>安装yum功能包yum-utils用于支持yum-config-manager（yum配置管理器）功能，device-mapper-persistent-data和lv2用户支持devicemapper存储驱动 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install -y yum-utils \</span><br><span class="line">device-mapper-persistent-data \</span><br><span class="line">lvm2</span><br></pre></td></tr></table></figure></li>
-<li>增加稳定的docker源 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo yum-config-manager \</span><br><span class="line">--add-repo \</span><br><span class="line">https:&#x2F;&#x2F;download.docker.com&#x2F;linux&#x2F;centos&#x2F;docker-ce.repo</span><br></pre></td></tr></table></figure></li>
-</ol>
-</li>
-<li><p>安装docker ce</p>
-<ol>
-<li>安装最新的docker ce <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install docker-ce</span><br></pre></td></tr></table></figure>
- 如果报 <strong><em>No package docker available</em></strong> yum没有找到docker-ce包，而docker-ce是第三方软件，更新epel后，再次执行上面的安装语句即可 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install epel-release</span><br></pre></td></tr></table></figure>
-<h1 id="docker-compose安装-用于多个服务的启动"><a href="#docker-compose安装-用于多个服务的启动" class="headerlink" title="docker-compose安装(用于多个服务的启动)"></a>docker-compose安装(用于多个服务的启动)</h1></li>
-</ol>
-</li>
-<li><p>安装</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install -y docker-compose</span><br></pre></td></tr></table></figure></li>
-<li><p>查看版本  </p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose --version</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<p><a href="/2020/docker2/">docker系列二docker配置优化</a></p>
-
+        <p>在进行fdfs存储的时候，将前端传过来的编码进行解码时出现报错</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">java.lang.IllegalArgumentException: Illegal base64 character a</span><br><span class="line">        at java.util.Base64$Decoder.decode0(Base64.java:714) ~[?:1.8.0_201]</span><br><span class="line">        at java.util.Base64$Decoder.decode(Base64.java:526) ~[?:1.8.0_201]</span><br><span class="line">        at java.util.Base64$Decoder.decode(Base64.java:549) ~[?:1.8.0_201]</span><br></pre></td></tr></table></figure>
+<p>经过排查发现，这次前端将ocr给的Base64里面有换行符，导致解码出现错误。<br>base64编码的包很多,稍有不注意就会得不到期望的结果引起bug，这是由于根据RFC822规定，Base64Encoder编码每76个字符，还需要加上一个回车换行,部分Base64编码的java库还按照这个标准实行。<br>如果不想换行，可以使用Apache的common-codec.jar.</p>
+<p>这边我们是从其他处的到的编码，所以我们需要去除回车符，然后再进行解码就可以。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">imgBase64 &#x3D; imgBase64.replaceAll(&quot;[\\s*\t\n\r↵]&quot;, &quot;&quot;);</span><br></pre></td></tr></table></figure>
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 337455685@qq.com </span>
     </div>
@@ -451,12 +396,12 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>docker系列一docker安装</p>
-    <p><span class="copy-title">文章字数:</span><span class="post-count">1.4k</span></p>
+    <p><span class="copy-title">文章标题:</span>Base64编码包含换行符问题</p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">227</span></p>
     <p><span class="copy-title">本文作者:</span><a  title="wjy">wjy</a></p>
-    <p><span class="copy-title">发布时间:</span>2020-01-10, 12:19:39</p>
-    <p><span class="copy-title">最后更新:</span>2020-02-11, 09:43:13</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/docker/2020/docker1/" title="docker系列一docker安装">https://chengnj.github.io/docker/2020/docker1/</a>
+    <p><span class="copy-title">发布时间:</span>2020-02-21, 11:27:23</p>
+    <p><span class="copy-title">最后更新:</span>2020-02-21, 11:47:07</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/%E7%AC%94%E8%AE%B0/2020/base64q1/" title="Base64编码包含换行符问题">https://chengnj.github.io/%E7%AC%94%E8%AE%B0/2020/base64q1/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
